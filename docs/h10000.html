@@ -62,33 +62,33 @@
   <thead><tr><th><span class="l" lang="en">Stage</span><span class="l" lang="ja">段</span></th><th><span class="l" lang="en">Method</span><span class="l" lang="ja">方法</span></th><th><span class="l" lang="en">Status</span><span class="l" lang="ja">状況</span></th></tr></thead>
   <tbody>
     <tr><td>0</td><td><span class="l" lang="en">Remove circles with 24 ∤ denominator</span><span class="l" lang="ja">分母が 24 で割り切れない円を外す</span></td><td><span class="l" lang="en">done: 1,265,618 circles remain</span><span class="l" lang="ja">済：1,265,618 個の円が残る</span></td></tr>
-    <tr><td>1</td><td><span class="l" lang="en">Descent through a common square class with p-adic tests</span><span class="l" lang="ja">共通の平方類による降下と p 進の判定</span></td><td><span class="l" lang="en">running since 12 Nov, 15:17 JST</span><span class="l" lang="ja">11 月 12 日 15:17 から実行中</span></td></tr>
-    <tr><td>2</td><td><span class="l" lang="en">Genus-one quotients of rank 0; refined 2-descent over Q(i)</span><span class="l" lang="ja">階数 0 の種数 1 の商、Q(i) の上の細かい 2 降下</span></td><td><span class="l" lang="en">after stage 1</span><span class="l" lang="ja">段 1 の後</span></td></tr>
+    <tr><td>1</td><td><span class="l" lang="en">Descent through a common square class with p-adic tests</span><span class="l" lang="ja">共通の平方類による降下と p 進の判定</span></td><td><span class="l" lang="en">done (13 Nov): 1,163,868 excluded, 101,750 remain</span><span class="l" lang="ja">済（11 月 13 日）：1,163,868 個を除外、101,750 個が残る</span></td></tr>
+    <tr><td>2</td><td><span class="l" lang="en">Genus-one quotients of rank 0 (exact); refined 2-descent over Q(i), primes up to 10<sup>6</sup>, pairs and all four factors</span><span class="l" lang="ja">階数 0 の種数 1 の商（正確な判定）、Q(i) の上の細かい 2 降下（素数 10<sup>6</sup> まで、2 因子の組と 4 因子すべて）</span></td><td><span class="l" lang="en">tools ready; on a sample of 240 circles, 83% are closed</span><span class="l" lang="ja">道具は用意済み。240 個の標本で 83% が閉じる</span></td></tr>
     <tr><td>3</td><td><span class="l" lang="en">Mordell–Weil sieve, checked by a second system</span><span class="l" lang="ja">Mordell–Weil ふるい（第 2 の系で照合）</span></td><td><span class="l" lang="en">not started</span><span class="l" lang="ja">未着手</span></td></tr>
     <tr><td>4</td><td><span class="l" lang="en">Circles whose sieve needs hard generators (Heegner points, coverings)</span><span class="l" lang="ja">ふるいに求めにくい生成元が要る円（Heegner 点、被覆）</span></td><td><span class="l" lang="en">not started</span><span class="l" lang="ja">未着手</span></td></tr>
   </tbody>
 </table>
 </div>
 <section class="prose">
-  <p class="l" lang="en">Stage 1 was checked before the run: restricted to height 500, the new program tests 3,113 circles and leaves exactly the same 292 circles as the height-1000 run. On a sample of 200 radii with denominators between 5000 and 10000, one circle takes about 8 ms and 13 of the 200 survive. If that rate holds, stage 1 costs about 3 CPU hours and leaves on the order of 80,000 circles for stage 2, about 80 times as many as at height 1000.</p>
-  <p class="l" lang="ja">段 1 は実行前に照合した。高さ 500 に制限すると、新しいプログラムは 3,113 個の円を調べ、高さ 1000 のときとまったく同じ 292 個の円を残した。分母が 5000〜10000 の半径 200 個の標本では、1 個の円に約 8 ms かかり、200 個のうち 13 個が残った。この割合が続けば、段 1 は約 3 CPU 時間で、段 2 に回る円は 8 万個ほど、高さ 1000 の約 80 倍になる。</p>
+  <p class="l" lang="en">Stage 1 was checked before the run: restricted to height 500, the new program tests 3,113 circles and leaves exactly the same 292 circles as the height-1000 run. The full run took about 3 CPU hours. Of the 1,265,618 circles, 101,750 (8.0%) survive, against 1,040 of 12,600 at height 1000.</p>
+  <p class="l" lang="ja">段 1 は実行前に照合した。高さ 500 に制限すると、新しいプログラムは 3,113 個の円を調べ、高さ 1000 のときとまったく同じ 292 個の円を残した。本走は約 3 CPU 時間だった。1,265,618 個の円のうち 101,750 個（8.0%）が残った。高さ 1000 では 12,600 個のうち 1,040 個だった。</p>
 
   <h2 class="l" lang="en">Making the tools faster</h2>
   <h2 class="l" lang="ja">道具の高速化</h2>
-  <p class="l" lang="en">At height 1000 the later stages took about 1–2 CPU minutes per circle. At the scale above that would be thousands of CPU hours, so stage 2 has to become faster before it is run. Directions under consideration:</p>
-  <p class="l" lang="ja">高さ 1000 では、後の段に 1 個の円あたり 1〜2 CPU 分かかった。上の規模では数千 CPU 時間になるので、段 2 は回す前に速くする必要がある。検討している方向：</p>
+  <p class="l" lang="en">Measured on the circles of height 1000 that stage 2 leaves open, 95% of the time of the refined descent went into one step: the search for a consistent choice of local conditions, a backtracking search over systems of linear equations over F<sub>2</sub>, written in the PARI/GP language. Restarting PARI for each descent took another 4%; computing the local images took under 1%.</p>
+  <p class="l" lang="ja">段 2 で閉じない高さ 1000 の円で測ると、細かい降下の時間の 95% は 1 つの手順に使われていた。局所の条件の組み合わせで矛盾しないものを探す手順で、F<sub>2</sub> 上の連立一次方程式についてのバックトラック探索を PARI/GP の言語で書いたものである。降下ごとに PARI を起動し直す時間が 4%、局所の像の計算は 1% 未満だった。</p>
+  <p class="l" lang="en">Two changes so far:</p>
+  <p class="l" lang="ja">ここまでの変更は 2 つ：</p>
   <ul class="l" lang="en">
-    <li>Further necessary conditions on the distances from the literature, applied before any descent, after checking that their proofs cover the whole plane.</li>
-    <li>Ordering the tests by measured cost, so that the cheapest test likely to exclude a circle runs first, and recording which test closes which circles.</li>
-    <li>Sharing work between circles: the local images at small primes depend only on the radius modulo a power of the prime and can be computed once.</li>
-    <li>Moving the inner loops of the refined descent out of the interpreter.</li>
+    <li>The search was rewritten in Rust, with the same algorithm (forward checking, branching on the prime with fewest candidates). On 83 descents measured before, the verdicts are identical and the time fell from about 840 s to 24 s; two descents that the old code could not finish in 240 s took 1.7 s and 7.1 s. On 2,579 positive controls no circle with a real point was declared empty.</li>
+    <li>Quotients of rank 0 are now decided exactly. The 2-covering map t ↦ 3H(t)/(4q(t)) (H the Hessian of the quartic q) sends every rational point to a torsion point of the Jacobian, so the rational points are among the rational roots of finitely many quartics. The old test listed points up to height 300 and closed a circle only if their number matched the torsion. On 2,528 positive controls with a rank-0 quotient check (862 of them of rank 0), the real point was always among the candidates.</li>
   </ul>
   <ul class="l" lang="ja">
-    <li>文献にある距離の必要条件のうち、証明が全平面に及ぶことを確かめたものを、降下の前にかける。</li>
-    <li>測った時間で判定の順を決め、除外できそうな安い判定から先にかける。どの判定がどの円を閉じたかを記録する。</li>
-    <li>円どうしで計算を共有する。小さい素数での局所の像は、半径をその素数の冪で割った余りだけで決まるので、一度だけ計算すればよい。</li>
-    <li>細かい降下の内側のループをインタプリタの外に移す。</li>
+    <li>探索を、同じ算法（前向きの検査と、候補の最も少ない素数での分岐）のまま Rust で書き直した。以前に測った 83 回の降下で判定はすべて一致し、時間は約 840 秒から 24 秒になった。旧版が 240 秒で終えられなかった 2 回は、1.7 秒と 7.1 秒で終わった。正の対照 2,579 件で、実在の点を持つ円を空と判定した例はなかった。</li>
+    <li>階数 0 の商を正確に判定するようにした。2 被覆写像 t ↦ 3H(t)/(4q(t))（H は 4 次式 q の Hessian）は有理点をヤコビアンのねじれ点に送るので、有理点は有限個の 4 次式の有理根の中にある。旧版は高さ 300 までの点を並べ、その数がねじれの位数と一致したときだけ円を閉じていた。階数 0 の判定を試した正の対照 2,528 件（うち階数 0 は 862 件）で、実在の点は必ず候補に入っていた。</li>
   </ul>
+  <p class="l" lang="en">On a random sample of 240 of the 101,750 circles, stages 2 and 3 with both changes take about 3 s per circle and close 200 (139 by a rank-0 quotient, 61 by the refined descent); 40 (17%) stay open. For all circles this is about 80 CPU hours. The open circles go to the Mordell–Weil sieve, which is the next tool to speed up.</p>
+  <p class="l" lang="ja">101,750 個から無作為に選んだ 240 個では、2 つの変更を入れた段 2・3 は 1 個あたり約 3 秒で、200 個を閉じた（階数 0 の商で 139 個、細かい降下で 61 個）。40 個（17%）は閉じなかった。全部の円では約 80 CPU 時間になる。閉じない円は Mordell–Weil ふるいに回る。次に速くするのはこのふるいである。</p>
   <p class="l" lang="en">What a change must preserve is soundness: every circle it declares empty must be empty. It may close more circles than before. The check is matched to the kind of change, and its cost is kept well below the time the change saves.</p>
   <ul class="l" lang="en">
     <li>A new necessary condition, or a new order of tests: no rerun. Soundness follows from the proof of the condition; the proof is recorded with the change.</li>
