@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Circles to Height 10000</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Work in progress: extending the circle-by-circle exclusion to height 10000. No point with four rational distances to the unit square: a whole-plane search to denominator 10^7 and proofs for all vertex-centred circles of height at most 1000.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&family=Noto+Serif+JP:wght@400;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400;1,8..60,600&display=swap">
+<link rel="stylesheet" href="style.css">
+<style>
+  [data-show="ja"] [lang="en"].l, [data-show="en"] [lang="ja"].l { display: none; }
+  .switch { display: inline-flex; gap: 2px; }
+  .switch button { font: 15px var(--font-body); background: transparent; color: var(--muted); border: 0; padding: 0 4px; cursor: pointer; }
+  .switch button[aria-pressed="true"] { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+  .pipeline td:first-child { width: 62%; }
+  .page > figure { max-width: 440px; margin-inline: auto; }
+  .formula { font-family: var(--font-mono); font-size: 14px; background: var(--panel); padding: 10px 12px; overflow-x: auto; }
+</style>
+</head>
+<body>
+<div class="page" id="root" data-show="en">
+<div class="bar">
+  <a class="site" href="index.html">Rational distances to a square</a>
+  <nav aria-label="Site">
+    <a href="index.html"><span class="l" lang="en">Overview</span><span class="l" lang="ja">概要</span></a>
+    <a href="paper.html">Paper (English)</a>
+    <a href="paper.ja.html" lang="ja">論文（日本語）</a>
+    <a href="h10000.html" aria-current="page"><span class="l" lang="en">Height 10000</span><span class="l" lang="ja">高さ 10000</span></a>
+    <span class="switch" role="group" aria-label="Language">
+      <button type="button" id="b-en" aria-pressed="true">EN</button>
+      <button type="button" id="b-ja" aria-pressed="false">日本語</button>
+    </span>
+  </nav>
+</div>
+
+<section class="prose">
+  <h1 class="l" lang="en">Extending the circles to height 10000</h1>
+  <h1 class="l" lang="ja">円を高さ 10000 まで広げる</h1>
+  <p class="l" lang="en">Work in progress, started 12 November 2026. This page is separate from the <a href="paper.html">paper</a>, which covers height 1000; it records the plan and the state of the computation, and will change as it runs.</p>
+  <p class="l" lang="ja">2026 年 11 月 12 日に始めた進行中の研究。高さ 1000 までを扱う<a href="paper.ja.html">論文</a>とは別のページで、計画と計算の状況を記録し、進みに合わせて書き換える。</p>
+
+  <h2 class="l" lang="en">Goal</h2>
+  <h2 class="l" lang="ja">目標</h2>
+  <p class="l" lang="en">Prove that no circle about a vertex with rational radius r of height at most 10000 carries a point with four rational distances. If this succeeds, every distance of such a point has height greater than 10000. There are about 60.8 million such radii, a hundred times as many as at height 1000.</p>
+  <p class="l" lang="ja">頂点を中心とし、半径 r が高さ 10000 以下の有理数である円のどれにも、4 つの距離がすべて有理数の点がないことを証明する。できれば、そのような点の距離はどれも高さが 10000 を超える。対象の半径は約 6,080 万個で、高さ 1000 の約 100 倍である。</p>
+
+  <h2 class="l" lang="en">A reduction that removes most circles</h2>
+  <h2 class="l" lang="ja">大半の円を外す帰着</h2>
+  <p class="l" lang="en">For a four-distance point written as (X/N, Y/N) in lowest terms, it is known that 24 divides N and that the four distances are k/N with k odd and prime to 3 (paper, Section 3.2; the proofs are in the repository). The reduced denominator of each distance is therefore a multiple of 24. So a circle whose radius has denominator not divisible by 24 carries no four-distance point, and only the remaining circles need a test.</p>
+  <p class="l" lang="ja">既約に (X/N, Y/N) と書いた 4 距離点では、24 が N を割り、4 つの距離は k/N（k は奇数で 3 と素）の形であることが知られている（論文 3.2 節、証明はリポジトリ）。したがって各距離の既約分母は 24 の倍数である。半径の分母が 24 で割り切れない円には 4 距離点がなく、残りの円だけを調べればよい。</p>
+  <p class="l" lang="en">At height 10000 this leaves 1,265,618 circles instead of about 60.8 million. The reduction was not used for height 1000. Applied there, it removes 851 of the 1,891 circles that survived the first descent, so the later stages would have had 1,040 circles to treat instead of 1,891.</p>
+  <p class="l" lang="ja">高さ 10000 では、約 6,080 万個の円が 1,265,618 個になる。高さ 1000 ではこの帰着を使わなかった。当てはめると、最初の降下で残った 1,891 個の円のうち 851 個が外れ、後の段で扱う円は 1,891 個から 1,040 個に減っていた。</p>
+
+  <h2 class="l" lang="en">Plan and status</h2>
+  <h2 class="l" lang="ja">計画と状況</h2>
+</section>
+<div class="table-wrap">
+<table>
+  <thead><tr><th><span class="l" lang="en">Stage</span><span class="l" lang="ja">段</span></th><th><span class="l" lang="en">Method</span><span class="l" lang="ja">方法</span></th><th><span class="l" lang="en">Status</span><span class="l" lang="ja">状況</span></th></tr></thead>
+  <tbody>
+    <tr><td>0</td><td><span class="l" lang="en">Remove circles with 24 ∤ denominator</span><span class="l" lang="ja">分母が 24 で割り切れない円を外す</span></td><td><span class="l" lang="en">done: 1,265,618 circles remain</span><span class="l" lang="ja">済：1,265,618 個の円が残る</span></td></tr>
+    <tr><td>1</td><td><span class="l" lang="en">Descent through a common square class with p-adic tests</span><span class="l" lang="ja">共通の平方類による降下と p 進の判定</span></td><td><span class="l" lang="en">running since 12 Nov, 15:17 JST</span><span class="l" lang="ja">11 月 12 日 15:17 から実行中</span></td></tr>
+    <tr><td>2</td><td><span class="l" lang="en">Genus-one quotients of rank 0; refined 2-descent over Q(i)</span><span class="l" lang="ja">階数 0 の種数 1 の商、Q(i) の上の細かい 2 降下</span></td><td><span class="l" lang="en">after stage 1</span><span class="l" lang="ja">段 1 の後</span></td></tr>
+    <tr><td>3</td><td><span class="l" lang="en">Mordell–Weil sieve, checked by a second system</span><span class="l" lang="ja">Mordell–Weil ふるい（第 2 の系で照合）</span></td><td><span class="l" lang="en">not started</span><span class="l" lang="ja">未着手</span></td></tr>
+    <tr><td>4</td><td><span class="l" lang="en">Circles whose sieve needs hard generators (Heegner points, coverings)</span><span class="l" lang="ja">ふるいに求めにくい生成元が要る円（Heegner 点、被覆）</span></td><td><span class="l" lang="en">not started</span><span class="l" lang="ja">未着手</span></td></tr>
+  </tbody>
+</table>
+</div>
+<section class="prose">
+  <p class="l" lang="en">Stage 1 was checked before the run: restricted to height 500, the new program tests 3,113 circles and leaves exactly the same 292 circles as the height-1000 run. On a sample of 200 radii with denominators between 5000 and 10000, one circle takes about 8 ms and 13 of the 200 survive. If that rate holds, stage 1 costs about 3 CPU hours and leaves on the order of 80,000 circles for stage 2, about 80 times as many as at height 1000.</p>
+  <p class="l" lang="ja">段 1 は実行前に照合した。高さ 500 に制限すると、新しいプログラムは 3,113 個の円を調べ、高さ 1000 のときとまったく同じ 292 個の円を残した。分母が 5000〜10000 の半径 200 個の標本では、1 個の円に約 8 ms かかり、200 個のうち 13 個が残った。この割合が続けば、段 1 は約 3 CPU 時間で、段 2 に回る円は 8 万個ほど、高さ 1000 の約 80 倍になる。</p>
+
+  <h2 class="l" lang="en">Making the tools faster</h2>
+  <h2 class="l" lang="ja">道具の高速化</h2>
+  <p class="l" lang="en">At height 1000 the later stages took about 1–2 CPU minutes per circle. At the scale above that would be thousands of CPU hours, so stage 2 has to become faster before it is run. Directions under consideration:</p>
+  <p class="l" lang="ja">高さ 1000 では、後の段に 1 個の円あたり 1〜2 CPU 分かかった。上の規模では数千 CPU 時間になるので、段 2 は回す前に速くする必要がある。検討している方向：</p>
+  <ul class="l" lang="en">
+    <li>Further necessary conditions on the distances from the literature, applied before any descent, after checking that their proofs cover the whole plane.</li>
+    <li>Ordering the tests by measured cost, so that the cheapest test likely to exclude a circle runs first, and recording which test closes which circles.</li>
+    <li>Sharing work between circles: the local images at small primes depend only on the radius modulo a power of the prime and can be computed once.</li>
+    <li>Moving the inner loops of the refined descent out of the interpreter.</li>
+  </ul>
+  <ul class="l" lang="ja">
+    <li>文献にある距離の必要条件のうち、証明が全平面に及ぶことを確かめたものを、降下の前にかける。</li>
+    <li>測った時間で判定の順を決め、除外できそうな安い判定から先にかける。どの判定がどの円を閉じたかを記録する。</li>
+    <li>円どうしで計算を共有する。小さい素数での局所の像は、半径をその素数の冪で割った余りだけで決まるので、一度だけ計算すればよい。</li>
+    <li>細かい降下の内側のループをインタプリタの外に移す。</li>
+  </ul>
+  <p class="l" lang="en">What a change must preserve is soundness: every circle it declares empty must be empty. It may close more circles than before. The check is matched to the kind of change, and its cost is kept well below the time the change saves.</p>
+  <ul class="l" lang="en">
+    <li>A new necessary condition, or a new order of tests: no rerun. Soundness follows from the proof of the condition; the proof is recorded with the change.</li>
+    <li>A new implementation of an existing test: compare verdicts on a fixed reference set, namely the 1,040 circles of height at most 1000 that reach stage 2 after the reduction, together with the circles that carry real points with rational distances to some vertices (positive controls, which must never be declared empty). A random sample is used where the full set would cost too much.</li>
+    <li>Stage 1 itself is cheap (under an hour for all of height 1000), so a change there can be checked on the whole height-1000 range.</li>
+  </ul>
+  <p class="l" lang="ja">変更で守るべきなのは健全性で、空と判定した円が本当に空であることである。前より多くの円を閉じるのは構わない。照合は変更の種類に合わせ、その費用は変更で浮く時間より十分小さくする。</p>
+  <ul class="l" lang="ja">
+    <li>新しい必要条件や、判定の順の入れ替え：計算し直さない。健全性は条件の証明から従うので、証明を変更と一緒に記録する。</li>
+    <li>既存の判定の実装の書き直し：決めた照合用の集合で判定を比べる。集合は、帰着の後に段 2 へ進む高さ 1000 以下の 1,040 個の円と、いくつかの頂点まで有理数の距離にある実在の点を持つ円（正の対照で、空と判定してはならない）である。全部では高すぎるときは無作為の標本を使う。</li>
+    <li>段 1 は安い（高さ 1000 全体で 1 時間未満）ので、段 1 の変更は高さ 1000 の全範囲で照合する。</li>
+  </ul>
+</section>
+
+<p class="footer">wand125 · <span class="l" lang="en">Draft, November 2026. Code under the MIT License.</span><span class="l" lang="ja">2026 年 11 月の草稿。コードは MIT ライセンス。</span></p>
+</div>
+<script>
+(function () {
+  var root = document.getElementById("root"), be = document.getElementById("b-en"), bj = document.getElementById("b-ja");
+  function set(l) {
+    root.setAttribute("data-show", l); document.documentElement.lang = l;
+    be.setAttribute("aria-pressed", l === "en"); bj.setAttribute("aria-pressed", l === "ja");
+    try { localStorage.setItem("rd-lang", l); } catch (e) {}
+  }
+  be.addEventListener("click", function () { set("en"); });
+  bj.addEventListener("click", function () { set("ja"); });
+  var saved = null; try { saved = localStorage.getItem("rd-lang"); } catch (e) {}
+  if (saved === "ja" || saved === "en") set(saved);
+  else if ((navigator.language || "").indexOf("ja") === 0) set("ja");
+})();
+</script>
+</body>
+</html>
