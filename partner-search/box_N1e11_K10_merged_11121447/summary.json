@@ -1,0 +1,58 @@
+{
+ "engine": "rpart_v4+rpart_v5",
+ "N": 100000000000,
+ "M": 1000000000000,
+ "box": "all points (A/Q, C/Q) with Q <= N and max(|A|,|Q-A|,|C|,|Q-C|) <= M",
+ "shards": 10000,
+ "all_shards_exactly_once": true,
+ "c_range_contiguous": true,
+ "source_sha256": [
+  {
+   "src/main.rs": "f5dba76a82a8a36d057981b9dd17ac406ef225c9ea291d533b4a9ce7c5369519",
+   "Cargo.toml": "f5a86d15f7bb8cfe8030897b5343ccb24e0637ff228d2e2caf355e02385d204e",
+   "run_rpart.py": "66443e2c7abad2bd0ca3a9172b281a52a418fa7c5f3a27cb3d23fddf767e3321"
+  },
+  {
+   "src/main.rs": "f5dba76a82a8a36d057981b9dd17ac406ef225c9ea291d533b4a9ce7c5369519",
+   "Cargo.toml": "f5a86d15f7bb8cfe8030897b5343ccb24e0637ff228d2e2caf355e02385d204e",
+   "run_rpart.py": "66443e2c7abad2bd0ca3a9172b281a52a418fa7c5f3a27cb3d23fddf767e3321"
+  },
+  {
+   "src/main.rs": "a119cdac8133fbc1dc834ee24cc2e1c21c99df0980b5dfe3ea4ae1ac033d2ed7",
+   "Cargo.toml": "9ae73e26638cf25c464cd9231bbbbd3b18e26817b764b647785ddd4c32337bf9",
+   "run_rpart.py": "273e67b19538494b97562b5b186c7c52763738d1812dc08751a7f4f8d26231f0"
+  },
+  {
+   "src/main.rs": "f5dba76a82a8a36d057981b9dd17ac406ef225c9ea291d533b4a9ce7c5369519",
+   "Cargo.toml": "f5a86d15f7bb8cfe8030897b5343ccb24e0637ff228d2e2caf355e02385d204e",
+   "run_rpart.py": "66443e2c7abad2bd0ca3a9172b281a52a418fa7c5f3a27cb3d23fddf767e3321"
+  },
+  {
+   "src/main.rs": "a119cdac8133fbc1dc834ee24cc2e1c21c99df0980b5dfe3ea4ae1ac033d2ed7",
+   "Cargo.toml": "9ae73e26638cf25c464cd9231bbbbd3b18e26817b764b647785ddd4c32337bf9",
+   "run_rpart.py": "273e67b19538494b97562b5b186c7c52763738d1812dc08751a7f4f8d26231f0"
+  }
+ ],
+ "shards_by_engine": {
+  "rpart_v4": 4000,
+  "rpart_v5": 6000
+ },
+ "totals": {
+  "c_values": 750000000000,
+  "partners": 4861043839694,
+  "pairs": 66655916782915,
+  "q_candidates": 30172204053378,
+  "d_tests": 60091732251417,
+  "three": 6135464566,
+  "solutions": 0,
+  "divisor_nodes": 18305028042845
+ },
+ "solutions": [],
+ "cpu_seconds": 1836019.796796,
+ "hosts": [
+  "host-m1",
+  "host-mbp",
+  "sp-n2-del1"
+ ],
+ "merged": "2026-11-12 14:47:53 JST"
+}

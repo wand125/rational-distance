@@ -1,0 +1,25 @@
+Gap validation passed: 197146 compatible pairs for every n=1..256; 8 fully filtered parameter tuples at N<=2000 exactly match u-first; 152 positive primitive three-distance examples retained.
+Wheel validation passed: 12536 emitted CRT members.
+V4 validation passed: 33223 gap rows, 212780 direct gcd comparisons, 58357 retained CRT/wheel members, 16 lifted progressions; both high-k branches retained.
+LiftedProjection<49,7> validation passed.
+LiftedProjection<121,11> validation passed.
+LiftedProjection<169,13> validation passed.
+LiftedProjection<125,5> validation passed.
+FifthFastMarker validation passed.
+AdditionalSieve validation passed.
+PrimeProjection<5> validation passed.
+PrimeProjection<7> validation passed.
+PrimeProjection<11> validation passed.
+PrimeProjection<13> validation passed.
+PrimeProjection<17> validation passed.
+PrimeProjection<19> validation passed.
+PrimeProjection<23> validation passed.
+PrimeProjection<29> validation passed.
+PrimeProjection<31> validation passed.
+PrimeProjection<37> validation passed.
+PrimeProjection<41> validation passed.
+PrimeProjection<43> validation passed.
+LocalSieve validation passed.
+V5 wide arithmetic validation passed: 724800 exact checks.
+V5 brute reconstruction validation passed: N=1..12 (28 points).
+V5 scaled-seed and extreme-parameter validation passed: 116 scaled seed families up to N=10^7 (arithmetic only).

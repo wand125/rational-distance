@@ -1,0 +1,1 @@
+Validation passed: all integer three-distance points in the entire plane for N=1..12 (28 canonical points); Q=0 integral example and Q=T=0 exception.

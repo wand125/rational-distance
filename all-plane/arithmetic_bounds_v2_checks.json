@@ -1,0 +1,44 @@
+{
+  "passed": true,
+  "safe_general_cap": 2097151,
+  "round_cap": 2000000,
+  "rows": [
+    {
+      "N": 1999992,
+      "K_bound": "127996928030719836160491519213568524288",
+      "K_bits": 127,
+      "K_bound_fits_signed128": true,
+      "A_plus_N_bound": "7999904000385999480",
+      "A_plus_N_fits_signed64": true,
+      "all_square_checks_bound": "127996928030783835136497671197120540800",
+      "all_square_checks_fit_signed128": true
+    },
+    {
+      "N": 2000000,
+      "K_bound": "128000000000000000000000000000000000000",
+      "K_bits": 127,
+      "K_bound_fits_signed128": true,
+      "A_plus_N_bound": "8000000000002000000",
+      "A_plus_N_fits_signed64": true,
+      "all_square_checks_bound": "128000000000064000000000008000000000000",
+      "all_square_checks_fit_signed128": true
+    },
+    {
+      "N": 2097151,
+      "K_bound": "170140696683219028116077401452891340802",
+      "K_bits": 127,
+      "K_bound_fits_signed128": true,
+      "A_plus_N_bound": "9223358842723631102",
+      "A_plus_N_fits_signed64": true,
+      "all_square_checks_bound": "170140696683296399220958899479563468808",
+      "all_square_checks_fit_signed128": true
+    }
+  ],
+  "next_power_of_two": {
+    "N": 2097152,
+    "K_at_p_q_zero": "170141183460469231731687303715884105728",
+    "overflows_signed128": true
+  },
+  "first_8_primes_product": 9699690,
+  "max_half_bound": 1048575
+}

@@ -1,0 +1,92 @@
+{
+  "generator_version": "v8_rust",
+  "scope": "whole_plane_primitive_minimal_coordinate_denominator",
+  "min_denominator": 6000001,
+  "max_minimal_coordinate_denominator": 8000000,
+  "shards": 48,
+  "all_shards_completed_exactly_once": true,
+  "exact_interval_coverage_checked": true,
+  "generator_configuration": {
+    "generator": "gap_CRT_v8_rust",
+    "reconstruction": "exact_u256_v8_rust",
+    "engine": "fast_v8",
+    "scope": "whole_plane",
+    "reference_v3": false,
+    "gamma_stage": "late",
+    "skip_redundant19": true,
+    "additional_filters": true,
+    "endpoint_pruning": true,
+    "fifth_power_condition": "early",
+    "prime_power_projections": true,
+    "critical_extension": true,
+    "fast_fifth_mark": true
+  },
+  "three_distance_witnesses_independently_verified": true,
+  "four_distance_witnesses_independently_verified": true,
+  "counts": {
+    "sides": 83333,
+    "dense_even_pairs": 513888409716722219,
+    "gap_rows": 291665916665,
+    "local_gap_rows": 41612609048,
+    "difference_gap_rows": 7284346152,
+    "critical_gap_rows": 7203680207,
+    "endpoint_empty_rows": 15868,
+    "crt_residue_choices": 121725084281,
+    "generated_pairs": 251565334103,
+    "valuation_pairs": 104316264428,
+    "gamma_early_rejected": 0,
+    "gamma_lifted_progressions": 0,
+    "gamma_lift_residues": 0,
+    "examined_generation_rejections": 0,
+    "local_pairs": 117629552,
+    "additional_pairs": 66903975,
+    "additional_rejected": 50725577,
+    "scale_pairs": 58191723,
+    "gamma_pairs": 58003142,
+    "gamma_rejected": 188581,
+    "critical_projection_pairs": 58003142,
+    "critical_projection_rejected": 0,
+    "exact_parameter_pairs": 58003142,
+    "square_discriminants": 107,
+    "linear_pairs": 0,
+    "primitive_three_candidates": 97,
+    "solutions": 0,
+    "threads": 170
+  },
+  "worker_cpu_seconds": 10312.235383000001,
+  "hosts": {
+    "host-mbp": {
+      "shards": 32,
+      "cpu_seconds": 8630.057155,
+      "binary_sha256": [
+        "d6529b16c90c69f8eeb56f3c575dfcc12417188d9e1295b1e6d8b7914899c8e5"
+      ]
+    },
+    "host-m1": {
+      "shards": 16,
+      "cpu_seconds": 1682.1782279999998,
+      "binary_sha256": [
+        "0e15896a7ebb8ac1b8abed0a183960ff1f7fbd233ab96fbd34ec6cdea045f47c"
+      ]
+    }
+  },
+  "three_candidates_on_supporting_lines": 97,
+  "three_candidates_strictly_inside": 0,
+  "solutions": [],
+  "source_sha256": {
+    "src/main.rs": "685f9a54edc43d5f2bd56457cab7109e02b59cba55237cba153d86f30863af53",
+    "src/fast.rs": "612a88e27efc638f4008c1ba0068534e2812d6f162a2a520dc9bc8a81f7aba11",
+    "src/arithmetic.rs": "d83d6649ffc93440fd77c609aacbaf58f50325e6685f057753c0e711d683d3f1",
+    "src/generator.rs": "c66ede0a179178dd73b2e5255ed1614db49a027fa325b0f54d0e699da1ebf32f",
+    "src/sieve.rs": "1c8c66f893c12dae6fd24a9d61b1f8531b04a3f13ecca142c971ea452e5f1e61",
+    "src/validation.rs": "e28264b5e107c214ae51d391039b9b980ae209eed4c8a0584ed4b147aeb77e19",
+    "src/wide.rs": "04a127255a0c4fd2576ed65611c3acf7e15d711c205f98a71beecb5355a9d90a",
+    "Cargo.toml": "6459b4d649d9e1912710a4cebc352e5db6e2ad6f020a834c9da1f98748888c4c",
+    "run_sharded_v8.py": "6b7094efab7bd8fd3c7feb6a52c7a8b290133af11a517d2ba2a8117cd08cfece"
+  },
+  "inputs": [
+    "~/Files/03_ThinkAndPlay/WandsBox/Mathematics/RationalDistance/rational_square_search_v4/runs_v8/stage5_20261105T082607/intel",
+    "~/Files/03_ThinkAndPlay/WandsBox/Mathematics/RationalDistance/rational_square_search_v4/runs_v8/stage5_20261105T082607/m1"
+  ],
+  "merged": "2026-11-05 09:20:31 JST"
+}

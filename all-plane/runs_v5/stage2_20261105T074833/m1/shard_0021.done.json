@@ -1,0 +1,25 @@
+{
+ "shard": 21,
+ "min": 3041353,
+ "max": 3082176,
+ "returncode": 0,
+ "host": "host-m1",
+ "binary_sha256": "557dda155d7204ab612640da4e587ed370bfd0da819d51f00b6c5afcdc47edbc",
+ "source_sha256": {
+  "all_plane_gap_v5.cpp": "2deae121bff88755d6be0542f7a8a232abf2792b8e5eede5620335bd4dc155db",
+  "wide_arith_v5.hpp": "9555dda3b6b827a4c94861990e122db75f1cd63d64042f733d53e471dbc2a3ca",
+  "all_plane_gap_v4.cpp": "80a382b9c131f3fe299dccf972931e5c8f3428cddd8b2155dae09f37cf9bd160",
+  "all_plane_gap_v3.cpp": "d01f7a5b2e8d18c579121e045fdb797e52e28febc4e358a5bdd3f31001302639",
+  "all_plane_sieved.cpp": "0351d243dcfbfec64a4198f5d04c4131a526f60709cae4c19e9b702ff11adbe1",
+  "research_v4_local/lifted_projection.hpp": "613da7bfd956e052feaa63f0c4426cd59159f5533a512cb4966865420390efc8",
+  "research_v4_math/critical_extension.hpp": "ed1b233d15c43542e1358d02ddc5570a0e6d504f026b786a697c9d5886f35366",
+  "run_sharded_v5.py": "4f562183095f1904074b1b4f96076801e0cbb2a92b957fa74b901279264c6bc6"
+ },
+ "cpu_seconds": 56.132906999999996,
+ "wall_seconds": 56.310155153274536,
+ "finished": "2026-11-05 07:51:19 JST",
+ "max_rss_raw": 154664960,
+ "solutions": [],
+ "csv_sha256": "7b1acb85a9569ab94588d739aeecc000086c7a3fd37543c689279679d83fe8ae",
+ "jsonl_sha256": "4a3122e7d7dc4d5b9e2a66a97c4c43ce0b7b98d9535bc95d361a554bacd7c4ad"
+}

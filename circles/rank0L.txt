@@ -1,0 +1,14 @@
+# rank0L.txt (mathematics-52, 2026-11-09): circles excluded because the genus-1 quotient (1+t^2)N2 has analytic rank 0.
+# For each r: E = minimal model of the Jacobian of v^2 = (1+t^2)N2 (pair [1,2]); Sage 10.9 E.lseries().L1_vanishes() = False
+# (modular symbols; Sage states this is provably correct when the Manin constant of the optimal curve is <= 2),
+# hence rank E(Q) = 0 by Gross-Zagier-Kolyvagin; #E(Q)_tors = 4 (PARI elltors). The quartic has the 4 rational points
+# (t, v) = (0, +-(r-1)), (infinity, +-(r+1)), so these are all of them; circ_pt(r, 0) = circ_pt(r, infinity) = 0.
+# ellrank gave [0, 2] for these curves (2-Selmer rank 2 above the torsion: Sha[2] or rank 2); mwrank could not decide.
+# r  pair  L1_vanishes  tors  circ_pt(0)  circ_pt(inf)
+719/240 1 False 4 0 0
+961/240 1 False 4 0 0
+865/432 1 False 4 0 0
+991/480 1 False 4 0 0
+911/720 1 False 4 0 0
+761/960 1 False 4 0 0
+673/960 1 False 4 0 0

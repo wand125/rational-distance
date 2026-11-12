@@ -1,0 +1,423 @@
+{
+  "limit": 281,
+  "prime_count": 28,
+  "quartic_discriminant_gaussian_integer": [
+    16384,
+    0
+  ],
+  "construction_complexity": "O(p) residue/field operations per prime; inverse computations have their usual logarithmic cost",
+  "active_next_digit_primes": [
+    41,
+    113,
+    137,
+    257
+  ],
+  "certificates": [
+    {
+      "prime": 5,
+      "old_residue_count": 0,
+      "old_lift_count": 0,
+      "new_lift_count": 0,
+      "extra_rejected": 0,
+      "exceptions": [],
+      "full_quartic_p2_projection_matches": false,
+      "minimum_primitive_N": 600
+    },
+    {
+      "prime": 13,
+      "old_residue_count": 0,
+      "old_lift_count": 0,
+      "new_lift_count": 0,
+      "extra_rejected": 0,
+      "exceptions": [],
+      "full_quartic_p2_projection_matches": false,
+      "minimum_primitive_N": 4056
+    },
+    {
+      "prime": 17,
+      "old_residue_count": 8,
+      "old_lift_count": 136,
+      "new_lift_count": 136,
+      "extra_rejected": 0,
+      "exceptions": [],
+      "full_quartic_p2_projection_matches": false,
+      "minimum_primitive_N": 6936
+    },
+    {
+      "prime": 29,
+      "old_residue_count": 23,
+      "old_lift_count": 667,
+      "new_lift_count": 667,
+      "extra_rejected": 0,
+      "exceptions": [],
+      "full_quartic_p2_projection_matches": false,
+      "minimum_primitive_N": 20184
+    },
+    {
+      "prime": 37,
+      "old_residue_count": 25,
+      "old_lift_count": 925,
+      "new_lift_count": 925,
+      "extra_rejected": 0,
+      "exceptions": [],
+      "full_quartic_p2_projection_matches": false,
+      "minimum_primitive_N": 32856
+    },
+    {
+      "prime": 41,
+      "old_residue_count": 22,
+      "old_lift_count": 902,
+      "new_lift_count": 662,
+      "extra_rejected": 240,
+      "exceptions": [
+        {
+          "residue_mod_p": 7,
+          "roots_mod_p2": [
+            48
+          ]
+        },
+        {
+          "residue_mod_p": 12,
+          "roots_mod_p2": [
+            750
+          ]
+        },
+        {
+          "residue_mod_p": 15,
+          "roots_mod_p2": [
+            1327
+          ]
+        },
+        {
+          "residue_mod_p": 27,
+          "roots_mod_p2": [
+            355
+          ]
+        },
+        {
+          "residue_mod_p": 30,
+          "roots_mod_p2": [
+            932
+          ]
+        },
+        {
+          "residue_mod_p": 35,
+          "roots_mod_p2": [
+            1634
+          ]
+        }
+      ],
+      "full_quartic_p2_projection_matches": true,
+      "minimum_primitive_N": 40344
+    },
+    {
+      "prime": 53,
+      "old_residue_count": 29,
+      "old_lift_count": 1537,
+      "new_lift_count": 1537,
+      "extra_rejected": 0,
+      "exceptions": [],
+      "full_quartic_p2_projection_matches": false,
+      "minimum_primitive_N": 67416
+    },
+    {
+      "prime": 61,
+      "old_residue_count": 48,
+      "old_lift_count": 2928,
+      "new_lift_count": 2928,
+      "extra_rejected": 0,
+      "exceptions": [],
+      "full_quartic_p2_projection_matches": false,
+      "minimum_primitive_N": 89304
+    },
+    {
+      "prime": 73,
+      "old_residue_count": 56,
+      "old_lift_count": 4088,
+      "new_lift_count": 4088,
+      "extra_rejected": 0,
+      "exceptions": [],
+      "full_quartic_p2_projection_matches": false,
+      "minimum_primitive_N": 127896
+    },
+    {
+      "prime": 89,
+      "old_residue_count": 60,
+      "old_lift_count": 5340,
+      "new_lift_count": 5340,
+      "extra_rejected": 0,
+      "exceptions": [],
+      "full_quartic_p2_projection_matches": false,
+      "minimum_primitive_N": 190104
+    },
+    {
+      "prime": 97,
+      "old_residue_count": 62,
+      "old_lift_count": 6014,
+      "new_lift_count": 6014,
+      "extra_rejected": 0,
+      "exceptions": [],
+      "full_quartic_p2_projection_matches": false,
+      "minimum_primitive_N": 225816
+    },
+    {
+      "prime": 101,
+      "old_residue_count": 76,
+      "old_lift_count": 7676,
+      "new_lift_count": 7676,
+      "extra_rejected": 0,
+      "exceptions": [],
+      "full_quartic_p2_projection_matches": false,
+      "minimum_primitive_N": 244824
+    },
+    {
+      "prime": 109,
+      "old_residue_count": 75,
+      "old_lift_count": 8175,
+      "new_lift_count": 8175,
+      "extra_rejected": 0,
+      "exceptions": [],
+      "full_quartic_p2_projection_matches": false,
+      "minimum_primitive_N": 285144
+    },
+    {
+      "prime": 113,
+      "old_residue_count": 91,
+      "old_lift_count": 10283,
+      "new_lift_count": 9835,
+      "extra_rejected": 448,
+      "exceptions": [
+        {
+          "residue_mod_p": 9,
+          "roots_mod_p2": [
+            10518
+          ]
+        },
+        {
+          "residue_mod_p": 50,
+          "roots_mod_p2": [
+            3892
+          ]
+        },
+        {
+          "residue_mod_p": 64,
+          "roots_mod_p2": [
+            8878
+          ]
+        },
+        {
+          "residue_mod_p": 105,
+          "roots_mod_p2": [
+            2252
+          ]
+        }
+      ],
+      "full_quartic_p2_projection_matches": true,
+      "minimum_primitive_N": 306456
+    },
+    {
+      "prime": 137,
+      "old_residue_count": 115,
+      "old_lift_count": 15755,
+      "new_lift_count": 15211,
+      "extra_rejected": 544,
+      "exceptions": [
+        {
+          "residue_mod_p": 43,
+          "roots_mod_p2": [
+            15113
+          ]
+        },
+        {
+          "residue_mod_p": 55,
+          "roots_mod_p2": [
+            9234
+          ]
+        },
+        {
+          "residue_mod_p": 83,
+          "roots_mod_p2": [
+            9536
+          ]
+        },
+        {
+          "residue_mod_p": 95,
+          "roots_mod_p2": [
+            3657
+          ]
+        }
+      ],
+      "full_quartic_p2_projection_matches": true,
+      "minimum_primitive_N": 450456
+    },
+    {
+      "prime": 149,
+      "old_residue_count": 105,
+      "old_lift_count": 15645,
+      "new_lift_count": 15645,
+      "extra_rejected": 0,
+      "exceptions": [],
+      "full_quartic_p2_projection_matches": false,
+      "minimum_primitive_N": 532824
+    },
+    {
+      "prime": 157,
+      "old_residue_count": 102,
+      "old_lift_count": 16014,
+      "new_lift_count": 16014,
+      "extra_rejected": 0,
+      "exceptions": [],
+      "full_quartic_p2_projection_matches": false,
+      "minimum_primitive_N": 591576
+    },
+    {
+      "prime": 173,
+      "old_residue_count": 140,
+      "old_lift_count": 24220,
+      "new_lift_count": 24220,
+      "extra_rejected": 0,
+      "exceptions": [],
+      "full_quartic_p2_projection_matches": false,
+      "minimum_primitive_N": 718296
+    },
+    {
+      "prime": 181,
+      "old_residue_count": 132,
+      "old_lift_count": 23892,
+      "new_lift_count": 23892,
+      "extra_rejected": 0,
+      "exceptions": [],
+      "full_quartic_p2_projection_matches": false,
+      "minimum_primitive_N": 786264
+    },
+    {
+      "prime": 193,
+      "old_residue_count": 153,
+      "old_lift_count": 29529,
+      "new_lift_count": 29529,
+      "extra_rejected": 0,
+      "exceptions": [],
+      "full_quartic_p2_projection_matches": false,
+      "minimum_primitive_N": 893976
+    },
+    {
+      "prime": 197,
+      "old_residue_count": 145,
+      "old_lift_count": 28565,
+      "new_lift_count": 28565,
+      "extra_rejected": 0,
+      "exceptions": [],
+      "full_quartic_p2_projection_matches": false,
+      "minimum_primitive_N": 931416
+    },
+    {
+      "prime": 229,
+      "old_residue_count": 148,
+      "old_lift_count": 33892,
+      "new_lift_count": 33892,
+      "extra_rejected": 0,
+      "exceptions": [],
+      "full_quartic_p2_projection_matches": false,
+      "minimum_primitive_N": 1258584
+    },
+    {
+      "prime": 233,
+      "old_residue_count": 157,
+      "old_lift_count": 36581,
+      "new_lift_count": 36581,
+      "extra_rejected": 0,
+      "exceptions": [],
+      "full_quartic_p2_projection_matches": false,
+      "minimum_primitive_N": 1302936
+    },
+    {
+      "prime": 241,
+      "old_residue_count": 190,
+      "old_lift_count": 45790,
+      "new_lift_count": 45790,
+      "extra_rejected": 0,
+      "exceptions": [],
+      "full_quartic_p2_projection_matches": false,
+      "minimum_primitive_N": 1393944
+    },
+    {
+      "prime": 257,
+      "old_residue_count": 196,
+      "old_lift_count": 50372,
+      "new_lift_count": 48836,
+      "extra_rejected": 1536,
+      "exceptions": [
+        {
+          "residue_mod_p": 23,
+          "roots_mod_p2": [
+            36260
+          ]
+        },
+        {
+          "residue_mod_p": 62,
+          "roots_mod_p2": [
+            44523
+          ]
+        },
+        {
+          "residue_mod_p": 117,
+          "roots_mod_p2": [
+            3715
+          ]
+        },
+        {
+          "residue_mod_p": 141,
+          "roots_mod_p2": [
+            62335
+          ]
+        },
+        {
+          "residue_mod_p": 196,
+          "roots_mod_p2": [
+            21527
+          ]
+        },
+        {
+          "residue_mod_p": 235,
+          "roots_mod_p2": [
+            29790
+          ]
+        }
+      ],
+      "full_quartic_p2_projection_matches": true,
+      "minimum_primitive_N": 1585176
+    },
+    {
+      "prime": 269,
+      "old_residue_count": 222,
+      "old_lift_count": 59718,
+      "new_lift_count": 59718,
+      "extra_rejected": 0,
+      "exceptions": [],
+      "full_quartic_p2_projection_matches": false,
+      "minimum_primitive_N": 1736664
+    },
+    {
+      "prime": 277,
+      "old_residue_count": 209,
+      "old_lift_count": 57893,
+      "new_lift_count": 57893,
+      "extra_rejected": 0,
+      "exceptions": [],
+      "full_quartic_p2_projection_matches": false,
+      "minimum_primitive_N": 1841496
+    },
+    {
+      "prime": 281,
+      "old_residue_count": 203,
+      "old_lift_count": 57043,
+      "new_lift_count": 57043,
+      "extra_rejected": 0,
+      "exceptions": [],
+      "full_quartic_p2_projection_matches": false,
+      "minimum_primitive_N": 1895064
+    }
+  ],
+  "cpu_seconds": 0.128277628,
+  "mathematical_novelty_claimed": false
+}

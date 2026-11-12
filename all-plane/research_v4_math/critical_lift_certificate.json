@@ -1,0 +1,194 @@
+{
+  "scope": "whole_plane_critical_content_next_digit",
+  "necessary_modulus": "p^(2s), where v_p(n)=2s and v_p(G)=s>0",
+  "zero_square_roots_included": true,
+  "certificates": [
+    {
+      "prime": 5,
+      "old_residue_count": 0,
+      "old_lift_count": 0,
+      "new_lift_count": 0,
+      "additional_rejected": 0,
+      "uneliminated_enumeration_matches": true,
+      "branch_only_residues": []
+    },
+    {
+      "prime": 13,
+      "old_residue_count": 0,
+      "old_lift_count": 0,
+      "new_lift_count": 0,
+      "additional_rejected": 0,
+      "uneliminated_enumeration_matches": true,
+      "branch_only_residues": []
+    },
+    {
+      "prime": 17,
+      "old_residue_count": 8,
+      "old_lift_count": 136,
+      "new_lift_count": 136,
+      "additional_rejected": 0,
+      "uneliminated_enumeration_matches": true,
+      "branch_only_residues": []
+    },
+    {
+      "prime": 29,
+      "old_residue_count": 23,
+      "old_lift_count": 667,
+      "new_lift_count": 667,
+      "additional_rejected": 0,
+      "uneliminated_enumeration_matches": true,
+      "branch_only_residues": []
+    },
+    {
+      "prime": 37,
+      "old_residue_count": 25,
+      "old_lift_count": 925,
+      "new_lift_count": 925,
+      "additional_rejected": 0,
+      "uneliminated_enumeration_matches": true,
+      "branch_only_residues": []
+    },
+    {
+      "prime": 41,
+      "old_residue_count": 22,
+      "old_lift_count": 902,
+      "new_lift_count": 662,
+      "additional_rejected": 240,
+      "uneliminated_enumeration_matches": true,
+      "branch_only_residues": [
+        {
+          "r_mod_p": 7,
+          "allowed_lifts": [
+            48
+          ],
+          "zero_branches": [
+            {
+              "iota_mod_p2": 378,
+              "derivative_mod_p": 19,
+              "lift_digit": 1,
+              "root_mod_p2": 48
+            }
+          ]
+        },
+        {
+          "r_mod_p": 12,
+          "allowed_lifts": [
+            750
+          ],
+          "zero_branches": [
+            {
+              "iota_mod_p2": 1303,
+              "derivative_mod_p": 24,
+              "lift_digit": 18,
+              "root_mod_p2": 750
+            }
+          ]
+        },
+        {
+          "r_mod_p": 15,
+          "allowed_lifts": [
+            1327
+          ],
+          "zero_branches": [
+            {
+              "iota_mod_p2": 378,
+              "derivative_mod_p": 28,
+              "lift_digit": 32,
+              "root_mod_p2": 1327
+            }
+          ]
+        },
+        {
+          "r_mod_p": 27,
+          "allowed_lifts": [
+            355
+          ],
+          "zero_branches": [
+            {
+              "iota_mod_p2": 1303,
+              "derivative_mod_p": 28,
+              "lift_digit": 8,
+              "root_mod_p2": 355
+            }
+          ]
+        },
+        {
+          "r_mod_p": 30,
+          "allowed_lifts": [
+            932
+          ],
+          "zero_branches": [
+            {
+              "iota_mod_p2": 378,
+              "derivative_mod_p": 24,
+              "lift_digit": 22,
+              "root_mod_p2": 932
+            }
+          ]
+        },
+        {
+          "r_mod_p": 35,
+          "allowed_lifts": [
+            1634
+          ],
+          "zero_branches": [
+            {
+              "iota_mod_p2": 1303,
+              "derivative_mod_p": 19,
+              "lift_digit": 39,
+              "root_mod_p2": 1634
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prime": 53,
+      "old_residue_count": 29,
+      "old_lift_count": 1537,
+      "new_lift_count": 1537,
+      "additional_rejected": 0,
+      "uneliminated_enumeration_matches": false,
+      "branch_only_residues": []
+    },
+    {
+      "prime": 61,
+      "old_residue_count": 48,
+      "old_lift_count": 2928,
+      "new_lift_count": 2928,
+      "additional_rejected": 0,
+      "uneliminated_enumeration_matches": false,
+      "branch_only_residues": []
+    }
+  ],
+  "v3_strict_example": {
+    "n": 20172,
+    "u": 15744,
+    "v": 10865,
+    "r_mod_1681": 314,
+    "required_r_mod_1681": 355
+  },
+  "infinite_old_filter_family": {
+    "s": "1+55440k, k>=0",
+    "n": "12*41^(2s)",
+    "u": "384*41^s",
+    "v": "265*41^s",
+    "orders_of_41_at_other_old_local_primes": {
+      "5": 1,
+      "7": 2,
+      "11": 10,
+      "13": 12,
+      "17": 16,
+      "19": 18,
+      "23": 11,
+      "29": 4,
+      "31": 15,
+      "37": 18,
+      "43": 7
+    },
+    "period": 55440,
+    "scope": "passes v3 arithmetic parameter predicates over integers; not a reconstructed point; not a machine-range claim"
+  },
+  "cpu_seconds": 0.91226707,
+  "mathematical_novelty_claimed": false
+}

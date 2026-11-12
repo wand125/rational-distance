@@ -1,0 +1,26 @@
+{
+  "created_at_utc": "2026-11-04T22:19:47.794986+00:00",
+  "destination": "~/Files/03_ThinkAndPlay/WandsBox/Mathematics/RationalDistance/rational_square_search_v4",
+  "system": "Darwin",
+  "machine": "arm64",
+  "python_version": "3.12.2",
+  "manifest_sha256": "079891d95392eb1177fb5d1f4198b14238c6159d6b06719abd5e4e4e2fd84920",
+  "source_file_count": 278,
+  "copied_and_source_hashes_verified": true,
+  "commands": [
+    {
+      "action": "check",
+      "returncode": 0
+    },
+    {
+      "action": "build",
+      "returncode": 0
+    },
+    {
+      "action": "smoke",
+      "returncode": 0
+    }
+  ],
+  "status": "installed_and_smoke_verified",
+  "full_search_started": false
+}

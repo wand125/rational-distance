@@ -1,0 +1,70 @@
+{
+  "scope": "whole_plane_primitive_minimal_coordinate_denominator",
+  "min_denominator": 1,
+  "max_minimal_coordinate_denominator": 1000000,
+  "workers": 8,
+  "threads_per_worker": 1,
+  "intervals": [
+    [
+      1,
+      353544
+    ],
+    [
+      353545,
+      499992
+    ],
+    [
+      499993,
+      612360
+    ],
+    [
+      612361,
+      707088
+    ],
+    [
+      707089,
+      790536
+    ],
+    [
+      790537,
+      865992
+    ],
+    [
+      865993,
+      935376
+    ],
+    [
+      935377,
+      1000000
+    ]
+  ],
+  "all_intervals_completed": true,
+  "exact_interval_coverage_checked": true,
+  "three_distance_witnesses_independently_verified": true,
+  "counts": {
+    "sides": 41666,
+    "dense_even_pairs": 1736105902527776,
+    "gap_rows": 10416624998,
+    "local_gap_rows": 1486129040,
+    "difference_gap_rows": 285358052,
+    "crt_residue_choices": 3969597646,
+    "generated_pairs": 14892551498,
+    "valuation_pairs": 8643490124,
+    "scale_pairs": 7735328383,
+    "local_pairs": 3651431,
+    "square_discriminants": 133639,
+    "linear_pairs": 0,
+    "primitive_three_candidates": 110,
+    "solutions": 0
+  },
+  "wall_seconds_including_startup": 71.07444999700056,
+  "worker_cpu_seconds": 531.090092,
+  "three_candidates_on_supporting_lines": 109,
+  "three_candidates_strictly_inside": 1,
+  "solutions": [],
+  "source_sha256": {
+    "all_plane_gap.cpp": "5f7c61331654059464fb452c57cdbe5a2cf5cdf6dad13aafe391b5d2bab89044",
+    "all_plane_sieved.cpp": "0351d243dcfbfec64a4198f5d04c4131a526f60709cae4c19e9b702ff11adbe1",
+    "run_sharded.py": "cf3187cb1bf90a5857e9bae74aeffb7533430d610860a73015a6dab3cf1ee5b4"
+  }
+}

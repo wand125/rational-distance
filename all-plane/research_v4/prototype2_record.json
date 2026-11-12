@@ -1,0 +1,5 @@
+{
+  "source_sha256": "43f3c6c1f5665b72f67fef4b1d4192b3f94f84cc735f0e05be01b38d18a7fe94",
+  "frozen_v3_sha256": "d01f7a5b2e8d18c579121e045fdb797e52e28febc4e358a5bdd3f31001302639",
+  "purpose": "Compile-time dispatch, duplicate19 removal and gamma generation experiments; no new mathematical filters"
+}

@@ -1,0 +1,110 @@
+{
+  "checks": [
+    {
+      "prime": 3,
+      "exponent": 1,
+      "modulus": 3,
+      "compatible_pairs_checked": 7,
+      "exact_match": true
+    },
+    {
+      "prime": 3,
+      "exponent": 2,
+      "modulus": 9,
+      "compatible_pairs_checked": 27,
+      "exact_match": true
+    },
+    {
+      "prime": 3,
+      "exponent": 3,
+      "modulus": 27,
+      "compatible_pairs_checked": 117,
+      "exact_match": true
+    },
+    {
+      "prime": 3,
+      "exponent": 4,
+      "modulus": 81,
+      "compatible_pairs_checked": 405,
+      "exact_match": true
+    },
+    {
+      "prime": 3,
+      "exponent": 5,
+      "modulus": 243,
+      "compatible_pairs_checked": 1539,
+      "exact_match": true
+    },
+    {
+      "prime": 5,
+      "exponent": 1,
+      "modulus": 5,
+      "compatible_pairs_checked": 13,
+      "exact_match": true
+    },
+    {
+      "prime": 5,
+      "exponent": 2,
+      "modulus": 25,
+      "compatible_pairs_checked": 85,
+      "exact_match": true
+    },
+    {
+      "prime": 5,
+      "exponent": 3,
+      "modulus": 125,
+      "compatible_pairs_checked": 625,
+      "exact_match": true
+    },
+    {
+      "prime": 7,
+      "exponent": 1,
+      "modulus": 7,
+      "compatible_pairs_checked": 19,
+      "exact_match": true
+    },
+    {
+      "prime": 7,
+      "exponent": 2,
+      "modulus": 49,
+      "compatible_pairs_checked": 175,
+      "exact_match": true
+    },
+    {
+      "prime": 7,
+      "exponent": 3,
+      "modulus": 343,
+      "compatible_pairs_checked": 1813,
+      "exact_match": true
+    },
+    {
+      "prime": 13,
+      "exponent": 1,
+      "modulus": 13,
+      "compatible_pairs_checked": 37,
+      "exact_match": true
+    },
+    {
+      "prime": 13,
+      "exponent": 2,
+      "modulus": 169,
+      "compatible_pairs_checked": 637,
+      "exact_match": true
+    },
+    {
+      "prime": 17,
+      "exponent": 1,
+      "modulus": 17,
+      "compatible_pairs_checked": 49,
+      "exact_match": true
+    },
+    {
+      "prime": 17,
+      "exponent": 2,
+      "modulus": 289,
+      "compatible_pairs_checked": 1105,
+      "exact_match": true
+    }
+  ],
+  "all_exact_matches": true
+}

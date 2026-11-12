@@ -1,0 +1,196 @@
+{
+  "certificates": [
+    {
+      "prime": 11,
+      "affine_coordinate_classes": [
+        [
+          0,
+          6
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          6,
+          0
+        ],
+        [
+          6,
+          1
+        ]
+      ],
+      "affine_allowed_sum_or_difference": [
+        3,
+        4,
+        7,
+        8
+      ],
+      "N_divisible_branch_necessary_residues": [
+        1,
+        2,
+        3,
+        8,
+        9,
+        10
+      ],
+      "forbidden_residues_when_reduced_denominator_is_a_unit": [
+        0,
+        5,
+        6
+      ],
+      "nonzero_polynomial_coefficients_c": [
+        3
+      ],
+      "polynomial_condition": "for every listed c, ell does not divide h*h-c*k*k, for reduced R=h/k",
+      "zero_residue_also_excluded": true
+    },
+    {
+      "prime": 19,
+      "affine_coordinate_classes": [
+        [
+          0,
+          5
+        ],
+        [
+          0,
+          10
+        ],
+        [
+          0,
+          15
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          1,
+          10
+        ],
+        [
+          1,
+          15
+        ],
+        [
+          2,
+          10
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          5,
+          1
+        ],
+        [
+          10,
+          0
+        ],
+        [
+          10,
+          1
+        ],
+        [
+          10,
+          2
+        ],
+        [
+          10,
+          18
+        ],
+        [
+          15,
+          0
+        ],
+        [
+          15,
+          1
+        ],
+        [
+          18,
+          10
+        ]
+      ],
+      "affine_allowed_sum_or_difference": [
+        1,
+        2,
+        4,
+        5,
+        7,
+        8,
+        11,
+        12,
+        14,
+        15,
+        17,
+        18
+      ],
+      "N_divisible_branch_necessary_residues": [
+        1,
+        2,
+        4,
+        6,
+        9,
+        10,
+        13,
+        15,
+        17,
+        18
+      ],
+      "forbidden_residues_when_reduced_denominator_is_a_unit": [
+        0,
+        3,
+        16
+      ],
+      "nonzero_polynomial_coefficients_c": [
+        9
+      ],
+      "polynomial_condition": "for every listed c, ell does not divide h*h-c*k*k, for reduced R=h/k",
+      "zero_residue_also_excluded": true
+    }
+  ],
+  "excluded_curve_examples": [
+    {
+      "kind": "difference",
+      "numerator": 1,
+      "denominator": 2,
+      "obstructing_prime": 11,
+      "residue": 6,
+      "nondegenerate_real_curve": true
+    },
+    {
+      "kind": "difference",
+      "numerator": 7,
+      "denominator": 8,
+      "obstructing_prime": 11,
+      "residue": 5,
+      "nondegenerate_real_curve": true
+    },
+    {
+      "kind": "sum",
+      "numerator": 7,
+      "denominator": 3,
+      "obstructing_prime": 11,
+      "residue": 6,
+      "nondegenerate_real_curve": true
+    },
+    {
+      "kind": "sum",
+      "numerator": 7,
+      "denominator": 4,
+      "obstructing_prime": 19,
+      "residue": 16,
+      "nondegenerate_real_curve": true
+    },
+    {
+      "kind": "difference",
+      "numerator": 1,
+      "denominator": 6,
+      "obstructing_prime": 19,
+      "residue": 16,
+      "nondegenerate_real_curve": true
+    }
+  ]
+}

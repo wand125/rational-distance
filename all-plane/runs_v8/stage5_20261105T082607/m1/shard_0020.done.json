@@ -1,0 +1,26 @@
+{
+ "shard": 20,
+ "min": 6904081,
+ "max": 6946200,
+ "returncode": 0,
+ "host": "host-m1",
+ "binary_sha256": "0e15896a7ebb8ac1b8abed0a183960ff1f7fbd233ab96fbd34ec6cdea045f47c",
+ "source_sha256": {
+  "src/main.rs": "685f9a54edc43d5f2bd56457cab7109e02b59cba55237cba153d86f30863af53",
+  "src/fast.rs": "612a88e27efc638f4008c1ba0068534e2812d6f162a2a520dc9bc8a81f7aba11",
+  "src/arithmetic.rs": "d83d6649ffc93440fd77c609aacbaf58f50325e6685f057753c0e711d683d3f1",
+  "src/generator.rs": "c66ede0a179178dd73b2e5255ed1614db49a027fa325b0f54d0e699da1ebf32f",
+  "src/sieve.rs": "1c8c66f893c12dae6fd24a9d61b1f8531b04a3f13ecca142c971ea452e5f1e61",
+  "src/validation.rs": "e28264b5e107c214ae51d391039b9b980ae209eed4c8a0584ed4b147aeb77e19",
+  "src/wide.rs": "04a127255a0c4fd2576ed65611c3acf7e15d711c205f98a71beecb5355a9d90a",
+  "Cargo.toml": "6459b4d649d9e1912710a4cebc352e5db6e2ad6f020a834c9da1f98748888c4c",
+  "run_sharded_v8.py": "6b7094efab7bd8fd3c7feb6a52c7a8b290133af11a517d2ba2a8117cd08cfece"
+ },
+ "cpu_seconds": 111.730306,
+ "wall_seconds": 61.17408895492554,
+ "finished": "2026-11-05 08:30:51 JST",
+ "max_rss_raw": 372097024,
+ "solutions": [],
+ "csv_sha256": "a8d06b62f9c1ace0f8073748060136e5c50c2a5c772b950c856839af0d722ea1",
+ "jsonl_sha256": "ad31c91258775cc8f88d764fcfb58bb04deaa62b69e5c7f401b7bd7e091760f8"
+}

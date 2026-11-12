@@ -1,0 +1,49 @@
+{
+  "limit": 2000,
+  "method": "coordinate loops plus math.isqrt",
+  "reference_primitive_two_distance_wedges": 623,
+  "configurations": [
+    {
+      "side_multiple": 4,
+      "good_filter": false,
+      "exact_candidate_set_match": true,
+      "wedges": 623,
+      "three_distances": 2,
+      "four_distances": 0
+    },
+    {
+      "side_multiple": 12,
+      "good_filter": false,
+      "exact_candidate_set_match": true,
+      "wedges": 227,
+      "three_distances": 0,
+      "four_distances": 0
+    },
+    {
+      "side_multiple": 24,
+      "good_filter": false,
+      "exact_candidate_set_match": true,
+      "wedges": 135,
+      "three_distances": 0,
+      "four_distances": 0
+    },
+    {
+      "side_multiple": 4,
+      "good_filter": true,
+      "exact_candidate_set_match": true,
+      "wedges": 43,
+      "three_distances": 0,
+      "four_distances": 0
+    },
+    {
+      "side_multiple": 24,
+      "good_filter": true,
+      "exact_candidate_set_match": true,
+      "wedges": 43,
+      "three_distances": 0,
+      "four_distances": 0
+    }
+  ],
+  "seconds": 5.441234082999927,
+  "passed": true
+}

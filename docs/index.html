@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rational Distances to a Square</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="No point with four rational distances to the unit square: a whole-plane search to denominator 10^7 and proofs for all vertex-centred circles of height at most 1000.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&family=IBM+Plex+Sans:wght@400;600&family=Noto+Sans+JP:wght@400;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<link rel="stylesheet" href="style.css">
+<style>
+  [data-show="ja"] [lang="en"].l, [data-show="en"] [lang="ja"].l { display: none; }
+  .switch { display: inline-flex; border: 1px solid var(--rule); border-radius: 4px; overflow: hidden; }
+  .switch button { font: 600 13px var(--font-head); background: transparent; color: var(--muted); border: 0; padding: 4px 10px; cursor: pointer; }
+  .switch button[aria-pressed="true"] { background: var(--accent); color: var(--paper); }
+  .pipeline td:first-child { width: 62%; }
+  .formula { font-family: var(--font-mono); font-size: 14px; background: var(--panel); padding: 10px 12px; overflow-x: auto; }
+</style>
+</head>
+<body>
+<div class="page" id="root" data-show="en">
+<div class="bar">
+  <a class="site" href="index.html">Rational distances to a square</a>
+  <nav aria-label="Site">
+    <a href="index.html" aria-current="page"><span class="l" lang="en">Overview</span><span class="l" lang="ja">概要</span></a>
+    <a href="paper.html">Paper (English)</a>
+    <a href="paper.ja.html" lang="ja">論文（日本語）</a>
+    <span class="switch" role="group" aria-label="Language">
+      <button type="button" id="b-en" aria-pressed="true">EN</button>
+      <button type="button" id="b-ja" aria-pressed="false">日本語</button>
+    </span>
+  </nav>
+</div>
+
+<section class="hero">
+  <div>
+    <p class="eyebrow l" lang="en">An open problem, two computations</p>
+    <p class="eyebrow l" lang="ja">未解決問題と 2 つの計算</p>
+    <h1 class="l" lang="en">Is there a point at rational distance from all four corners of a square?</h1>
+    <h1 class="l" lang="ja">正方形の 4 頂点すべてから有理数の距離にある点はあるか</h1>
+    <p class="lead l" lang="en">Nobody knows. Points at rational distance from three corners are dense in the plane, but in every known case the fourth distance is irrational. We searched the whole plane up to coordinate denominator 10<sup>7</sup> and proved, circle by circle, that no such point lies at a distance of small height from any corner. Neither result settles the problem.</p>
+    <p class="lead l" lang="ja">分かっていない。3 頂点から有理数の距離にある点は平面で稠密だが、知られている例では 4 つ目の距離はどれも有理数でない。全平面を座標の分母 10<sup>7</sup> まで探し、どの頂点からも高さの小さい距離にはそのような点がないことを、円ごとに証明した。どちらも問題を解決するものではない。</p>
+    <div class="links">
+      <a class="btn primary" href="paper.html"><span class="l" lang="en">Read the paper</span><span class="l" lang="ja">論文（英語）</span></a>
+      <a class="btn" href="paper.ja.html" lang="ja">論文（日本語）</a>
+      <a class="btn" href="https://github.com/wand125/rational-distance"><span class="l" lang="en">Code and data</span><span class="l" lang="ja">コードとデータ</span></a>
+    </div>
+  </div>
+  <figure>
+    <svg viewBox="0 0 400 370" role="img" aria-labelledby="sqfig-t-index" xmlns="http://www.w3.org/2000/svg">
+<title id="sqfig-t-index">A point with rational distances to three vertices of the unit square</title>
+<line class="dg-grid" x1="50.0" y1="330.0" x2="50.0" y2="30.0"/><line class="dg-grid" x1="50.0" y1="330.0" x2="350.0" y2="330.0"/><line class="dg-grid" x1="80.0" y1="330.0" x2="80.0" y2="30.0"/><line class="dg-grid" x1="50.0" y1="300.0" x2="350.0" y2="300.0"/><line class="dg-grid" x1="110.0" y1="330.0" x2="110.0" y2="30.0"/><line class="dg-grid" x1="50.0" y1="270.0" x2="350.0" y2="270.0"/><line class="dg-grid" x1="140.0" y1="330.0" x2="140.0" y2="30.0"/><line class="dg-grid" x1="50.0" y1="240.0" x2="350.0" y2="240.0"/><line class="dg-grid" x1="170.0" y1="330.0" x2="170.0" y2="30.0"/><line class="dg-grid" x1="50.0" y1="210.0" x2="350.0" y2="210.0"/><line class="dg-grid" x1="200.0" y1="330.0" x2="200.0" y2="30.0"/><line class="dg-grid" x1="50.0" y1="180.0" x2="350.0" y2="180.0"/><line class="dg-grid" x1="230.0" y1="330.0" x2="230.0" y2="30.0"/><line class="dg-grid" x1="50.0" y1="150.0" x2="350.0" y2="150.0"/><line class="dg-grid" x1="260.0" y1="330.0" x2="260.0" y2="30.0"/><line class="dg-grid" x1="50.0" y1="120.0" x2="350.0" y2="120.0"/><line class="dg-grid" x1="290.0" y1="330.0" x2="290.0" y2="30.0"/><line class="dg-grid" x1="50.0" y1="90.0" x2="350.0" y2="90.0"/><line class="dg-grid" x1="320.0" y1="330.0" x2="320.0" y2="30.0"/><line class="dg-grid" x1="50.0" y1="60.0" x2="350.0" y2="60.0"/><line class="dg-grid" x1="350.0" y1="330.0" x2="350.0" y2="30.0"/><line class="dg-grid" x1="50.0" y1="30.0" x2="350.0" y2="30.0"/><rect class="dg-square" x="50" y="30" width="300" height="300"/><path class="dg-circle" d="M199.7,330.0 A149.7,149.7 0 0 0 50.0,180.3"/><line class="dg-dist" x1="108.2" y1="192.1" x2="50.0" y2="330.0"/><line class="dg-dist" x1="108.2" y1="192.1" x2="50.0" y2="30.0"/><line class="dg-dist" x1="108.2" y1="192.1" x2="350.0" y2="30.0"/><line class="dg-dist4" x1="108.2" y1="192.1" x2="350.0" y2="330.0"/>
+<circle class="dg-pt" cx="108.2" cy="192.1" r="4.5"/>
+<text class="dg-text" x="116.2" y="184.1">P</text>
+<circle class="dg-v" cx="50" cy="330" r="3.5"/><circle class="dg-v" cx="350" cy="330" r="3.5"/><circle class="dg-v" cx="50" cy="30" r="3.5"/><circle class="dg-v" cx="350" cy="30" r="3.5"/>
+<text class="dg-text" x="44" y="348" text-anchor="end">(0,0)</text>
+<text class="dg-text" x="356" y="348">(1,0)</text>
+<text class="dg-text" x="44" y="22" text-anchor="end">(0,1)</text>
+<text class="dg-text" x="356" y="22">(1,1)</text>
+<text class="dg-mute" x="195.7" y="346.0" text-anchor="middle">r</text>
+</svg>
+    <figcaption class="l" lang="en">A point found by the search: rational distances to three corners (solid), not to the fourth (dashed). Denominator 34,112,496, drawn to scale.</figcaption>
+    <figcaption class="l" lang="ja">探索で見つかった点：3 頂点まで（実線）の距離は有理数、残る 1 頂点まで（破線）は有理数でない。分母 34,112,496、縮尺どおり。</figcaption>
+  </figure>
+</section>
+
+<section class="results" aria-label="Results">
+  <div class="result">
+    <p class="eyebrow l" lang="en">Result 1 · finite search</p>
+    <p class="eyebrow l" lang="ja">結果 1 · 有限の探索</p>
+    <p class="big">N ≤ 10,000,000</p>
+    <p class="l" lang="en">No point of the plane with four rational distances has coordinates with common denominator at most ten million, inside or outside the square. Every decision uses exact integer arithmetic, and successive versions of the program were cross-checked on common ranges. A second search finds none with denominator up to 10<sup>11</sup> in the box [−9, 10]².</p>
+    <p class="l" lang="ja">座標の最小共通分母が 1,000 万以下の点で、4 頂点への距離がすべて有理数のものは、正方形の内外を問わずない。判定はすべて正確な整数演算で行い、プログラムの版どうしを共通の範囲で照合した。別の探索で、箱 [−9, 10]² の中では分母 10<sup>11</sup> まで見つからなかった。</p>
+  </div>
+  <div class="result">
+    <p class="eyebrow l" lang="en">Result 2 · computer-assisted proof</p>
+    <p class="eyebrow l" lang="ja">結果 2 · 計算機による証明</p>
+    <p class="big">608,382 <span class="l" lang="en">circles</span><span class="l" lang="ja">円</span></p>
+    <p class="l" lang="en">Every distance from such a point to a corner is a rational number of height greater than 1000. We proved that each circle about a corner with rational radius of height ≤ 1000 carries no such point.</p>
+    <p class="l" lang="ja">そのような点から頂点までの距離は、どれも高さが 1000 を超える有理数である。頂点を中心とし、半径が高さ 1000 以下の有理数である円のどれにも、そのような点がないことを示した。</p>
+  </div>
+</section>
+
+<section class="prose">
+  <h2 class="l" lang="en">How the circles were closed</h2>
+  <h2 class="l" lang="ja">円の閉じ方</h2>
+  <p class="l" lang="en">On the circle of radius r about (0,0), write the point as r((1−t²), 2t)/(1+t²). It has four rational distances exactly when (1+t²)·N<sub>j</sub>(t) is a square for three quadratics N<sub>j</sub>. Each circle is a curve of genus 9 with six genus-one quotients. Each method below excludes the circles the previous ones left.</p>
+  <p class="l" lang="ja">原点を中心とする半径 r の円の点を r((1−t²), 2t)/(1+t²) と書く。4 つの距離が有理数になるのは、3 つの 2 次式 N<sub>j</sub> について (1+t²)·N<sub>j</sub>(t) が平方になるときである。円ごとに種数 9 の曲線ができ、種数 1 の商を 6 つ持つ。下の方法を順にかけ、前の方法で残った円を除外した。</p>
+</section>
+<div class="table-wrap">
+<table class="pipeline">
+  <thead><tr><th><span class="l" lang="en">Method</span><span class="l" lang="ja">方法</span></th><th class="num"><span class="l" lang="en">Circles excluded</span><span class="l" lang="ja">除外した円</span></th></tr></thead>
+  <tbody>
+    <tr><td><span class="l" lang="en">Descent through a common square class with p-adic tests (p ≤ 2000)</span><span class="l" lang="ja">共通の平方類による降下と p 進の判定（p ≤ 2000）</span></td><td class="num">606,491</td></tr>
+    <tr><td><span class="l" lang="en">A genus-one quotient of rank 0: list all its points</span><span class="l" lang="ja">階数 0 の種数 1 の商：点をすべて並べる</span></td><td class="num">595</td></tr>
+    <tr><td><span class="l" lang="en">Refined 2-descent over Q(i) (primes up to 10⁶)</span><span class="l" lang="ja">Q(i) の上の細かい 2 降下（素数 10⁶ まで）</span></td><td class="num">1,171</td></tr>
+    <tr><td><span class="l" lang="en">Mordell–Weil sieve</span><span class="l" lang="ja">Mordell–Weil ふるい</span></td><td class="num">116</td></tr>
+    <tr><td><span class="l" lang="en">Mordell–Weil sieve with generators from a Heegner point, 2-coverings and 4-coverings</span><span class="l" lang="ja">Heegner 点・2 被覆・4 被覆で求めた生成元による Mordell–Weil ふるい</span></td><td class="num">4</td></tr>
+    <tr><td><span class="l" lang="en">Rank 0 over Q(i)</span><span class="l" lang="ja">Q(i) の上で階数 0</span></td><td class="num">5</td></tr>
+    <tr class="total"><td><span class="l" lang="en">All rational r ≠ 1 of height ≤ 1000 (r = 1 by hand)</span><span class="l" lang="ja">高さ 1000 以下の有理数 r ≠ 1 すべて（r = 1 は手で除外）</span></td><td class="num">608,382</td></tr>
+  </tbody>
+</table>
+</div>
+
+<section class="prose">
+  <h2 class="l" lang="en">What to trust, and how much</h2>
+  <h2 class="l" lang="ja">何に拠っているか</h2>
+  <ul class="l" lang="en">
+    <li>Result 1 is a finite computation, not a proof of non-existence. Its filters are necessary conditions whose proofs are in the repository.</li>
+    <li>Result 2 is computer-assisted and depends on PARI/GP and Sage/eclib. Every exclusion by the Mordell–Weil sieve was checked against an independent second system, with ranks from mwrank or from L-values with error bounds.</li>
+    <li>One circle, r = 769/360, uses a rank bound from PARI alone. The 588 rank-zero exclusions use PARI's upper bound.</li>
+    <li>We do not claim novelty for the methods, and we make no claim of a record. The paper's related-work section says what was known.</li>
+  </ul>
+  <ul class="l" lang="ja">
+    <li>結果 1 は有限の計算で、存在しないことの証明ではない。ふるいの条件はどれも必要条件で、証明はリポジトリにある。</li>
+    <li>結果 2 は計算機による証明で、PARI/GP と Sage・eclib に拠る。Mordell–Weil ふるいの除外は、どれも独立の第 2 系で確かめた（階数は mwrank、または誤差の範囲つきの L 値による）。</li>
+    <li>r = 769/360 の 1 円だけは、階数の上界が PARI のみに拠る。階数 0 による 588 円の除外も PARI の上界を使う。</li>
+    <li>方法の新規性や記録は主張しない。何が知られていたかは論文の関連研究の節にまとめた。</li>
+  </ul>
+</section>
+
+<p class="footer">wand125 · <span class="l" lang="en">Draft, November 2026. Code under the MIT License.</span><span class="l" lang="ja">2026 年 11 月の草稿。コードは MIT ライセンス。</span></p>
+</div>
+<script>
+(function () {
+  var root = document.getElementById("root"), be = document.getElementById("b-en"), bj = document.getElementById("b-ja");
+  function set(l) {
+    root.setAttribute("data-show", l); document.documentElement.lang = l;
+    be.setAttribute("aria-pressed", l === "en"); bj.setAttribute("aria-pressed", l === "ja");
+    try { localStorage.setItem("rd-lang", l); } catch (e) {}
+  }
+  be.addEventListener("click", function () { set("en"); });
+  bj.addEventListener("click", function () { set("ja"); });
+  var saved = null; try { saved = localStorage.getItem("rd-lang"); } catch (e) {}
+  if (saved === "ja" || saved === "en") set(saved);
+  else if ((navigator.language || "").indexOf("ja") === 0) set("ja");
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,544 @@
+// Experimental whole-plane search v4. The frozen v3 remains an executable
+// reference inside this translation unit; no v3 or shared-core file is edited.
+#define RATIONAL_SQUARE_V3_NO_MAIN
+#include "all_plane_gap_v3.cpp"
+#undef RATIONAL_SQUARE_V3_NO_MAIN
+#include <memory>
+#include "research_v4_local/lifted_projection.hpp"
+
+enum class GammaStage { late, table, rules, generation, lift };
+
+static const char *gamma_stage_name(GammaStage stage) {
+    switch(stage) {
+        case GammaStage::late:return "late";
+        case GammaStage::table:return "table";
+        case GammaStage::rules:return "rules";
+        case GammaStage::generation:return "generation";
+        case GammaStage::lift:return "lift";
+    }
+    throw std::logic_error("unknown gamma stage");
+}
+
+struct GammaPowerPlan {
+    struct Entry {u32 prime,power;unsigned exponent;};
+    std::array<Entry,7> entries{};
+    unsigned count=0;
+    u32 relevant=1;
+    explicit GammaPowerPlan(const CRTPlan &plan) {
+        for(unsigned i=0;i<plan.count;++i) {
+            const u32 p=plan.prime[i],power=plan.power[i];
+            if(p%4!=1 || power==p) continue;
+            unsigned e=0;for(u32 value=power;value>1;value/=p) ++e;
+            // With the v3 critical h/u/v restrictions, gamma at 5^2 and
+            // 13^2 is already 1. Other powers, including 5^3, are retained.
+            if((p==5 || p==13) && e==2) continue;
+            entries[count++]={p,power,e};
+            relevant*=power;
+        }
+    }
+};
+
+struct GammaLabels {
+    std::vector<u32> value;
+    GammaLabels(u32 n,const GammaPowerPlan &plan) {
+        if(!n || !plan.count) return;
+        value.assign(n+1,1);
+        for(unsigned i=0;i<plan.count;++i) {
+            const auto &f=plan.entries[i];
+            u32 pk=1;
+            for(unsigned k=1;k<f.exponent;++k) {
+                pk*=f.prime;
+                const u32 next=pk*f.prime;
+                u32 factor=1;
+                for(unsigned j=0;j<std::min(k,f.exponent-k);++j) factor*=f.prime;
+                for(u32 t=pk;t<=n;t+=pk)
+                    if(t%next) value[t]*=factor;
+            }
+        }
+    }
+    bool accepts(u32 u,u32 v,u32 h) const {
+        return value.empty() || (value[u]==value[h] && value[v]==value[h]);
+    }
+};
+
+struct GammaPowerRow {
+    // type0: exact higher valuation, forbid 0/h modulo next.
+    // type1: unit or divisible by the entire prime power.
+    // type2: BOTH high-k branches are retained: exact e-k OR both exact k.
+    struct Rule {unsigned type;u32 p,modulus,lower_next,high;};
+    std::array<Rule,7> rules{};
+    unsigned count=0;
+    u32 h=0;
+    GammaPowerRow(u32 difference,const GammaPowerPlan &plan,bool active=true):h(difference) {
+        if(!active) return;
+        for(unsigned i=0;i<plan.count;++i) {
+            const auto &f=plan.entries[i];
+            unsigned k=0;u32 hk=1;
+            while(k<f.exponent && h%(hk*f.prime)==0) {hk*=f.prime;++k;}
+            if(k==0) continue; // Existing CRT already implies gamma=1.
+            if(k==f.exponent) {
+                rules[count++]={1,f.prime,f.power,0,0};
+            } else if(2*k<=f.exponent) {
+                u32 power=1;
+                for(unsigned j=0;j<f.exponent-k+1;++j) power*=f.prime;
+                rules[count++]={0,f.prime,power,0,0};
+            } else {
+                u32 lower=1;
+                for(unsigned j=0;j<f.exponent-k+1;++j) lower*=f.prime;
+                rules[count++]={2,f.prime,hk*f.prime,lower,hk};
+            }
+        }
+    }
+    bool accepts_rule(unsigned i,u32 u) const {
+        const auto &r=rules[i];
+        if(r.type==0) return u%r.modulus && (u-h)%r.modulus;
+        if(r.type==1) return u%r.p || u%r.modulus==0;
+        return u%r.lower_next || (u%r.high==0 && u%r.modulus && (u-h)%r.modulus);
+    }
+    bool accepts(u32 u,unsigned omit_mask=0) const {
+        for(unsigned i=0;i<count;++i)
+            if(!(omit_mask&(1u<<i)) && !accepts_rule(i,u)) return false;
+        return true;
+    }
+};
+
+static bool local_without19(const LocalSieve &local,u32 n,u32 u,u32 v) {
+    return local.p5.accepts(n,u,v) && local.p11.accepts(n,u,v)
+        && local.p7.accepts(n,u,v) && local.p29.accepts(n,u,v) && local.p37.accepts(n,u,v)
+        && local.p13.accepts(n,u,v) && local.p17.accepts(n,u,v) && local.p23.accepts(n,u,v)
+        && local.p31.accepts(n,u,v) && local.p41.accepts(n,u,v) && local.p43.accepts(n,u,v);
+}
+
+struct V4Stats:GapStats {
+    u64 gamma_early_rejected=0,gamma_early_passed=0,gamma_lifted_progressions=0;
+    u64 gamma_lift_residues=0,examined_generation_rejections=0;
+    u64 additional_pairs=0,additional_rejected=0;
+    u64 endpoint_empty_rows=0;
+};
+
+// The existing gap CRT classes, restricted before their arithmetic
+// progressions are visited. For a four-distance solution v=0 and u=n
+// are impossible; see research_v4_math/endpoint_exclusion.md.
+template<class Callback>
+static u64 generate_field_gap_crt_range(u32 n,u32 h,const ArithmeticTables &tables,
+                                        const ProgressionWheel<19> &wheel,Callback emit,
+                                        u32 known_gcd,u32 lower,u32 upper) {
+    if(lower>upper) return 0;
+    const u32 m=n/known_gcd;
+    const auto &plan=tables.plans[m];
+    std::array<u32,128> residues{};
+    unsigned count=1;
+    for(unsigned i=0;i<plan.count;++i) {
+        if(h%plan.power[i]==0) continue;
+        const u32 shift=u32(u64(h)*plan.idempotent[i]%m);
+        const unsigned old=count;
+        if(2*old>residues.size()) throw std::logic_error("CRT capacity");
+        for(unsigned j=0;j<old;++j) {
+            u32 r=residues[j]+shift;
+            if(r>=m) r-=m;
+            residues[count++]=r;
+        }
+    }
+    const auto *row=wheel.row(n,h,m);
+    for(unsigned i=0;i<count;++i) {
+        u32 first=residues[i];
+        if(first<lower) first+=((lower-first+m-1)/m)*m;
+        for(u64 u=first;u<=upper;u+=m) {
+            const unsigned skip=row[u%19];
+            if(skip==255) break;
+            u+=u64(skip)*m;
+            if(u>upper) break;
+            emit(u32(u));
+        }
+    }
+    return count;
+}
+
+template<class Callback>
+static u64 generate_gamma_field_crt(u32 n,u32 h,const ArithmeticTables &tables,
+                                   const ProgressionWheel<19> &wheel,const GammaPowerRow &gamma,
+                                   bool lift,Callback emit,V4Stats &stats,u32 known_gcd,
+                                   bool trim_endpoints=false) {
+    const u32 lower=h+unsigned(trim_endpoints),upper=n-unsigned(trim_endpoints);
+    if(lower>upper) return 0;
+    const u32 m=n/known_gcd;
+    const auto &plan=tables.plans[m];
+    std::array<u32,128> residues{};
+    unsigned count=1;
+    for(unsigned i=0;i<plan.count;++i) {
+        if(h%plan.power[i]==0) continue;
+        const u32 shift=u32(u64(h)*plan.idempotent[i]%m);
+        const unsigned old=count;
+        if(2*old>residues.size()) throw std::logic_error("CRT capacity");
+        for(unsigned j=0;j<old;++j) {
+            u32 r=residues[j]+shift;
+            if(r>=m) r-=m;
+            residues[count++]=r;
+        }
+    }
+    auto finish=[&](u32 first,u32 step,unsigned mask) {
+        const auto *row=wheel.row(n,h,step);
+        const unsigned all=(1u<<gamma.count)-1;
+        for(u64 u=first;u<=upper;u+=step) {
+            const unsigned skip=row[u%19];
+            if(skip==255) break;
+            u+=u64(skip)*step;
+            if(u>upper) break;
+            if(mask!=all && !gamma.accepts(u32(u),mask)) {
+                ++stats.examined_generation_rejections;continue;
+            }
+            emit(u32(u));
+        }
+    };
+    // A constraint depends only on u modulo its rule.modulus. Along one
+    // progression its exact period is modulus/gcd(modulus,step). Lifting every
+    // allowed residue is therefore exact, including both high-k branches.
+    // Large periods or short progressions use direct rules to avoid expansion.
+    auto refine=[&](auto &&self,u32 first,u32 step,unsigned index,unsigned mask)->void {
+        if(index==gamma.count) {finish(first,step,mask);return;}
+        const auto &rule=gamma.rules[index];
+        const u32 period=rule.modulus/std::gcd(rule.modulus,step);
+        const u32 length=(upper-first)/step+1;
+        if(!lift || period>61 || length<2*period) {
+            self(self,first,step,index+1,mask);return;
+        }
+        ++stats.gamma_lifted_progressions;
+        const u32 new_step=step*period; // lcm(step,modulus), a divisor of n.
+        for(u32 j=0;j<period && u64(first)+u64(j)*step<=upper;++j) {
+            const u32 start=first+j*step;
+            if(!gamma.accepts_rule(index,start)) continue;
+            ++stats.gamma_lift_residues;
+            self(self,start,new_step,index+1,mask|(1u<<index));
+        }
+    };
+    for(unsigned i=0;i<count;++i) {
+        u32 first=residues[i];
+        if(first<lower) first+=((lower-first+m-1)/m)*m;
+        if(first<=upper) refine(refine,first,m,0,0);
+    }
+    return count;
+}
+
+// Extension contract: mark(n,permitted) may only clear entries after a proved
+// necessary condition; accepts(n,u,v) supplies additional exact local conditions.
+// Both are compiled away for NoAdditionalSieve. Callers can cache n-dependent
+// inverses during mark() rather than recomputing them for each candidate.
+struct NoAdditionalSieve {
+    void mark(u32,std::vector<std::uint8_t>&) {}
+    bool accepts(u32,u32,u32) const {return true;}
+    bool trim_endpoints() const {return false;}
+};
+
+enum class FifthStage {off,early,late};
+struct AdditionalOptions {
+    FifthStage fifth=FifthStage::early;
+    bool lifted=true,endpoints=true;
+};
+
+struct AdditionalSieve {
+    LiftedProjection<49,7> p49;
+    LiftedProjection<121,11> p121;
+    LiftedProjection<169,13> p169;
+    LiftedProjection<125,5> p125;
+    AdditionalOptions options;
+    explicit AdditionalSieve(const AdditionalOptions &o):options(o) {}
+    bool trim_endpoints() const {return options.endpoints;}
+    void mark(u32 n,std::vector<std::uint8_t> &permitted) {
+        if(options.fifth==FifthStage::early) FifthPowerCondition::mark(n,permitted);
+    }
+    bool accepts(u32 n,u32 u,u32 v) const {
+        if(options.fifth==FifthStage::late && !FifthPowerCondition::accepts(n,u,v)) return false;
+        // Mod125 implies the mod25 projection. Nonunit denominators are
+        // deliberately passed through by each independent projection.
+        return !options.lifted || (p125.accepts(n,u,v) && p169.accepts(n,u,v) &&
+                                   p121.accepts(n,u,v) && p49.accepts(n,u,v));
+    }
+    void verify() const {p49.verify();p121.verify();p169.verify();p125.verify();}
+};
+
+template<GammaStage stage,bool skip19,class AdditionalSieve,class ParameterCallback,class PointCallback>
+static V4Stats run_v4(const SearchOptions &opt,const ArithmeticTables &arithmetic,
+                     const LocalSieve &local,const GapWheel &gapwheel,
+                     const ProgressionWheel<19> &wheel,AdditionalSieve &additional,
+                     ParameterCallback parameter,PointCallback accept) {
+    V4Stats out;
+    const bool trim_endpoints=additional.trim_endpoints();
+    const u32 first_n=12*((opt.min_denominator+23)/24);
+    for(u32 n=first_n;n<=opt.bound/2;n+=12) {
+        const u32 N=2*n;
+        ++out.exact.sides;
+        out.dense_even_pairs+=u64(n+1)*(n+2)/2;
+        out.gap_rows+=n+1;
+        auto permitted=permitted_valuations(n,arithmetic.plans[n]);
+        const CriticalContentRows critical_rows(arithmetic.plans[n]);
+        critical_rows.mark(permitted,n);
+        additional.mark(n,permitted);
+        const GammaPowerPlan gamma_plan(arithmetic.plans[n]);
+        const GammaLabels labels(stage==GammaStage::table?n:0,gamma_plan);
+        const CriticalProjectionPlan critical_projection(arithmetic.plans[n]);
+        gapwheel.generate(n,[&](u32 h) {
+            ++out.local_gap_rows;++out.valuation_gap_rows;
+            if(trim_endpoints && h>=n-1) {++out.endpoint_empty_rows;return;}
+            if(!permitted_difference(n,h,0,arithmetic)) return;
+            ++out.difference_gap_rows;
+            if(!critical_rows.accepts(h)) return;
+            ++out.critical_gap_rows;
+            const u32 gcd_nh=std::gcd(n,h);
+            const GammaPowerRow gamma_row(h,gamma_plan,stage!=GammaStage::late && stage!=GammaStage::table);
+            auto visit_pair=[&](u32 u) {
+                const u32 v=u-h;
+                ++out.generated_pairs;
+                if(!permitted[u] || !permitted[v]) return;
+                ++out.valuation_pairs;
+                if((stage==GammaStage::table && !labels.accepts(u,v,h)) ||
+                   (stage==GammaStage::rules && !gamma_row.accepts(u))) {
+                    ++out.gamma_early_rejected;return;
+                }
+                ++out.gamma_early_passed;
+                if(skip19 ? !local_without19(local,n,u,v) : !local.accepts(n,u,v)) return;
+                ++out.local_pairs;
+                if(!additional.accepts(n,u,v)) {++out.additional_rejected;return;}
+                ++out.additional_pairs;
+                if(!permitted_scale(n,u,v,gcd_nh)) return;
+                ++out.scale_pairs;
+                if(stage==GammaStage::late && gamma_plan.relevant>1) {
+                    const u32 gh=gamma_value(gamma_plan.relevant,h);
+                    if(gh!=gamma_value(gamma_plan.relevant,u) || gh!=gamma_value(gamma_plan.relevant,v)) {
+                        ++out.gamma_rejected;return;
+                    }
+                }
+                ++out.gamma_pairs;
+                if(!critical_projection.accepts(u,h)) {++out.critical_projection_rejected;return;}
+                ++out.critical_projection_pairs;
+                parameter(N,2*u,2*v);
+                evaluate(N,2*u,2*v,true,out.exact,[&](i64 x,i64 y,i64 a) {
+                    accept(N,2*u,2*v,x,y,a,out.exact);
+                });
+            };
+            if((stage==GammaStage::generation || stage==GammaStage::lift) && gamma_row.count)
+                out.crt_residues+=generate_gamma_field_crt(n,h,arithmetic,wheel,gamma_row,
+                    stage==GammaStage::lift,visit_pair,out,gcd_nh,trim_endpoints);
+            else if(trim_endpoints)
+                out.crt_residues+=generate_field_gap_crt_range(n,h,arithmetic,wheel,visit_pair,gcd_nh,h+1,n-1);
+            else out.crt_residues+=generate_field_gap_crt(n,h,arithmetic,wheel,visit_pair,gcd_nh);
+        });
+    }
+    return out;
+}
+
+template<bool skip19,class AdditionalSieve,class ParameterCallback,class PointCallback>
+static V4Stats dispatch_gamma_v4(const SearchOptions &opt,const ArithmeticTables &arithmetic,
+                                const LocalSieve &local,const GapWheel &gapwheel,
+                                const ProgressionWheel<19> &wheel,GammaStage stage,
+                                AdditionalSieve &additional,ParameterCallback parameter,PointCallback accept) {
+    switch(stage) {
+        case GammaStage::late:return run_v4<GammaStage::late,skip19>(opt,arithmetic,local,gapwheel,wheel,additional,parameter,accept);
+        case GammaStage::table:return run_v4<GammaStage::table,skip19>(opt,arithmetic,local,gapwheel,wheel,additional,parameter,accept);
+        case GammaStage::rules:return run_v4<GammaStage::rules,skip19>(opt,arithmetic,local,gapwheel,wheel,additional,parameter,accept);
+        case GammaStage::generation:return run_v4<GammaStage::generation,skip19>(opt,arithmetic,local,gapwheel,wheel,additional,parameter,accept);
+        case GammaStage::lift:return run_v4<GammaStage::lift,skip19>(opt,arithmetic,local,gapwheel,wheel,additional,parameter,accept);
+    }
+    throw std::logic_error("unknown gamma stage");
+}
+
+template<class AdditionalSieve,class ParameterCallback,class PointCallback>
+static V4Stats run_v4_dispatch(const SearchOptions &opt,const ArithmeticTables &arithmetic,
+                              const LocalSieve &local,const GapWheel &gapwheel,
+                              const ProgressionWheel<19> &wheel,GammaStage stage,bool skip19,
+                              AdditionalSieve &additional,ParameterCallback parameter,PointCallback accept) {
+    if(skip19) return dispatch_gamma_v4<true>(opt,arithmetic,local,gapwheel,wheel,stage,additional,parameter,accept);
+    return dispatch_gamma_v4<false>(opt,arithmetic,local,gapwheel,wheel,stage,additional,parameter,accept);
+}
+
+static void validate_v4_generators(const LocalSieve &local,const ProgressionWheel<19> &wheel) {
+    ArithmeticTables tables(4913);
+    u64 rows=0,classified=0,wheel_members=0,lifted=0;
+    auto verify_row=[&](u32 n,u32 h) {
+        const GammaPowerPlan plan(tables.plans[n]);
+        const GammaPowerRow rule(h,plan);
+        const u32 gh=gamma_value(plan.relevant,h);
+        std::vector<u32> expected,generated,refined;
+        generate_gap_crt(n,h,tables,[&](u32 u) {
+            const bool exact=gamma_value(plan.relevant,u)==gh && gamma_value(plan.relevant,u-h)==gh;
+            if(rule.accepts(u)!=exact) throw std::runtime_error("gamma row differs from direct gcd definition");
+            ++classified;
+        });
+        generate_field_gap_crt(n,h,tables,wheel,[&](u32 u) {
+            if(local.accepts(n,u,u-h)!=local_without19(local,n,u,u-h))
+                throw std::runtime_error("removing the redundant19 check changed a wheel member");
+            if(gamma_value(plan.relevant,u)==gh && gamma_value(plan.relevant,u-h)==gh)
+                expected.push_back(u);
+        });
+        V4Stats direct_stats,lift_stats;
+        generate_gamma_field_crt(n,h,tables,wheel,rule,false,
+            [&](u32 u){generated.push_back(u);},direct_stats,std::gcd(n,h));
+        generate_gamma_field_crt(n,h,tables,wheel,rule,true,
+            [&](u32 u){refined.push_back(u);},lift_stats,std::gcd(n,h));
+        std::sort(expected.begin(),expected.end());
+        std::sort(generated.begin(),generated.end());
+        std::sort(refined.begin(),refined.end());
+        if(expected!=generated || expected!=refined ||
+           std::adjacent_find(refined.begin(),refined.end())!=refined.end())
+            throw std::runtime_error("gamma CRT/wheel set or uniqueness mismatch");
+        std::vector<u32> interior,range,trimmed_direct,trimmed_lift;
+        for(u32 u:expected) if(u>h && u<n) interior.push_back(u);
+        generate_field_gap_crt_range(n,h,tables,wheel,[&](u32 u) {
+            if(gamma_value(plan.relevant,u)==gh && gamma_value(plan.relevant,u-h)==gh)range.push_back(u);
+        },std::gcd(n,h),h+1,n-1);
+        generate_gamma_field_crt(n,h,tables,wheel,rule,false,
+            [&](u32 u){trimmed_direct.push_back(u);},direct_stats,std::gcd(n,h),true);
+        generate_gamma_field_crt(n,h,tables,wheel,rule,true,
+            [&](u32 u){trimmed_lift.push_back(u);},lift_stats,std::gcd(n,h),true);
+        std::sort(range.begin(),range.end());std::sort(trimmed_direct.begin(),trimmed_direct.end());
+        std::sort(trimmed_lift.begin(),trimmed_lift.end());
+        if(interior!=range || interior!=trimmed_direct || interior!=trimmed_lift)
+            throw std::runtime_error("endpoint-restricted CRT/wheel set mismatch");
+        ++rows;wheel_members+=expected.size();lifted+=lift_stats.gamma_lifted_progressions;
+    };
+    for(u32 n=1;n<=256;++n) {
+        const GammaPowerPlan plan(tables.plans[n]);const GammaLabels labels(n,plan);
+        for(u32 u=0;u<=n;++u)
+            if(!labels.value.empty() && labels.value[u]!=gamma_value(plan.relevant,u))
+                throw std::runtime_error("gamma label differs from direct gcd definition");
+        for(u32 h=0;h<=n;++h) verify_row(n,h);
+    }
+    // Explicit higher prime powers cover both high-k branches, critical
+    // midpoints, h=0, and truncated valuations k=e beyond the small sweep.
+    for(u32 n:{625u,1250u,2197u,3375u,4913u}) {
+        std::set<u32> gaps={0,1,n-1,n};
+        const auto &f=tables.plans[n];
+        for(unsigned i=0;i<f.count;++i) for(u32 q=f.prime[i];q<=f.power[i];q*=f.prime[i]) {
+            gaps.insert(q);if(q<n) gaps.insert(q+1);if(2*q<=n)gaps.insert(2*q);
+            if(q==f.power[i]) break;
+        }
+        for(u32 h:gaps) verify_row(n,h);
+    }
+    // n=5^3, h=5^2: u=5*6 is the low-valuation branch; u=5^2*2
+    // is the distinct high-valuation branch. Both are compulsory.
+    const GammaPowerPlan plan125(tables.plans[125]);const GammaPowerRow row125(25,plan125);
+    if(!row125.accepts(30) || !row125.accepts(50) || row125.accepts(25))
+        throw std::runtime_error("high-k gamma branch regression");
+    std::cerr<<"V4 validation passed: "<<rows<<" gap rows, "<<classified
+             <<" direct gcd comparisons, "<<wheel_members<<" retained CRT/wheel members, "
+             <<lifted<<" lifted progressions; both high-k branches retained.\n";
+}
+
+#ifndef RATIONAL_SQUARE_V4_NO_MAIN
+int main(int argc,char**argv) try {
+    SearchOptions opt;
+    GammaStage stage=GammaStage::late;
+    bool reference=false,skip19=true,check=false,new_filters=true;
+    AdditionalOptions additional_options;
+    std::string audit_path,parameter_path;
+    for(int i=1;i<argc;++i) {
+        const std::string arg=argv[i];
+        auto value=[&]()->std::string {if(++i>=argc) throw std::runtime_error("missing option value");return argv[i];};
+        if(arg=="--validate") check=true;
+        else if(arg=="--reference-v3") reference=true;
+        else if(arg=="--no-new-filters") new_filters=false;
+        else if(arg=="--no-five-adic") additional_options.fifth=FifthStage::off;
+        else if(arg=="--five-adic-late") additional_options.fifth=FifthStage::late;
+        else if(arg=="--no-prime-power-projections") additional_options.lifted=false;
+        else if(arg=="--no-endpoint-pruning") additional_options.endpoints=false;
+        else if(arg=="--keep-redundant19") skip19=false;
+        else if(arg=="--gamma-stage") {
+            const auto name=value();
+            if(name=="late") stage=GammaStage::late;
+            else if(name=="table") stage=GammaStage::table;
+            else if(name=="rules") stage=GammaStage::rules;
+            else if(name=="generation") stage=GammaStage::generation;
+            else if(name=="lift") stage=GammaStage::lift;
+            else throw std::runtime_error("gamma stage: late|table|rules|generation|lift");
+        } else if(arg=="--audit-three") audit_path=value();
+        else if(arg=="--audit-parameters") parameter_path=value();
+        else if(arg=="--min-denominator") {
+            const u64 lower=std::stoull(value());
+            if(lower<1 || lower>2000000) throw std::runtime_error("minimum1..2000000");
+            opt.min_denominator=u32(lower);
+        } else if(arg=="--help") {
+            std::cout<<"all_plane_gap_v4 [B] [--min-denominator L] [--validate] [--audit-three CSV] "
+                       "[--audit-parameters CSV] [--reference-v3] [--keep-redundant19] "
+                       "[--no-new-filters] [--no-five-adic] [--five-adic-late] "
+                       "[--no-prime-power-projections] [--no-endpoint-pruning] "
+                       "[--gamma-stage late|table|rules|generation|lift]\n";return 0;
+        } else {
+            const u64 bound=std::stoull(arg);
+            if(bound<1 || bound>2000000) throw std::runtime_error("bound1..2000000");
+            opt.bound=u32(bound);
+        }
+    }
+    if(opt.min_denominator>opt.bound) throw std::runtime_error("minimum exceeds bound");
+    const auto started=std::chrono::steady_clock::now();
+    ArithmeticTables arithmetic(std::max<u32>(1000,opt.bound/2));LocalSieve local;
+    GapWheel gapwheel(local);ProgressionWheel<19> wheel(local);
+    std::unique_ptr<AdditionalSieve> additional;
+    if(new_filters && !reference) additional=std::make_unique<AdditionalSieve>(additional_options);
+    const auto setup_done=std::chrono::steady_clock::now();
+    if(check) {
+        validate_gap(arithmetic,local,gapwheel);
+        validate_field_wheel(arithmetic,local,wheel);
+        validate_v4_generators(local,wheel);
+        if(additional) additional->verify();
+    }
+    std::ofstream audit,parameters;
+    if(!audit_path.empty()) {audit.open(audit_path);if(!audit)throw std::runtime_error("audit open");audit<<"N,p,q,X,Y,A\n";}
+    if(!parameter_path.empty()) {parameters.open(parameter_path);if(!parameters)throw std::runtime_error("parameter audit open");parameters<<"N,p,q\n";}
+    auto accept=[&](i64 N,i64 p,i64 q,i64 x,i64 y,i64 a,Stats &stats) {
+        if(audit.is_open())audit<<N<<','<<p<<','<<q<<','<<x<<','<<y<<','<<a<<'\n';
+        u64 d;if(square(u128(i128(N-x)*(N-x)+i128(N-y)*(N-y)),d)) {
+            ++stats.solutions;
+            std::cout<<"{\"solution\":{\"N\":"<<N<<",\"X\":"<<x<<",\"Y\":"<<y<<",\"A\":"<<a<<",\"D\":"<<d<<"}}\n";
+        }
+    };
+    auto parameter=[&](u32 N,u32 p,u32 q) {if(parameters.is_open())parameters<<N<<','<<p<<','<<q<<'\n';};
+    const auto search_started=std::chrono::steady_clock::now();
+    V4Stats stats;
+    if(reference) static_cast<GapStats&>(stats)=run_gap_search(opt,arithmetic,local,gapwheel,
+        parameter,accept,false,true,true,&wheel,true);
+    else if(additional) stats=run_v4_dispatch(opt,arithmetic,local,gapwheel,wheel,stage,skip19,*additional,parameter,accept);
+    else {NoAdditionalSieve none;stats=run_v4_dispatch(opt,arithmetic,local,gapwheel,wheel,stage,skip19,none,parameter,accept);}
+    const auto finished=std::chrono::steady_clock::now();
+    auto seconds=[](auto a,auto b){return std::chrono::duration<double>(b-a).count();};
+    std::cout<<"{\"scope\":\"whole_plane\",\"generator\":\"gap_CRT_v4\""
+             <<",\"max_minimal_coordinate_denominator\":"<<opt.bound
+             <<",\"min_denominator\":"<<opt.min_denominator
+             <<",\"reference_v3\":"<<(reference?"true":"false")
+             <<",\"gamma_stage\":\""<<gamma_stage_name(stage)<<"\""
+             <<",\"skip_redundant19\":"<<(skip19 && !reference?"true":"false")
+             <<",\"additional_filters\":"<<(additional?"true":"false")
+             <<",\"endpoint_pruning\":"<<(additional && additional_options.endpoints?"true":"false")
+             <<",\"fifth_power_condition\":\""<<(!additional || additional_options.fifth==FifthStage::off?"off":
+                                                      additional_options.fifth==FifthStage::early?"early":"late")<<"\""
+             <<",\"prime_power_projections\":"<<(additional && additional_options.lifted?"true":"false")
+             <<",\"sides\":"<<stats.exact.sides
+             <<",\"dense_even_pairs\":"<<stats.dense_even_pairs
+             <<",\"gap_rows\":"<<stats.gap_rows
+             <<",\"local_gap_rows\":"<<stats.local_gap_rows
+             <<",\"difference_gap_rows\":"<<stats.difference_gap_rows
+             <<",\"critical_gap_rows\":"<<stats.critical_gap_rows
+             <<",\"endpoint_empty_rows\":"<<stats.endpoint_empty_rows
+             <<",\"crt_residue_choices\":"<<stats.crt_residues
+             <<",\"generated_pairs\":"<<stats.generated_pairs
+             <<",\"valuation_pairs\":"<<stats.valuation_pairs
+             <<",\"gamma_early_rejected\":"<<stats.gamma_early_rejected
+             <<",\"gamma_lifted_progressions\":"<<stats.gamma_lifted_progressions
+             <<",\"gamma_lift_residues\":"<<stats.gamma_lift_residues
+             <<",\"examined_generation_rejections\":"<<stats.examined_generation_rejections
+             <<",\"local_pairs\":"<<stats.local_pairs
+             <<",\"additional_pairs\":"<<stats.additional_pairs
+             <<",\"additional_rejected\":"<<stats.additional_rejected
+             <<",\"scale_pairs\":"<<stats.scale_pairs
+             <<",\"gamma_pairs\":"<<stats.gamma_pairs
+             <<",\"gamma_rejected\":"<<stats.gamma_rejected
+             <<",\"critical_projection_pairs\":"<<stats.critical_projection_pairs
+             <<",\"critical_projection_rejected\":"<<stats.critical_projection_rejected
+             <<",\"exact_parameter_pairs\":"<<stats.exact.parameter_pairs
+             <<",\"square_discriminants\":"<<stats.exact.square_discriminants
+             <<",\"linear_pairs\":"<<stats.exact.linear_pairs
+             <<",\"primitive_three_candidates\":"<<stats.exact.primitive_three_candidates
+             <<",\"solutions\":"<<stats.exact.solutions
+             <<",\"seconds_setup\":"<<seconds(started,setup_done)
+             <<",\"seconds_search\":"<<seconds(search_started,finished)
+             <<",\"seconds_total_excluding_validation\":"<<seconds(started,setup_done)+seconds(search_started,finished)<<"}\n";
+} catch(const std::exception &e) {std::cerr<<e.what()<<'\n';return 1;}
+#endif

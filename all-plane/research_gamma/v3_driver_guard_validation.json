@@ -1,0 +1,14 @@
+{
+  "optimization_guard": {
+    "rejected": true,
+    "returncode": 1,
+    "expected_message": "Verification requires assertions"
+  },
+  "wrong_binary_guard": {
+    "rejected": true,
+    "returncode": 1,
+    "expected_message": "not from the expected whole-plane v3 generator"
+  },
+  "no_false_success_summary": true,
+  "driver_sha256": "09e84642a1d452cc63727a23132f6859ddde4da3bb2c4ec8f180b641e038ff36"
+}

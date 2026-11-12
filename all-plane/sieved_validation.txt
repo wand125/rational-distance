@@ -1,0 +1,2 @@
+Validation passed: all integer three-distance points in the entire plane for N=1..12 (28 canonical points); Q=0 integral example and Q=T=0 exception.
+Accelerated validation passed: CRT exact sets for every n=1..256 (197146 pairs); finite-field tables independently checked; 152 baseline primitive three-distance examples retained; 8 small-bound filtered parameter pairs matched.

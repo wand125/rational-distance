@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "bound": 1000,
+  "split": [
+    [
+      1,
+      501
+    ],
+    [
+      502,
+      1000
+    ]
+  ],
+  "full_primitive_three_points": 152,
+  "shard_primitive_three_points": [
+    67,
+    85
+  ],
+  "candidate_sets_equal": true,
+  "selected_counters_additive": true
+}

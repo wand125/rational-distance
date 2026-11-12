@@ -1,0 +1,9 @@
+{
+  "old_bound": 1000000,
+  "new_bound": 2000000,
+  "old_candidate_count": 110,
+  "new_overlap_candidate_count": 110,
+  "new_total_candidate_count": 218,
+  "exact_nonempty_overlap_set_match": true,
+  "frozen_original_source_hashes_match": true
+}

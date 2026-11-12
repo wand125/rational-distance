@@ -1,0 +1,88 @@
+{
+  "checked_date_jst": "2026-11-05",
+  "scope": "Primary-source audit for additional exclusions and sieve ancestry; not exhaustive novelty certification",
+  "sources": [
+    {
+      "key": "L1",
+      "author": "Yasushi Ieno",
+      "title": "Other special cases of a square problem",
+      "url": "https://arxiv.org/html/2111.02888v2",
+      "refs": ["turn89view0", "turn106view2"],
+      "locations": ["Theorem 3", "Theorem 4", "Theorem 5", "Theorem 6"],
+      "use": "Th6 is the predecessor of the low-mate argument; original opposite odd legs are products of two distinct bad primes. General exponent count and whole-plane argument are separately proved in low_mate_exclusion.md.",
+      "caveat": "Preprint. Th5 uses positive complementary legs; do not transfer to all-plane without additional proof. No claim the present corollary is new."
+    },
+    {
+      "key": "L2",
+      "author": "William McCloskey",
+      "title": "A Congruence Condition For The Four-Distance Problem",
+      "url": "https://arxiv.org/html/1904.12097v3",
+      "refs": ["turn89view1", "turn106view1"],
+      "locations": ["Theorem 2.3", "Lemma 3.5", "Proposition 3.6", "Theorem 3.7"],
+      "use": "Explicit modular lifting via Jacobian; 3-adic restriction; exclusion of one octic family.",
+      "caveat": "3^100 is a modulus with local solutions, not a denominator exclusion frontier. Does not exclude all sextic or octic families."
+    },
+    {
+      "key": "L3",
+      "author": "Jonathan Love",
+      "title": "Rational configuration problems and a family of curves",
+      "url": "https://arxiv.org/html/2310.02534v2",
+      "doi": "https://doi.org/10.1016/j.jnt.2024.09.008",
+      "refs": ["turn89view2", "turn106view0"],
+      "locations": ["Theorem 1.1", "Table 1", "Section 2.2", "Lemma 4.1"],
+      "use": "Local obstructions for a genus-one family and density bound in a four-coefficient integer box.",
+      "caveat": "The coefficient-box density is not automatically a density statement for (n,u,v) square-search parameters."
+    },
+    {
+      "key": "L4",
+      "authors": ["Sascha Kurz", "Landon Curt Noll", "Randall Rathbun", "Chuck Simmons"],
+      "title": "Constructing 7-clusters",
+      "url": "https://epub.uni-bayreuth.de/1786/1/7-cluster_sjc.pdf",
+      "bibliographic_url": "https://eref.uni-bayreuth.de/id/eprint/10648/",
+      "refs": ["turn103view0", "turn104view0"],
+      "locations": ["Section 7.3"],
+      "use": "Primary computational precedent for Boolean square-residue tables and successive composite-modulus square tests.",
+      "caveat": "Different geometric problem; not an all-plane unit-square denominator bound. The paper's exact coordinates/distance formulas contain rendering or sign issues, so only the clearly stated modular-test method is imported."
+    },
+    {
+      "key": "L5",
+      "author": "T. G. Berry",
+      "title": "Points at rational distance from the corners of a unit square",
+      "url": "https://www.numdam.org/item/ASNSP_1990_4_17_4_505_0.pdf",
+      "refs": ["turn92view1", "turn93view1", "turn93view2"],
+      "locations": ["Section 4", "Proposition 4.4"],
+      "use": "Known low-degree-family exclusion; sextic-derived genus-five example remains uncompleted in that paper.",
+      "caveat": "No assertion about current full solution of that exact genus-five curve. Exact equations were not recovered from visual PDF during this audit."
+    },
+    {
+      "key": "L6",
+      "author": "Y. Ji",
+      "title": "Several special cases of a square problem",
+      "url": "https://arxiv.org/html/2105.05250v2",
+      "refs": ["turn82view2", "turn83view2"],
+      "locations": ["Theorem 2", "Remark 1"],
+      "use": "Midline exclusion, with stated extension outside the square.",
+      "caveat": "Preprint; other special cases not automatically imported."
+    },
+    {
+      "key": "L7",
+      "authors": ["Pietro Corvaja", "Amos Turchet", "Umberto Zannier"],
+      "title": "Rational distances from given rational points in the plane",
+      "url": "https://link.springer.com/article/10.1007/s10711-025-01019-0",
+      "refs": ["turn92view2", "turn93view3"],
+      "use": "2025 peer-reviewed source on three-distance density and general-type distance surfaces.",
+      "caveat": "No effective unit-square denominator bound or unconditional emptiness conclusion."
+    }
+  ],
+  "novelty_status": {
+    "low_mate_formula": "Elementary corollary/generalization of known factor-pair arguments; same exact statement not found in inspected sources; novelty unconfirmed",
+    "unit_n_prime_square_projection_tables": "Specific tables not found in inspected sources; modular lifting and modular sieves are established methods",
+    "critical_mod_1681_table": "Specific residue list not found in inspected sources; Hensel lifting itself is established"
+  },
+  "non_adopted_claim": {
+    "url": "https://vixra.org/pdf/2605.0013v1.pdf",
+    "ref": "turn85view0",
+    "status": "A 2026 complete-solution claim was found but is not used. The proof has not been independently validated."
+  },
+  "root_citation_note": "The parent/root agent must independently open or search each source before citing child-owned web references in the user-facing answer."
+}

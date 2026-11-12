@@ -1,0 +1,184 @@
+{
+  "passed": true,
+  "crt_moduli": "n=1..60",
+  "crt_coordinate_triples_checked": 77530,
+  "crt_allowed_triples": 15156,
+  "crt_reference": "direct enumeration of A modulo n",
+  "existing_good_three_distance_examples_checked": 45,
+  "scaling_negative_control": {
+    "N": 20280,
+    "X": 4795,
+    "Y": 8772,
+    "A": 9997,
+    "B": 17797,
+    "C": 12467,
+    "g": 65,
+    "n0": 156,
+    "Q0": -20375,
+    "g_divides_n0_Q0": true,
+    "g_divides_Q0": false
+  },
+  "prime_11_and_19_curve_family_certificates": [
+    {
+      "prime": 11,
+      "N_unit_coordinate_points": [
+        [
+          0,
+          6
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          6,
+          0
+        ],
+        [
+          6,
+          1
+        ]
+      ],
+      "N_unit_sum_residues": [
+        3,
+        4,
+        7,
+        8
+      ],
+      "N_unit_difference_residues": [
+        3,
+        4,
+        7,
+        8
+      ],
+      "N_divisible_integral_R_necessary_residues": [
+        1,
+        2,
+        3,
+        8,
+        9,
+        10
+      ],
+      "forbidden_integral_R_residues": [
+        0,
+        5,
+        6
+      ]
+    },
+    {
+      "prime": 19,
+      "N_unit_coordinate_points": [
+        [
+          0,
+          5
+        ],
+        [
+          0,
+          10
+        ],
+        [
+          0,
+          15
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          1,
+          10
+        ],
+        [
+          1,
+          15
+        ],
+        [
+          2,
+          10
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          5,
+          1
+        ],
+        [
+          10,
+          0
+        ],
+        [
+          10,
+          1
+        ],
+        [
+          10,
+          2
+        ],
+        [
+          10,
+          18
+        ],
+        [
+          15,
+          0
+        ],
+        [
+          15,
+          1
+        ],
+        [
+          18,
+          10
+        ]
+      ],
+      "N_unit_sum_residues": [
+        1,
+        2,
+        4,
+        5,
+        7,
+        8,
+        11,
+        12,
+        14,
+        15,
+        17,
+        18
+      ],
+      "N_unit_difference_residues": [
+        1,
+        2,
+        4,
+        5,
+        7,
+        8,
+        11,
+        12,
+        14,
+        15,
+        17,
+        18
+      ],
+      "N_divisible_integral_R_necessary_residues": [
+        1,
+        2,
+        4,
+        6,
+        9,
+        10,
+        13,
+        15,
+        17,
+        18
+      ],
+      "forbidden_integral_R_residues": [
+        0,
+        3,
+        16
+      ]
+    }
+  ],
+  "scope": "finite implementation checks supplement the algebraic proofs; the positive examples are not four-distance solutions"
+}

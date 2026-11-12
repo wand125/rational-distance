@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>正方形への有理距離：論文</title>
+<meta name="description" content="全平面を座標の分母 10^7 まで探索し、頂点を中心とする高さ 1000 以下のすべての円で 4 距離点がないことを示した。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&family=IBM+Plex+Sans:wght@400;600&family=Noto+Sans+JP:wght@400;600&family=Noto+Serif+JP:wght@400;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<link rel="stylesheet" href="style.css">
+<style> body { line-height: 1.8; } .prose, .abstract, .stmt { max-width: 40em; } </style>
+<script>
+window.MathJax = { tex: { inlineMath: [["\\(", "\\)"]], displayMath: [["\\[", "\\]"]] }, svg: { fontCache: "global" } };
+</script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
+</head>
+<body>
+<div class="page paper">
+<div class="bar">
+  <a class="site" href="index.html">正方形への有理距離</a>
+  <nav aria-label="サイト">
+    <a href="index.html">概要</a>
+    <a href="paper.html" lang="en">Paper (English)</a>
+    <a href="paper.ja.html" aria-current="page">論文（日本語）</a>
+  </nav>
+</div>
+
+<header>
+  <p class="eyebrow">計算数論 · プレプリント草稿</p>
+  <h1>単位正方形の頂点から有理数の距離にある点：分母 10<sup>7</sup> までの全平面探索と、高さ 1000 以下の頂点中心の円すべて</h1>
+  <p class="byline">wand125 · 2026年11月 · プレビュー用の草稿</p>
+</header>
+
+<section class="abstract" aria-label="要旨">
+  <p><strong>要旨。</strong> 平面上に、単位正方形の 4 頂点すべてから有理数の距離にある点があるかどうかは分かっていない。本稿はこの問いに関わる 2 つの計算を報告する。どちらも問いを解決しない。第一に、そのような点で、座標の最小共通分母が \(10^7\) 以下のものは平面上のどこにもないことを、網羅的な探索で示した。別の簡単な探索で、箱 \([-9,10]^2\) の中では分母 \(10^{11}\) まで同じことを示した。前者の探索は、必要な算術条件を通る整数パラメータを数え上げ、許される剰余類を中国剰余定理で生成し、残った候補をすべて正確な整数演算で組み立て直す。第二に、そのような点は頂点を中心とする有理数の半径 \(r\) の円の上にある。\(\max(|\text{分子}|, \text{分母}) \le 1000\) の有理数 \(r \ne 1\)（608,382 円）のすべてについて、円の上にそのような点がないことを証明した。\(r = 1\) は手で除外する。したがって、仮にそのような点があれば、4 つの距離はどれも高さが 1000 を超える。円の証明には、平方類による降下と \(p\) 進の判定、階数 0 の種数 1 の商、\(\mathbb{Q}(i)\) の上の細かい 2 降下、Mordell–Weil ふるいを組み合わせた。最後の 4 円ではふるいに高さ 79〜129 の生成元が必要で、それを Heegner 点、同種な曲線の 2 被覆、4 被覆から求めた。円の証明は計算機による証明で、PARI/GP と Sage の正しさに拠る。1 円だけは、階数の上界を 1 つの系に頼っている。</p>
+</section>
+
+<nav class="toc" aria-label="目次">
+  <ol>
+    <li><a href="#intro">問題と結果</a></li>
+    <li><a href="#related">関連研究</a></li>
+    <li><a href="#plane">全平面の探索</a></li>
+    <li><a href="#circles">頂点を中心とする円</a></li>
+    <li><a href="#last">最後の 9 円</a></li>
+    <li><a href="#trust">結果が拠るもの</a></li>
+    <li><a href="#data">コードとデータ</a></li>
+  </ol>
+</nav>
+
+<section id="intro" class="prose">
+<h2>1. 問題と結果</h2>
+<p>\(V_1 = (0,0)\)、\(V_2 = (1,0)\)、\(V_3 = (0,1)\)、\(V_4 = (1,1)\) とする。点 \(P \in \mathbb{R}^2\) が \(j = 1, \dots, 4\) のすべてで \(|P - V_j| \in \mathbb{Q}\) を満たすとき、\(P\) を<em>4 距離点</em>と呼ぶ。\(|P-V_2|^2 - |P-V_1|^2 = 1 - 2x\) などから、4 距離点の座標は有理数である。4 距離点があるかどうかは未解決である（Guy『Unsolved Problems in Number Theory』の問題 D19）。3 頂点から有理数の距離にある点は平面で稠密で、そのパラメータ族もいくつか知られている。何が証明され、何が計算されたかは第 2 節にまとめる。</p>
+<p>整数 \(X, Y, N\)（\(N \ge 1\)、\(\gcd(X, Y, N) = 1\)）で \(P = (X/N, Y/N)\) と書き、\(N\) を \(P\) の<em>分母</em>と呼ぶ。既約分数 \(a/b\) の<em>高さ</em>は \(\max(|a|, |b|)\) とする。</p>
+
+<div class="stmt">
+  <span class="label">結果 1（有限の探索）</span>
+  <p>(a) 分母 \(N \le 10^7\) の 4 距離点はない。正方形の内部と外部を含む全平面についての結果である。</p>
+  <p>(b) 箱 \([-9, 10]^2\) の中に、分母 \(N \le 10^{11}\) の 4 距離点はない。</p>
+</div>
+<p>結果 1 は 2 つの有限の計算の結果である（3.1〜3.5 節と 3.6 節）。4 距離点が存在しないことの証明ではなく、大きい分母については何も言わない。</p>
+
+<div class="stmt">
+  <span class="label">結果 2（計算機による証明）</span>
+  <p>\(P\) を 4 距離点とする。このとき 4 つの距離 \(|P - V_j|\) は、どれも高さが 1000 を超える有理数である。</p>
+</div>
+<p>\(|P - V_j| = r\) なら、正方形の対称性で \(V_j\) を原点に移せる。距離は変わらない。したがって、\(r\) の高さが 1000 以下の原点中心の円 \(|P| = r\) のどれにも 4 距離点がないことを示せばよい。\(r = 1\) は初等的に示せる（4.1 節）。残る 608,382 個の \(r\) は円ごとに証明した（第 4・5 節）。証明は計算機によるもので、どのソフトウェアの出力に拠るかを第 6 節に挙げる。</p>
+<p>2 つの結果は別の量を制限する。分母 \(N\) の点の距離の分母は \(N\) を割るが、分子は大きくなりうる。逆に、高さの小さい距離は \(N\) を制限しない。どちらの結果も他方を含まない。</p>
+<div class="stmt">
+  <span class="label">合わせると</span>
+  <p>結果 1・2 と既知の必要条件（第 2 節と 3.2 節）を合わせると、既約に書いた 4 距離点 \(P = (X/N, Y/N)\) は、存在するなら次をすべて満たす。</p>
+  <ul>
+    <li>\(N > 10^7\)。\(P \in [-9, 10]^2\) なら \(N > 10^{11}\)。</li>
+    <li>\(24 \mid N\)。各距離は \(k/N\)（\(k\) は奇数で 3 と素）の形なので、既約にした分母も 24 の倍数である。</li>
+    <li>各距離を既約分数にすると、分子か分母が 1000 を超える。</li>
+    <li>座標を入れ替えれば \(X\) は奇数で \(4 \mid Y\)。\(X - Y\) と \(X + Y - N\) の素因数はどれも \(\equiv \pm 1 \pmod 8\)。</li>
+    <li>\(P\) は正方形の辺の上 [6]、辺を含む直線・対角線・中線の上 [7] にない。</li>
+  </ul>
+  <p>これらの条件で問題が有限の計算に帰着するわけではない（2.6 節）。</p>
+</div>
+</section>
+
+<section id="related" class="prose">
+<h2>2. 関連研究</h2>
+<h3>2.1 起源と現状</h3>
+<p>この問題は Guy の本の §D19 にある [1]。たどれた最も古い印刷物は、<em>Mathematics Magazine</em> の C. W. Dodge による問題 966（1976 年）と、G. Shute・K. L. Yocom による部分解（1977 年）である [2]。問題はふつう全平面について述べられ [1, 5, 6]、最近の論文には内部に限るものもある [7, 8, 12, 13, 15]。確かめた最近の文献はどれも未解決としている [10, 11, 12]。</p>
+
+<h3>2.2 3 距離点と 4 距離の曲面</h3>
+<p>3 頂点から有理数の距離にある点は平面で稠密である。1 パラメータの族は J. H. Hunter（1967 年）と Leech・Conway・M. Guy にさかのぼる（Berry [3] による）。Berry は 3 距離の曲面が Kummer 曲面で、有理曲線の族を無限に持つことを示し、4 距離の曲面がその二重被覆で、\(\mathbb{Q}(i)\) 上の共役な 2 つの楕円 4 次曲線で分岐し、幾何種数 5 の一般型であることを示した [3]。次数 2 と 4 の族には 4 距離点がないことも示した。\(\mathbb{Q}(i)\) 上のこの二重被覆が、4.4 節と 5.1 節に \(\mathbb{Q}(i)\) が現れる理由である。Corvaja・Turchet・Zannier は、一般の位置にある 4 点の距離の曲面が単連結で一般型であることを証明した [11]。Love は直線の族の上の 3 距離の曲線を調べた [10]。Bremner・Ulas は、縦横比が稠密な集合をなす長方形で 4 距離点を見つけた。どれも長方形の内部にはない [5]。</p>
+<p>Bombieri–Lang 予想のもとでは、一般型の曲面の有理点は Zariski 稠密でない。Tao [17] と Shaffaf [18] はそこから、平面で稠密な有理距離集合はないことを導いた。Solymosi・de Zeeuw は、直線や円を成分に含まない代数曲線の上の有理距離集合が有限であることを無条件に証明した [19]。どの結果も単位正方形の問題を決めない。</p>
+
+<h3>2.3 特別な場所と 1 パラメータのファイバー</h3>
+<p>Barbara は正方形の辺の上に 4 距離点がないことを示した [6]。Ji は対角線、中線、辺を含む直線、辺に平行ないくつかの直線を除外し、議論が全平面に及ぶと述べている [7]。Ieno は整数モデルの割り切れの条件を与えた [8]。McCloskey は長方形の 3 進の条件を与え、Berry の次数 8 の族を除外した [9]。</p>
+<p>パラメータを 1 つ固定してファイバーを調べる研究が 2 つあり、本稿の第 4 節に最も近い。MathOverflow の質問は直線 \(x = r\) を固定する。その上で 2 頂点から有理数の距離にある点は楕円曲線の点に対応し、その曲線の階数が 0 なら直線を除外できるとする。いくつかの \(r\) を報告しているが、系統的な結果はない [14]。Si は 2 つの距離の符号つきの和か差を固定し（ファイバーは共焦点の 2 次曲線）、各ファイバーが種数 5 の曲線に載ること、階数 0 の判定法、1 つのファイバーの詳しい解析を示した。内部の点を扱い、査読は受けていない [12]。3.2 節で使う \(24 \mid N\) と 8 を法とする条件は [8, 12] にある。</p>
+
+<h3>2.4 探索</h3>
+<p>Pegg は Heron 三角形から 3 距離点を集めた [16]。Si は内部を共通分母 \(10^5\) まで探索した [13]。Mulatram-UwU のリポジトリは、ピタゴラスの相手を列挙する方法で内部を共通分母 \(5 \times 10^{10}\) まで探索したと報告している [15]。AI エージェントが作ったと書かれており、当方はそのコードを確かめていない。本稿の箱探索（3.6 節）は相手を列挙する同じ考えを符号つきの座標に広げたもので、コードは当方が書いた。T. S. Roberts の掲示板の投稿（2013 年ごろ）はより大きい全平面の範囲を報告しているが、確かめられなかった。査読を経た網羅的な探索は見つからなかった。</p>
+
+<h3>2.5 手法</h3>
+<p>第 4・5 節の道具は標準的なものである。PARI/GP に実装された 2 降下と Simon の算法 [25, 30]、4 降下と被覆の最小化・簡約 [22, 23, 24]、Heegner 点 [26, 28] と Kolyvagin の定理 [27]、Mordell–Weil ふるい [20, 21]。有理点を持つ 4 次式を Weierstrass 形に直すのは [29, 定理 2.17] に従う。</p>
+
+<h3>2.6 本稿で新しいこと</h3>
+<p>1 頂点までの距離を固定し（頂点を中心とする有理数の半径の円）、円ごとに空であることを証明した先行研究は見つからなかった。最も近いのは [12] と [14] のファイバーである。個々の手法は新しくない。分母 \(10^7\) までの全平面の探索は、確かめられた全平面の探索の中では見つけた範囲で最も大きいが、内部だけならもっと先まで探索されている [15]。箱探索は有界な領域だけを覆う。Bombieri–Lang のもとでは 4 距離点は有限個の曲線の上に載るので、高さの小さい円をすべて閉じても、問題は有限の計算に帰着しない。結果 2 が除くのは高さ 1000 以下の円だけである。</p>
+</section>
+
+<section id="plane" class="prose">
+<h2>3. 全平面の探索</h2>
+<h3>3.1 整数のモデルと正規化</h3>
+<p>正方形を \(N\) 倍する。分母 \(N\) の 4 距離点から、次を満たす整数 \(A, B, C, D \ge 0\) が得られる。</p>
+\[ A^2 = X^2 + Y^2,\quad B^2 = (N - X)^2 + Y^2,\quad C^2 = X^2 + (N - Y)^2,\quad D^2 = (N - X)^2 + (N - Y)^2 . \]
+<p>正方形の対称性の群は位数 8 なので、\(X \le Y \le N/2\) としてよい。座標にはこれ以外の制限を置かない。\(X\) は負でもよく、正方形の外の点はこうして入る。\(p = B - A\)、\(q = C - A\) とおく。\(B^2 - A^2 = N^2 - 2NX\)、\(C^2 - A^2 = N^2 - 2NY\) から \(B \ge C \ge A\) で、三角不等式から \(0 \le q \le p \le N\) となる。座標は次で戻る。</p>
+\[ X = \frac{N^2 - p^2 - 2Ap}{2N}, \qquad Y = \frac{N^2 - q^2 - 2Aq}{2N} \]
+<p>\(A^2 = X^2 + Y^2\) は 2 次方程式 \(4QA^2 - 4TA + R = 0\) になる。ここで</p>
+\[ Q = p^2 + q^2 - N^2,\quad T = p(N^2 - p^2) + q(N^2 - q^2),\quad R = (N^2 - p^2)^2 + (N^2 - q^2)^2, \]
+\[ T^2 - QR = K = (N^2 - p^2)(N^2 - q^2)\bigl(2N^2 - (p - q)^2\bigr) \]
+<p>である。したがって 3 つ組 \((N, p, q)\) から候補の点は高々 2 つで、\(K\) は平方数でなければならない（\(Q = 0\) の退化した場合は別に扱う）。3 つ組をすべて並べると、分母の範囲あたりおよそ \(N^3/576\) 組になり、\(10^7\) では多すぎる。この節の残りは、それを避ける方法である。</p>
+
+<h3>3.2 必要条件</h3>
+<p>原始的な 4 距離点では次が成り立つ。最初のまとまりは既知である（第 2 節）。本稿はこれを使うが、成果としては主張しない。</p>
+<ul>
+  <li>\(24 \mid N\)。4 つの距離は奇数で 3 と互いに素。座標を入れ替えれば \(X\) は奇数で \(4 \mid Y\)。</li>
+  <li>\(X - Y\) と \(X + Y - N\) の素因数はどれも \(\equiv \pm 1 \pmod 8\)。素数 \(\ell \equiv \pm 3 \pmod 8\) を法として 2 は非剰余なので、頂点の 2 本の脚の和か差を \(\ell\) が割ると、\(\ell\) は \(N\) と両方の座標を割ることになるからである。</li>
+</ul>
+<p>\(n = N/2\)、\(u = p/2\)、\(v = q/2\)、\(h = u - v\) とおく。これらは整数で、\(X = n - u(A+u)/n\)、\(Y = n - v(A+v)/n\) となる。探索では、さらに次の条件を使う。どれも必要条件なので、4 距離点を取りこぼさない。証明は第 7 節に挙げるリポジトリの文書にある。</p>
+<ol>
+  <li><strong>整数性を生成に使う。</strong> \(X\) と \(Y\) を同時に整数にする整数 \(A\) があるのは、\(\gcd\bigl(n/\gcd(n,u),\, n/\gcd(n,v)\bigr) \mid u - v\) のときに限る。\(h\) を固定すると、これは次と同値である：\(n\) を割る各素数冪 \(\ell^e \parallel n\) について、\(t = \ell^{\max(e - v_\ell(h), 0)}\) とおくと \(u \equiv 0\) または \(u \equiv h \pmod t\)。探索はこの 2 択を中国剰余定理で組み合わせ、許される \(u\) だけを生成する。整数性を満たさない組は作らない。</li>
+  <li><strong>差 \(h\) の条件。</strong> \(X - Y = -h(A + u + v)/n\) は奇数で、\(\equiv \pm 3 \pmod 8\) の素因数を持たない。そのため \(h\) のうちそのような素数からなる部分は \(n\) を割り、\(h\) が偶数なら 2 進付値は \(n\) と同じになる。さらに \(h/n\) は、4 本の距離の式を有限体の上で列挙して得た \(5 \cdot 11 \cdot 19\) を法とする剰余類に入らなければならない（例：\(h/n \equiv 2, 3 \pmod 5\)）。</li>
+  <li><strong>付値。</strong> \(\ell = 2\) または \(\ell \equiv 3 \pmod 4\) で \(\ell^e \parallel n\) なら、\(u\) や \(v\) を割る \(\ell\) のちょうどの冪が \(\ell^{1}, \dots, \ell^{e-1}\) になることはない。\(\ell = 2\)、\(e \ge 2\) では付値 \(e + 1\) もありえない。</li>
+  <li><strong>共通因子。</strong> \(g = \gcd(n, u, v)\)、\(n_0 = n/g\)、\(Q_0 = (u/g)^2 + (v/g)^2 - n_0^2\) とすると、\(g \mid n_0 Q_0\) が必要である。</li>
+  <li><strong>局所可解性。</strong> 4 本の距離の式は、5 から 43 までの各素数を法として解を持たなければならない。後の版では、\(125, 49, 121, 169\) を法とする条件と、281 までの素数での条件を足した。表は有限環の上の全列挙で作り、独立に書いたもう 1 つの列挙で照合した。新しい条件は、それを通る非空のパラメータ集合が、前の版の出力に後から同じ条件をかけたものと一致したときだけ採用した。</li>
+</ol>
+<p>条件を通った候補は正確に組み立て直す。\(K\) が平方数であること、\(A\)、\(X\)、\(Y\) の式の割り算が割り切れること、4 本の距離の等式を、正確な整数で確かめる。</p>
+<p><strong>数え上げの大きさ。</strong> \(n\) と \(h\) を固定し、\(m = n/\gcd(n, h)\) とすると、生成する \(u\) は高々 \(2^{\omega(m)}(1 + n/m)\) 個である。\(h\) について足すと、\(n\) あたり高々 \(2n\,\tau(n^2) \le 2n\,d_3(n)\) 個で、\(\sum_{n \le M} d_3(n) \le M H_M^2\) である。よって分母 \(B\) までで生成する組の数は \(O(B^2 \log^2 B)\) で、3 つ組 \((N, p, q)\) の \(\Theta(B^3)\) 個と比べて小さい。</p>
+
+<h3>3.3 正確な整数演算</h3>
+<p>\(N = 10^7\) では \(K\) は \(2N^6\)（141 ビット）に、\(X^2 + Y^2\) と \(D^2\) は \(2(N^3 + N)^2\)（141 ビット）に達する。以前の版は 128 ビット整数を使っていたので \(N \le 2 \times 10^6\) に制限していた。それを超える範囲で使った版（v5）は、これらを 256 ビットの符号なし整数で計算する。平方判定は 64・63・65・11 を法とする剰余で平方でないものを除き、残りをビットごとの正確な整数平方根で確かめる。判定に浮動小数は使わない。v5 は凍結した前の版と手順をそろえてある。式も、根の順序も、カウンタも同じで、違うのは整数の幅だけである。</p>
+
+<h3>3.4 確かめ</h3>
+<ul>
+  <li>\(N \le 12\) で 4 距離の条件を外すと、組み立て直しの結果は、証明した半径の上限内の全座標の総当たりで見つかる整数 3 距離点と完全に一致した（正方形の外の点を含む）。</li>
+  <li>256 ビットの演算は、約 72 万個の \(r^2, r^2 - 1, r^2 + 2r\) と、Python の多倍長整数との照合で確かめた。</li>
+  <li>\(N \le 12\) の 3 距離点を \(N \approx 10^7\) まで定数倍し、どの点も再現されることを確かめた。</li>
+  <li>新しい版（C++ の v5、Rust の v6・v7・v8）は、\(N = 2 \times 10^6\) までの共通の範囲で、組み立て直しに届いたパラメータの集合、3 距離の診断点、カウンタが前の版と完全に一致したときだけ採用した。v6 は v5 を OpenAI Codex の助けを借りて移植したもので、この照合で受け入れた。</li>
+  <li>正の対照として、どの走も、すべての条件を通った 3 距離点（診断点）を書き出す。これは Python の整数で検査し直す。</li>
+</ul>
+
+<h3>3.5 結果</h3>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>分母の範囲</th><th>版</th><th class="num">区間数</th><th class="num">CPU 秒</th><th class="num">3 距離の診断点</th><th class="num">4 距離点</th></tr></thead>
+  <tbody>
+    <tr><td>1 〜 2,000,000</td><td>v2（v4・v5 で再実行）</td><td class="num">8</td><td class="num">1,059</td><td class="num">218（v2）/ 120（v4・v5）</td><td class="num">0</td></tr>
+    <tr><td>2,000,001 〜 4,000,000</td><td>v5</td><td class="num">48</td><td class="num">2,933</td><td class="num">107</td><td class="num">0</td></tr>
+    <tr><td>4,000,001 〜 6,000,000</td><td>v7</td><td class="num">48</td><td class="num">4,847</td><td class="num">104</td><td class="num">0</td></tr>
+    <tr><td>6,000,001 〜 8,000,000</td><td>v8</td><td class="num">48</td><td class="num">10,312</td><td class="num">97</td><td class="num">0</td></tr>
+    <tr><td>8,000,001 〜 10,000,000</td><td>v8</td><td class="num">48</td><td class="num">17,618</td><td class="num">99</td><td class="num">0</td></tr>
+  </tbody>
+  <caption>表 1　全平面の探索（分母 \(N\) の範囲ごと）。区間は分母の互いに素な範囲で、別々のプロセスで走らせた。まとめでは、各区間がちょうど 1 回ずつあること、全区間が同じソースを使ったこと、調べた組の数が理論上の数と一致することを確かめた。診断点は、すべての条件を通った 3 距離点である。v4 の条件は v2 より強いので、診断点が少ない。CPU 秒は別々の台での合計で、目安にすぎない。</caption>
+</table>
+</div>
+<p>診断点のほとんどは、正方形の辺を含む直線の上にある。正方形の真の内部にあるのは 1 点（\(N \le 2 \times 10^6\)）だけである。どの点でも 4 つ目の距離の 2 乗は平方数でなく、多くは小さい素数を法として既に非剰余である。たとえば内部の点 \(N = 353{,}400\)、\(X = 25{,}912\)、\(Y = 98{,}175\) では、4 つ目の距離の 2 乗は 13 を法として 2 になる。</p>
+
+<h3>3.6 有界な箱の中の相手の探索</h3>
+<p>別のプログラムで、有界な領域を別の道筋で調べた。\(P = (A/Q, C/Q)\)、\(B = Q - A\)、\(D = Q - C\) と書くと、\(P\) が 4 距離点であることは \(A^2 + C^2\)、\(B^2 + C^2\)、\(A^2 + D^2\)、\(B^2 + D^2\) がすべて平方数であることと同じである。\(M = 10N\) として、\(Q \le N\) かつ \(\max(|A|, |B|, |C|, |D|) \le M\) のすべての \((Q, A, C)\) を調べる。これで \([-9, 10]^2\) の中の分母 \(N\) 以下の点がすべて覆われる。\(c = |C| \le M\) ごとに、\(c^2 + v^2\) が平方数になる相手 \(v \le M\) を \(c^2 = uw\) の分解から並べ、相手の組 \(a < b\) ごとに \(Q = a + b\) か \(Q = b - a\) を作り、\(d = |Q - c|\) か \(Q + c\) を試す。3.2 節と同じ合同条件（\(12 \mid Q\)、4 を法とする偶奇、3 での割り切れ）で組を刈る。相手を列挙する考えは [15] から取り、符号つきの座標に広げた。Rust のプログラムは当方が書いた。</p>
+<p>確かめ：刈りを外すと、3 距離の行は \((N, M) = (720, 2160)\) までの 5 つの箱で独立の総当たりと完全に一致した。刈りを入れると、総当たりに同じ条件をかけたものと一致した。内部の相手と組の数は、\(N = 10^4, \dots, 10^7\) で [15] の公表値と一致した。速くした各版は、共通の範囲で前の版の全カウンタと全行を再現した。平方判定は整数で正確に行う。</p>
+<div class="table-wrap">
+<table>
+  <thead><tr><th class="num">\(N\)</th><th class="num">\(M\)</th><th class="num">区間数</th><th class="num">CPU 秒</th><th class="num">3 距離の行</th><th class="num">4 距離点</th></tr></thead>
+  <tbody>
+    <tr><td class="num">\(10^8\)</td><td class="num">\(10^9\)</td><td class="num">1</td><td class="num">≤ 1,113</td><td class="num">—</td><td class="num">0</td></tr>
+    <tr><td class="num">\(10^9\)</td><td class="num">\(10^{10}\)</td><td class="num">200</td><td class="num">11,957</td><td class="num">61,351,352</td><td class="num">0</td></tr>
+    <tr><td class="num">\(10^{10}\)</td><td class="num">\(10^{11}\)</td><td class="num">1,000</td><td class="num">160,343</td><td class="num">613,541,176</td><td class="num">0</td></tr>
+    <tr><td class="num">\(10^{11}\)</td><td class="num">\(10^{12}\)</td><td class="num">10,000</td><td class="num">1,836,020</td><td class="num">6,135,464,566</td><td class="num">0</td></tr>
+  </tbody>
+  <caption>表 2. \([-9, 10]^2\) の箱探索。区間は \(c\) の互いに素な範囲で、まとめの段階で各区間がちょうど 1 回現れ、範囲が連続することを確かめる。3 距離の行は、刈りを通って 3 つの和が平方数になった組である。</caption>
+</table>
+</div>
+
+<figure>
+  <svg viewBox="0 0 400 370" role="img" aria-labelledby="sqfig-t-paper-ja" xmlns="http://www.w3.org/2000/svg">
+<title id="sqfig-t-paper-ja">A point with rational distances to three vertices of the unit square</title>
+<line class="dg-grid" x1="50.0" y1="330.0" x2="50.0" y2="30.0"/><line class="dg-grid" x1="50.0" y1="330.0" x2="350.0" y2="330.0"/><line class="dg-grid" x1="80.0" y1="330.0" x2="80.0" y2="30.0"/><line class="dg-grid" x1="50.0" y1="300.0" x2="350.0" y2="300.0"/><line class="dg-grid" x1="110.0" y1="330.0" x2="110.0" y2="30.0"/><line class="dg-grid" x1="50.0" y1="270.0" x2="350.0" y2="270.0"/><line class="dg-grid" x1="140.0" y1="330.0" x2="140.0" y2="30.0"/><line class="dg-grid" x1="50.0" y1="240.0" x2="350.0" y2="240.0"/><line class="dg-grid" x1="170.0" y1="330.0" x2="170.0" y2="30.0"/><line class="dg-grid" x1="50.0" y1="210.0" x2="350.0" y2="210.0"/><line class="dg-grid" x1="200.0" y1="330.0" x2="200.0" y2="30.0"/><line class="dg-grid" x1="50.0" y1="180.0" x2="350.0" y2="180.0"/><line class="dg-grid" x1="230.0" y1="330.0" x2="230.0" y2="30.0"/><line class="dg-grid" x1="50.0" y1="150.0" x2="350.0" y2="150.0"/><line class="dg-grid" x1="260.0" y1="330.0" x2="260.0" y2="30.0"/><line class="dg-grid" x1="50.0" y1="120.0" x2="350.0" y2="120.0"/><line class="dg-grid" x1="290.0" y1="330.0" x2="290.0" y2="30.0"/><line class="dg-grid" x1="50.0" y1="90.0" x2="350.0" y2="90.0"/><line class="dg-grid" x1="320.0" y1="330.0" x2="320.0" y2="30.0"/><line class="dg-grid" x1="50.0" y1="60.0" x2="350.0" y2="60.0"/><line class="dg-grid" x1="350.0" y1="330.0" x2="350.0" y2="30.0"/><line class="dg-grid" x1="50.0" y1="30.0" x2="350.0" y2="30.0"/><rect class="dg-square" x="50" y="30" width="300" height="300"/><path class="dg-circle" d="M199.7,330.0 A149.7,149.7 0 0 0 50.0,180.3"/><line class="dg-dist" x1="108.2" y1="192.1" x2="50.0" y2="330.0"/><line class="dg-dist" x1="108.2" y1="192.1" x2="50.0" y2="30.0"/><line class="dg-dist" x1="108.2" y1="192.1" x2="350.0" y2="30.0"/><line class="dg-dist4" x1="108.2" y1="192.1" x2="350.0" y2="330.0"/>
+<circle class="dg-pt" cx="108.2" cy="192.1" r="4.5"/>
+<text class="dg-text" x="116.2" y="184.1">P</text>
+<circle class="dg-v" cx="50" cy="330" r="3.5"/><circle class="dg-v" cx="350" cy="330" r="3.5"/><circle class="dg-v" cx="50" cy="30" r="3.5"/><circle class="dg-v" cx="350" cy="30" r="3.5"/>
+<text class="dg-text" x="44" y="348" text-anchor="end">(0,0)</text>
+<text class="dg-text" x="356" y="348">(1,0)</text>
+<text class="dg-text" x="44" y="22" text-anchor="end">(0,1)</text>
+<text class="dg-text" x="356" y="22">(1,1)</text>
+<text class="dg-mute" x="195.7" y="346.0" text-anchor="middle">r</text>
+</svg>
+  <figcaption>図 1　以前の内部探索で見つかった点（分母 \(N = 34{,}112{,}496\)、\(P \approx (0.19397, 0.45978)\)）。\((0,0)\)、\((0,1)\)、\((1,1)\) への距離は \(17{,}022{,}805/N\)、\(19{,}580{,}267/N\)、\(33{,}100{,}037/N\) である。\((1,0)\) への距離の 2 乗の \(N^2\) 倍は \(1{,}002{,}001{,}483{,}678{,}105\) で、47 を法として非剰余である。破線の弧は原点を中心とする半径 \(r = |P|\) の円で、第 4 節はこのような円を扱う。縮尺どおりに描いた。</figcaption>
+</figure>
+</section>
+
+<section id="circles" class="prose">
+<h2>4. 頂点を中心とする円</h2>
+<h3>4.1 パラメータ表示</h3>
+<p>有理数 \(r > 0\) を固定し、円 \(|P| = r\) を次で表す。</p>
+\[ P(t) = \left( \frac{r(1 - t^2)}{1 + t^2}, \frac{2rt}{1 + t^2} \right), \qquad t \in \mathbb{P}^1(\mathbb{Q}) \]
+<p>\(t = \infty\) は \((-r, 0)\) である。\(j = 2, 3, 4\) について \(|P(t) - V_j|^2 = N_j(t)/(1 + t^2)\) で、</p>
+\[ N_2 = (r-1)^2 + (r+1)^2 t^2,\quad N_3 = (r^2+1)(1+t^2) - 4rt,\quad N_4 = (r^2+2)(1+t^2) - 2r(1-t^2) - 4rt \]
+<p>である。有理数 \(t\) が 4 距離点を与えるのは、\(j = 2, 3, 4\) のすべてで \((1+t^2)N_j(t)\) が平方数のときに限る。4 つの 2 次式 \(f_1 = 1 + t^2, f_2 = N_2, f_3 = N_3, f_4 = N_4\) は正定値で、根は \(\mathbb{Q}(i)\) にある。この 3 条件で定まる曲線の種数は 9 である。その商として、6 つの組 \(\{a, b\}\) について種数 1 の曲線 \(v^2 = f_a f_b\) がある。4 距離点は、同じ \(t\) でそのどれにも有理点を与える。</p>
+<p>\(r = 1\) では \(N_2 = 4t^2\)、\(N_3 = 2(t-1)^2\) である。\(t \notin \{0, 1, \infty\}\) なら \(1 + t^2\) と \(2(1 + t^2)\) がともに平方数でなければならず、これは不可能である。\(t = 0, 1, \infty\) は \((1,0)\)、\((0,1)\)、\((-1,0)\) を与え、どれもある頂点まで距離 \(\sqrt 2\) である。</p>
+
+<h3>4.2 共通の平方類による降下</h3>
+<p>4 距離点の \(t = a/b\) では、4 つの値 \(F_j(a, b)\)（\(f_j\) の 2 元形式）は 1 つの平方類 \(d \cdot \mathbb{Q}^{\times 2}\) に入る。\(d > 0\) は平方因子を持たず、組ごとの終結式を割る素数の集合 \(S\) の素数だけで割り切れる。そのような \(d\) のそれぞれについて、ある素数 \(p \le 2000\) で、\(x \in \mathbb{P}^1(\mathbb{Q}_p)\) のどこでも 4 つの値 \(d F_j\) が同時には \(\mathbb{Q}_p\) の平方にならないことを示す。すべての \(d\) がどこかの素数で落ちれば、その円に 4 距離点はない。</p>
+<p>\(p\) 進の判定では \(\mathbb{P}^1(\mathbb{Z}_p)\) を円板に分け、円板の上ですべての値の平方類が定まったときだけ「点がない」とする。定まらない円板は点がありうるとして扱う。使うのは「点がない」の判定だけで、それは証明になる。判定は \(d\) の \(\mathbb{Q}_p^\times / \mathbb{Q}_p^{\times 2}\) での類だけで決まるので、\(d\) の探索は、\(d\) の指数ベクトルについての \(\mathbb{F}_2\) 上の一次方程式になり、枝分かれで解ける。</p>
+<p>この段で 608,382 円のうち 606,491 円を除外した。この段で残った円は、どれも \(r\) の分母が 12 で割り切れる。</p>
+
+<h3>4.3 階数 0 の種数 1 の商</h3>
+<p>6 つの商のどれかの Mordell–Weil 階数が 0 なら、その有理点はねじれ点だけである。PARI/GP の <code>ellrank</code> が上界 0 を返し、見つけた点（無限遠点を含む）がねじれ群の全体になっていれば、有理数の \(t\) の一覧は完全で、各 \(t\) を正確に調べる。これで 588 円を除外した。さらに 7 円は、誤差の範囲つきの \(L(E, 1) \ne 0\) と Kolyvagin の定理で、ある商の階数が 0 であることを示した。</p>
+
+<h3>4.4 \(\mathbb{Q}(i)\) の上の細かい 2 降下</h3>
+<p>\(\alpha_j \in \mathbb{Q}(i)\) で \(f_j = c_j (t - \alpha_j)(t - \bar\alpha_j)\) と書く。有理点 \(t = a/b\) では、\(t - \alpha_j\) の類は \(b \cdot \delta_j\) の形になる（\(\delta_j\) は 2-Selmer 型の群 \(\mathbb{Q}(i)(S, 2)\) の元、\(b \in \mathbb{Q}^\times\)）。未知数は \(\delta_j\) の指数ベクトルと、素数ごとの \(b\) の局所的な類である。条件は、大域的な \(c_j N(\delta_j) \equiv c_1 N(\delta_1)\)（\(\mathbb{Q}^\times / \mathbb{Q}^{\times 2}\) で）と、\(10^6\) までの \(S\) の各素数での局所的な条件で、後者はヒルベルト記号で書く。局所の像が定まらない円板ではどの類も許すので、局所の像は大きめに取ってあり、「解なし」は証明になる。因子の組ごとにかけ、一部の円では 4 因子すべてに同時にかけた。合わせて 1,171 円を除外した。</p>
+<p>最初の実装には誤りがあった。条件が 1 つも残らない局所の段を、矛盾と同じ印で返していた。GP では <code>[] == 0</code> が真になるためである。これで局所の像が小さくなりすぎていた。正の対照で見つかった（3 頂点まで有理数の距離にある実在の点を持つ 4 円が、誤って除外された）。影響した判定はすべて捨て、直したコードで計算し直した。直したコードは、実在の点を持つ円の 2,579 通りで、素数の上限 400 と \(10^6\) の両方、2 つの PARI の版で確かめた。実在の点を落とした例はなかった。</p>
+
+<h3>4.5 Mordell–Weil ふるい</h3>
+<p>残った円では、有理点が分かっている商 \(C: v^2 = f_a f_b\) を選び、Weierstrass 形 \(E\) に写す（Washington『Elliptic Curves』定理 2.17）。4 距離点は \(E(\mathbb{Q})\) の点 \(P = \sum n_i G_i + T\) を与える（\(G_i\) は生成元、\(T\) はねじれ）。整数 \(M\) について類 \((n \bmod M, T)\) を追う。\(E(\mathbb{F}_\ell)\) での全 \(G_i\) の位数が \(M\) を割る素数 \(\ell\) で、各類の点を \(\ell\) を法として計算し、\(t \bmod \ell\) に戻す。残る 2 つの積 \(f_a f_c\) の一方が \(\ell\) を法として 0 でない非平方なら、その類を除く。決められない場合（\(v = 0\) の点、\(\ell\) が分母を割る場合）は類を残す。すべての類が除かれれば、その円に 4 距離点はない。</p>
+<p>生成元は <code>ellrank</code>（下界と上界が一致）で求めて飽和させた。除外はどれも 3 通りで確かめた。(i) 正の対照：本当の条件を、既知の有理点で平方になる乱数の 4 次式に置き換える。正しいふるいならその類は残る（誤って除いた対照はなかった）。(ii) 小さい倍数 \(\sum n_i G_i + T\) を直接計算し、類の判定と照合した（違反はなかった）。(iii) Sage と eclib による独立の第 2 系で、4 次式の不変量から作った曲線との \(j\) 不変量の一致、ねじれ、高さの上界を使った飽和の指数 1、階数を確かめた。(iii) の階数は <code>mwrank</code> による。<code>mwrank</code> が決められない場合は、根数と誤差の範囲つきの \(L(E,1)\) または \(L'(E,1) \ne 0\) から、Gross–Zagier と Kolyvagin の定理で決めた。ふるいは、前の段で除外されなかった 116 円を除外した。</p>
+</section>
+
+<section id="last" class="prose">
+<h2>5. 最後の 9 円</h2>
+<p>第 4 節の後に 9 円が残った：\(r = 607/120, 863/360, 967/360, 167/480, 727/720, 343/960, 887/960, 911/960, 383/984\)。どの円でも、適当な商の上で高さ \(3 \times 10^6\) までの有理数 \(t\) を探したが、4 距離点はなかった。これらを次のように閉じた。</p>
+
+<h3>5.1 \(\mathbb{Q}(i)\) の上で階数 0（5 円）</h3>
+<p>どの \(f_j\) も根 \(t_0 \in \mathbb{Q}(i)\) を持つので、組 \(\{1, 4\}\) の商 \(C\) は \(K = \mathbb{Q}(i)\) の上で楕円曲線 \(E\) と同型になる（\(t_0\) は原点に移る）。\(J\) を \(C\) の \(\mathbb{Q}\) 上のヤコビアン、\(J^{(-1)}\) を \(-1\) による 2 次ひねりとする。</p>
+<ul>
+  <li>\(J\) と \(J^{(-1)}\) がともに階数 0 なら、\(E(K)\) は有限である。\(E(K)_{\mathrm{tors}}\) を並べ、各点を \(C\) に戻し、有理数の \(t\) を残す（607/120、863/360、967/360）。</li>
+  <li>\(J(\mathbb{Q})\) だけが階数 0 の場合、複素共役は \(E(K)\) に \(\sigma(Q) = \tau(Q) + c\) の形で働く（\(\tau\) は位数が 2 を割る群の自己同型、\(c = \sigma(O)\)）。\(C(\mathbb{Q})\) の点は \(\sigma(Q) = Q\) となる \(Q\) を与えるので、\(S = Q + \tau(Q)\) は \(\tau\) で固定され、\(2Q = S + c\) となる。\(\tau\) で固定される部分群は \(J(\mathbb{Q})\) と同型で、有限である。\(\tau\) で固定されるねじれ点 \(S\) について \(2Q = S + c\) を満たす \(Q\) をすべて並べ、\(\sigma\) で固定されるものを残して戻す（727/720、911/960。確かめとして上の 3 円も）。</li>
+</ul>
+<p>こうして得た有理数の \(t\) は、どれも 4 距離点ではない。階数は、誤差の範囲つきの \(L(J,1) \ne 0\)（必要な場合は \(L(J^{(-1)},1) \ne 0\) も）で示し、\(E(K)\) のねじれは Sage で照合した。911/960 では PARI の <code>ellrank</code> は \(J\) について \([0, 2]\) しか返さないが、\(L(J,1) = 2.737\)（誤差 \(1.8 \times 10^{-6}\) 以下）である。</p>
+
+<h3>5.2 Mordell–Weil ふるいのための生成元（4 円）</h3>
+<p>残る 4 円では、組 \(\{1, 2\}\) のヤコビアンの根数が \(-1\) で階数は 1 だが、<code>ellrank</code> は生成元を返さなかった。Birch–Swinnerton-Dyer の公式から見込んだ生成元の高さは 80〜130 で、曲線の上の直接の点探索では届かない。生成元を 3 通りの方法で求めた。</p>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>円 \(r\)</th><th>生成元の出どころ</th><th class="num">標準的高さ</th><th class="num">\(L'(E,1)\)</th><th class="num">誤差の範囲</th></tr></thead>
+  <tbody>
+    <tr><td>343/960</td><td>Heegner 点（PARI の <code>ellheegner</code>、3.4 時間）</td><td class="num">128.96</td><td class="num">13.97</td><td class="num">\(1.4 \times 10^{-7}\)</td></tr>
+    <tr><td>167/480</td><td>同種な曲線の 2 被覆の有理点</td><td class="num">79.61</td><td class="num">17.22</td><td class="num">\(3.5 \times 10^{-7}\)</td></tr>
+    <tr><td>383/984</td><td>同種な曲線の 2 被覆の有理点</td><td class="num">86.93</td><td class="num">9.25</td><td class="num">\(3.0 \times 10^{-6}\)</td></tr>
+    <tr><td>887/960</td><td>4 被覆の有理点</td><td class="num">128.86</td><td class="num">20.62</td><td class="num">\(6.6 \times 10^{-7}\)</td></tr>
+  </tbody>
+  <caption>表 3　最後の 4 円の生成元。高さは PARI/GP 2.17 の正規化による。誤差の範囲つきの \(L'(E,1)\) は第 2 系の値で、根数 \(-1\) と合わせて階数 1 を示す。</caption>
+</table>
+</div>
+<p><strong>2 被覆。</strong> \(E\) と同種な曲線を、BSD の公式の定数 \(\Omega \prod c_p / |T|^2\) の大きい順に並べる。定数が大きいほど見込みの単調子（regulator）は小さい。各曲線で PARI の <code>ell2cover</code> が返す 2 被覆を <code>hyperellratpoints</code> で探し、無限位数の点を曲線に写し、<code>ellisomat</code> の同種写像で \(E\) に戻して飽和させる。</p>
+<p><strong>4 被覆。</strong> 887/960 では 2 被覆の探索で高さ \(7.29 \times 10^6\) まで何も見つからなかった。この曲線は有理 2 ねじれをすべて持つので、2 被覆の 4 次式は \(\mathbb{Q}\) の上で 2 次式の積 \(g = q_1 q_2\) に割れる。有理点からは、\(2\,\mathrm{lc}(q_1)\,\mathrm{lc}(q_2)\,\mathrm{Res}(q_1, q_2)\) を割る素数でできた平方因子のない \(d\) について \(q_1(x) = d w_1^2\)、\(q_2(x) = d w_2^2\) が得られる。\(q_1 = d w^2\) が解を持つ各 \(d\) について、この円錐曲線を \(s\) でパラメータ表示し、\(d\,q_2\) に代入すると、4 次式 \(v^2 = G_d(s)\)（4 被覆）が得られる。その係数は大きい（判別式は \(10^{62}\) に達する）ので、最小化（<code>hyperellminimalmodel</code>）し、根から作る正定値の 2 次の共変式 \(\sum_\theta |x - \theta z|^2 / |G'(\theta)|^{1/2}\) の Gauss 簡約で簡約する。局所可解な 4 被覆は曲線の判別式の近くまで最小化されるので、最小のものから \(10^5\) 倍以内だけを探す。167/480 と 383/984 では、既知の生成元（高さ 79.61 と 86.93）を約 1 秒で再現した。887/960 では、4 被覆 \(d = -64751\) と \(d = 1638289\) の上で、高さ \(10^6\) までに生成元が見つかった。</p>
+<p>この曲線について、PARI 2.15.4 と PARI/GP 2.17.2 は <code>ell2cover</code> で別の代表を返し、2.15.4 の代表の 4 被覆には高さ \(10^6\) までに点がなかった。そのため生成元は 2.17.2 で求めてふるいに渡した。ふるいは、それが同じ最小モデルの上にあり無限位数であることを確かめる。</p>
+<p>これらの生成元で、ふるいは 4 円すべてを除外した。誤って除いた対照はなく、照合の違反もなかった。第 2 系では \(j\) 不変量、ねじれ（位数 4）、飽和の指数 1 が一致した。<code>mwrank</code> はこれらの曲線の階数を決められず、階数 1 は表 3 の \(L'(E,1)\) から従う。</p>
+
+<h3>5.3 まとめ</h3>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>方法</th><th>節</th><th class="num">除外した円</th></tr></thead>
+  <tbody>
+    <tr><td>共通の平方類による降下、\(p\) 進の判定（\(p \le 2000\)）</td><td>4.2</td><td class="num">606,491</td></tr>
+    <tr><td>階数 0 の種数 1 の商（<code>ellrank</code> の上界、7 円は \(L(E,1)\)）</td><td>4.3</td><td class="num">595</td></tr>
+    <tr><td>\(\mathbb{Q}(i)\) の上の細かい 2 降下（素数 \(10^6\) まで）</td><td>4.4</td><td class="num">1,171</td></tr>
+    <tr><td>Mordell–Weil ふるい（<code>ellrank</code> の生成元）</td><td>4.5</td><td class="num">116</td></tr>
+    <tr><td>Mordell–Weil ふるい（Heegner 点・2 被覆・4 被覆の生成元）</td><td>5.2</td><td class="num">4</td></tr>
+    <tr><td>\(\mathbb{Q}(i)\) の上で階数 0</td><td>5.1</td><td class="num">5</td></tr>
+    <tr class="total"><td>高さ \(\le 1000\) の \(r \ne 1\) の円すべて</td><td></td><td class="num">608,382</td></tr>
+  </tbody>
+  <caption>表 4　各円は、最初に除外した方法で 1 回だけ数えた。Mordell–Weil ふるい（4.5 節と 5.2 節）で除外したのは全部で 151 円で、そのうち 31 円は細かい降下でも除外されており、そちらで数えた。</caption>
+</table>
+</div>
+</section>
+
+<section id="trust" class="prose">
+<h2>6. 結果が拠るもの</h2>
+<p><strong>結果 1</strong> は、3.2 節の必要条件（証明はリポジトリにある）と、本稿のプログラムの正しさに拠る。3.4 節と 3.6 節の確かめはプログラムを試験するもので、正しさを証明するものではない。</p>
+<p><strong>結果 2</strong> は計算機による証明である。本稿のコード（\(p\) 進の判定、細かい降下、ふるい）のほかに、次に拠る。</p>
+<ul>
+  <li>PARI/GP：4.3 節の階数 0 の 588 円とふるいの曲線での <code>ellrank</code> の上界、ねじれ、飽和、同種写像、モデルの簡約。</li>
+  <li>Sage と eclib（第 2 系）：\(j\) 不変量、ねじれ、高さの上界を使った飽和、<code>mwrank</code>、<code>lseries().at1</code> と <code>deriv_at1</code> による誤差の範囲つきの \(L(E,1)\)・\(L'(E,1)\)。</li>
+  <li>L 値から階数を出す場合の Gross–Zagier と Kolyvagin の定理。</li>
+</ul>
+<div class="stmt caveat">
+  <span class="label">階数の上界を 1 つの系に頼る 1 円</span>
+  <p>\(r = 769/360\) では、ふるいの曲線の階数は 2 である。その上界は PARI の <code>ellrank</code> だけに拠る。<code>mwrank</code> は同種類のどの曲線でも階数を決められず、階数 2 には L 値の方法は使えない。4.5 節と第 5 節で使ったほかの階数は、どれも第 2 系で確かめた。</p>
+</div>
+<p>4.3 節の階数 0 による除外（588 円）は PARI の上界を使い、第 2 系では確かめていない。降下と細かい降下は、いくつかの頂点まで有理数の距離にある実在の点を持つ円（372 円と 2,579 通り）で試した。4.4 節の修正の後、実在の点を落とした例はなかった。</p>
+</section>
+
+<section id="data" class="prose">
+<h2>7. コードとデータ</h2>
+<p>コード、すべての判定ファイル、詳しい報告は、リポジトリ <a href="https://github.com/wand125/rational-distance"><code>wand125/rational-distance</code></a> にある。<code>all-plane/</code> に探索（凍結版 v2〜v4、v5〜v8、算術条件の証明、区間のまとめ、診断点の一覧）を、<code>partner-search/</code> に 3.6 節の箱探索を、<code>circles/</code> に PARI/GP と Python のコード、判定ファイル、引用したファイルの SHA-256 の先頭つきの日本語の報告がある。</p>
+<p>ソフトウェア：PARI/GP 2.17.2、cypari2 経由の PARI 2.15.4、Sage 10.9 と passagemath 10.6（eclib）、C++17 コンパイラ、Rust 1.86。</p>
+<h3>参考文献</h3>
+<ol class="refs">
+  <li>R. K. Guy, <em>Unsolved Problems in Number Theory</em>, 3rd ed., Springer, 2004, §D19.</li>
+  <li>C. W. Dodge, Problem 966, <em>Math. Mag.</em> 49 (1976), 43; partial solution by G. Shute and K. L. Yocom, 50 (1977), 166–167.</li>
+  <li>T. G. Berry, Points at rational distance from the corners of a unit square, <em>Ann. Scuola Norm. Sup. Pisa Cl. Sci. (4)</em> 17 (1990), 505–529.</li>
+  <li>T. G. Berry, Points at rational distance from the vertices of a triangle, <em>Acta Arith.</em> 62 (1992), 391–398.</li>
+  <li>A. Bremner, M. Ulas, Points at rational distances from the vertices of certain geometric objects, <em>J. Number Theory</em> 158 (2016), 104–133.</li>
+  <li>R. Barbara, The rational distance problem, <em>Math. Gazette</em> 95 (2011), 59–61.</li>
+  <li>Yang Ji, Several special cases of a square problem, arXiv:2105.05250 (2021).</li>
+  <li>Y. Ieno, Other special cases of a square problem, arXiv:2111.02888 (2021).</li>
+  <li>W. McCloskey, A congruence condition for the four-distance problem, arXiv:1904.12097 (2020).</li>
+  <li>J. Love, Rational configuration problems and a family of curves, <em>J. Number Theory</em> 269 (2025), 370–396.</li>
+  <li>P. Corvaja, A. Turchet, U. Zannier, Rational distances from given rational points in the plane, <em>Geom. Dedicata</em> 219 (2025), Art. 59.</li>
+  <li>Yuan Si, Arithmetic constraints and covering curves for rational distances in a square, preprint, Zenodo, 2026, doi:10.5281/zenodo.23638745.</li>
+  <li>Yuan Si, Rational-distance points in the unit square: research archive, Zenodo, 2026, doi:10.5281/zenodo.19613346.</li>
+  <li>MathOverflow question 418260, “4-distance problem and elliptic curves”, 2022.</li>
+  <li>Mulatram-UwU, rational-distance-problem, GitHub repository, September 2026.</li>
+  <li>E. Pegg Jr., Rational distance problem, Wolfram Community, 2016.</li>
+  <li>T. Tao, The Erdős–Ulam problem, varieties of general type, and the Bombieri–Lang conjecture, blog post, 2014.</li>
+  <li>J. Shaffaf, A solution of the Erdős–Ulam problem on rational distance sets assuming the Bombieri–Lang conjecture, <em>Discrete Comput. Geom.</em> 60 (2018), 283–293.</li>
+  <li>J. Solymosi, F. de Zeeuw, On a question of Erdős and Ulam, <em>Discrete Comput. Geom.</em> 43 (2010), 393–401.</li>
+  <li>N. Bruin, M. Stoll, The Mordell–Weil sieve: proving non-existence of rational points on curves, <em>LMS J. Comput. Math.</em> 13 (2010), 272–306.</li>
+  <li>E. V. Flynn, The Hasse principle and the Brauer–Manin obstruction for curves, <em>Manuscripta Math.</em> 115 (2004), 437–466.</li>
+  <li>J. R. Merriman, S. Siksek, N. P. Smart, Explicit 4-descents on an elliptic curve, <em>Acta Arith.</em> 77 (1996), 385–404.</li>
+  <li>J. E. Cremona, T. A. Fisher, C. O'Neil, D. Simon, M. Stoll, Explicit \(n\)-descent on elliptic curves I. Algebra, <em>J. reine angew. Math.</em> 615 (2008).</li>
+  <li>J. E. Cremona, T. A. Fisher, M. Stoll, Minimisation and reduction of 2-, 3- and 4-coverings of elliptic curves, <em>Algebra Number Theory</em> 4 (2010), 763–820.</li>
+  <li>D. Simon, Computing the rank of elliptic curves over number fields, <em>LMS J. Comput. Math.</em> 5 (2002), 7–17.</li>
+  <li>B. H. Gross, D. B. Zagier, Heegner points and derivatives of \(L\)-series, <em>Invent. Math.</em> 84 (1986), 225–320.</li>
+  <li>V. A. Kolyvagin, Finiteness of \(E(\mathbb{Q})\) and Ш\((E,\mathbb{Q})\) for a subclass of Weil curves, <em>Math. USSR-Izv.</em> 32 (1989), 523–541.</li>
+  <li>M. Watkins, Some remarks on Heegner point computations, arXiv:math/0506325 (2006).</li>
+  <li>L. C. Washington, <em>Elliptic Curves: Number Theory and Cryptography</em>, 2nd ed., Chapman &amp; Hall/CRC, 2008.</li>
+  <li>The PARI Group, PARI/GP version 2.17.2.</li>
+  <li>J. E. Cremona, eclib (mwrank), https://github.com/JohnCremona/eclib.</li>
+</ol>
+</section>
+
+<p class="footer">wand125 · コードは MIT ライセンス · 2026年11月の草稿。<a href="paper.html" lang="en">English version</a></p>
+</div>
+</body>
+</html>

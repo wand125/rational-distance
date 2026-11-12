@@ -1,0 +1,84 @@
+{
+  "generator_version": "v8_rust",
+  "scope": "whole_plane_primitive_minimal_coordinate_denominator",
+  "min_denominator": 8000001,
+  "max_minimal_coordinate_denominator": 10000000,
+  "shards": 48,
+  "all_shards_completed_exactly_once": true,
+  "exact_interval_coverage_checked": true,
+  "generator_configuration": {
+    "generator": "gap_CRT_v8_rust",
+    "reconstruction": "exact_u256_v8_rust",
+    "engine": "fast_v8",
+    "scope": "whole_plane",
+    "reference_v3": false,
+    "gamma_stage": "late",
+    "skip_redundant19": true,
+    "additional_filters": true,
+    "endpoint_pruning": true,
+    "fifth_power_condition": "early",
+    "prime_power_projections": true,
+    "critical_extension": true,
+    "fast_fifth_mark": true
+  },
+  "three_distance_witnesses_independently_verified": true,
+  "four_distance_witnesses_independently_verified": true,
+  "counts": {
+    "sides": 83333,
+    "dense_even_pairs": 847219368053055557,
+    "gap_rows": 374998583333,
+    "local_gap_rows": 53502662208,
+    "difference_gap_rows": 9285973858,
+    "critical_gap_rows": 9183302261,
+    "endpoint_empty_rows": 15871,
+    "crt_residue_choices": 157894370967,
+    "generated_pairs": 331457266494,
+    "valuation_pairs": 137491623443,
+    "gamma_early_rejected": 0,
+    "gamma_lifted_progressions": 0,
+    "gamma_lift_residues": 0,
+    "examined_generation_rejections": 0,
+    "local_pairs": 155323407,
+    "additional_pairs": 88615783,
+    "additional_rejected": 66707624,
+    "scale_pairs": 77045859,
+    "gamma_pairs": 76761824,
+    "gamma_rejected": 284035,
+    "critical_projection_pairs": 76761824,
+    "critical_projection_rejected": 0,
+    "exact_parameter_pairs": 76761824,
+    "square_discriminants": 106,
+    "linear_pairs": 0,
+    "primitive_three_candidates": 99,
+    "solutions": 0,
+    "threads": 192
+  },
+  "worker_cpu_seconds": 17617.676850000003,
+  "hosts": {
+    "host-mbp": {
+      "shards": 48,
+      "cpu_seconds": 17617.676850000003,
+      "binary_sha256": [
+        "d6529b16c90c69f8eeb56f3c575dfcc12417188d9e1295b1e6d8b7914899c8e5"
+      ]
+    }
+  },
+  "three_candidates_on_supporting_lines": 99,
+  "three_candidates_strictly_inside": 0,
+  "solutions": [],
+  "source_sha256": {
+    "src/main.rs": "685f9a54edc43d5f2bd56457cab7109e02b59cba55237cba153d86f30863af53",
+    "src/fast.rs": "612a88e27efc638f4008c1ba0068534e2812d6f162a2a520dc9bc8a81f7aba11",
+    "src/arithmetic.rs": "d83d6649ffc93440fd77c609aacbaf58f50325e6685f057753c0e711d683d3f1",
+    "src/generator.rs": "c66ede0a179178dd73b2e5255ed1614db49a027fa325b0f54d0e699da1ebf32f",
+    "src/sieve.rs": "1c8c66f893c12dae6fd24a9d61b1f8531b04a3f13ecca142c971ea452e5f1e61",
+    "src/validation.rs": "e28264b5e107c214ae51d391039b9b980ae209eed4c8a0584ed4b147aeb77e19",
+    "src/wide.rs": "04a127255a0c4fd2576ed65611c3acf7e15d711c205f98a71beecb5355a9d90a",
+    "Cargo.toml": "6459b4d649d9e1912710a4cebc352e5db6e2ad6f020a834c9da1f98748888c4c",
+    "run_sharded_v8.py": "6b7094efab7bd8fd3c7feb6a52c7a8b290133af11a517d2ba2a8117cd08cfece"
+  },
+  "inputs": [
+    "~/Files/03_ThinkAndPlay/WandsBox/Mathematics/RationalDistance/rational_square_search_v4/runs_v8/stage6_20261105T092044/intel"
+  ],
+  "merged": "2026-11-05 11:00:20 JST"
+}

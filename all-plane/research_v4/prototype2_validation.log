@@ -1,0 +1,3 @@
+Gap validation passed: 197146 compatible pairs for every n=1..256; 8 fully filtered parameter tuples at N<=2000 exactly match u-first; 152 positive primitive three-distance examples retained.
+Wheel validation passed: 12536 emitted CRT members.
+V4 validation passed: 33223 gap rows, 212780 direct gcd comparisons, 58357 retained CRT/wheel members, 11 lifted progressions; both high-k branches retained.

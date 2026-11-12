@@ -1,0 +1,46 @@
+
+COMMAND: ["~/.pyenv/versions/3.12.2/bin/python3", "~/Files/03_ThinkAndPlay/WandsBox/Mathematics/RationalDistance/rational_square_search_v4/local_run.py", "check"]
+SHA256 OK: 278 packaged files
+
+COMMAND: ["~/.pyenv/versions/3.12.2/bin/python3", "~/Files/03_ThinkAndPlay/WandsBox/Mathematics/RationalDistance/rational_square_search_v4/local_run.py", "build"]
+Running: /usr/bin/clang++ -O3 -std=c++17 ~/Files/03_ThinkAndPlay/WandsBox/Mathematics/RationalDistance/rational_square_search_v4/all_plane_gap_v2.cpp -o ~/Files/03_ThinkAndPlay/WandsBox/Mathematics/RationalDistance/rational_square_search_v4/all_plane_gap_v2_local_64vo0a3u
+Running: /usr/bin/clang++ -O3 -std=c++17 ~/Files/03_ThinkAndPlay/WandsBox/Mathematics/RationalDistance/rational_square_search_v4/all_plane_gap_v3.cpp -o ~/Files/03_ThinkAndPlay/WandsBox/Mathematics/RationalDistance/rational_square_search_v4/all_plane_gap_v3_local_mzx9qm11
+Running: /usr/bin/clang++ -O3 -std=c++17 ~/Files/03_ThinkAndPlay/WandsBox/Mathematics/RationalDistance/rational_square_search_v4/all_plane_gap_v4.cpp -o ~/Files/03_ThinkAndPlay/WandsBox/Mathematics/RationalDistance/rational_square_search_v4/all_plane_gap_v4_local_p86nzwpn
+Running: /usr/bin/clang++ -O3 -std=c++20 ~/Files/03_ThinkAndPlay/WandsBox/Mathematics/RationalDistance/rational_square_search_v4/search.cpp -o ~/Files/03_ThinkAndPlay/WandsBox/Mathematics/RationalDistance/rational_square_search_v4/square_search_local_sw94cpr7
+Build complete: ~/Files/03_ThinkAndPlay/WandsBox/Mathematics/RationalDistance/rational_square_search_v4/local_runs/build_20261105T071947+0900_5_k005fx
+
+COMMAND: ["~/.pyenv/versions/3.12.2/bin/python3", "~/Files/03_ThinkAndPlay/WandsBox/Mathematics/RationalDistance/rational_square_search_v4/local_run.py", "smoke"]
+Running: ~/Files/03_ThinkAndPlay/WandsBox/Mathematics/RationalDistance/rational_square_search_v4/all_plane_gap_v4_local 100000 --validate
+Running: ~/.pyenv/versions/3.12.2/bin/python3 -I ~/Files/03_ThinkAndPlay/WandsBox/Mathematics/RationalDistance/rational_square_search_v4/run_sharded_v4.py --bound 100000 --workers 2 --binary ~/Files/03_ThinkAndPlay/WandsBox/Mathematics/RationalDistance/rational_square_search_v4/all_plane_gap_v4_local --output ~/Files/03_ThinkAndPlay/WandsBox/Mathematics/RationalDistance/rational_square_search_v4/local_runs/smoke_20261105T072002+0900_ejo493y0/shards
+Running: ~/Files/03_ThinkAndPlay/WandsBox/Mathematics/RationalDistance/rational_square_search_v4/square_search_local --limit 100000
+{
+  "status": "passed",
+  "system": "Darwin",
+  "machine": "arm64",
+  "engine": "v4",
+  "bound": 100000,
+  "workers": 2,
+  "exact_parameter_pairs": 8710,
+  "matched_three_distance_candidates": 7,
+  "four_distance_solutions": 0,
+  "nonempty_reference_set_matches": true,
+  "interior_reference_matches": true,
+  "canonical_reference_sha256": {
+    "research_v4/final_100000.json": "7f74d5017ba22d119d3f41c2de4c21ed7f1c0243f1afedea88f5c70a11b6b413",
+    "research_v4/final_three_100000.csv": "90cc39b491e681b915768d7b0e8a5692bc0870de7f2458a4efc9deb6dfe3e5a6"
+  },
+  "source_sha256": {
+    "all_plane_gap_v2.cpp": "60bc78f33a598219ae9b31aedbc47968ffb797e7dc9ec63c5bcab6c7d7a07fea",
+    "all_plane_gap_v3.cpp": "d01f7a5b2e8d18c579121e045fdb797e52e28febc4e358a5bdd3f31001302639",
+    "all_plane_gap_v4.cpp": "80a382b9c131f3fe299dccf972931e5c8f3428cddd8b2155dae09f37cf9bd160",
+    "all_plane_sieved.cpp": "0351d243dcfbfec64a4198f5d04c4131a526f60709cae4c19e9b702ff11adbe1",
+    "research_v4_local/lifted_projection.hpp": "613da7bfd956e052feaa63f0c4426cd59159f5533a512cb4966865420390efc8",
+    "research_v4_math/critical_extension.hpp": "ed1b233d15c43542e1358d02ddc5570a0e6d504f026b786a697c9d5886f35366",
+    "run_sharded_v2.py": "014d234ba652f1c33e45840947189e44074a6c51612a185ad1693b18d9a88cea",
+    "run_sharded_v3.py": "09e84642a1d452cc63727a23132f6859ddde4da3bb2c4ec8f180b641e038ff36",
+    "run_sharded_v4.py": "8e1aa573da338759c7457efe9adbd6af394f98fb09591730350aa0763e42a39b",
+    "search.cpp": "04636556ec0a12c6fdb152f244094629d6fe87c021bed7477d2192f541c1b0e3"
+  },
+  "user_mac_verified": true
+}
+Smoke check complete: ~/Files/03_ThinkAndPlay/WandsBox/Mathematics/RationalDistance/rational_square_search_v4/local_runs/smoke_20261105T072002+0900_ejo493y0

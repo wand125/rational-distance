@@ -1,0 +1,78 @@
+{
+  "generator_version": "v4",
+  "scope": "whole_plane_primitive_minimal_coordinate_denominator",
+  "min_denominator": 1,
+  "max_minimal_coordinate_denominator": 100000,
+  "workers": 2,
+  "threads_per_worker": 1,
+  "intervals": [
+    [
+      1,
+      70680
+    ],
+    [
+      70681,
+      100000
+    ]
+  ],
+  "all_intervals_completed": true,
+  "exact_interval_coverage_checked": true,
+  "generator_configuration_checked": true,
+  "generator_configuration": {
+    "reference_v3": false,
+    "gamma_stage": "late",
+    "skip_redundant19": true,
+    "additional_filters": true,
+    "endpoint_pruning": true,
+    "fifth_power_condition": "early",
+    "prime_power_projections": true,
+    "critical_extension": true,
+    "fast_fifth_mark": true
+  },
+  "three_distance_witnesses_independently_verified": true,
+  "four_distance_witnesses_independently_verified": true,
+  "counts": {
+    "sides": 4166,
+    "dense_even_pairs": 1736059002776,
+    "gap_rows": 104162498,
+    "local_gap_rows": 14850588,
+    "difference_gap_rows": 3166381,
+    "critical_gap_rows": 3130770,
+    "endpoint_empty_rows": 793,
+    "crt_residue_choices": 35153034,
+    "generated_pairs": 51095175,
+    "valuation_pairs": 21207533,
+    "gamma_early_rejected": 0,
+    "gamma_lifted_progressions": 0,
+    "gamma_lift_residues": 0,
+    "examined_generation_rejections": 0,
+    "local_pairs": 18737,
+    "additional_pairs": 9969,
+    "additional_rejected": 8768,
+    "scale_pairs": 8729,
+    "gamma_pairs": 8710,
+    "gamma_rejected": 19,
+    "critical_projection_pairs": 8710,
+    "critical_projection_rejected": 0,
+    "exact_parameter_pairs": 8710,
+    "square_discriminants": 8,
+    "linear_pairs": 0,
+    "primitive_three_candidates": 7,
+    "solutions": 0
+  },
+  "wall_seconds_including_startup": 0.820777500004624,
+  "worker_cpu_seconds": 1.478573,
+  "three_candidates_on_supporting_lines": 7,
+  "three_candidates_strictly_inside": 0,
+  "solutions": [],
+  "source_sha256": {
+    "all_plane_gap_v4.cpp": "80a382b9c131f3fe299dccf972931e5c8f3428cddd8b2155dae09f37cf9bd160",
+    "all_plane_gap_v3.cpp": "d01f7a5b2e8d18c579121e045fdb797e52e28febc4e358a5bdd3f31001302639",
+    "all_plane_sieved.cpp": "0351d243dcfbfec64a4198f5d04c4131a526f60709cae4c19e9b702ff11adbe1",
+    "research_v4_local/lifted_projection.hpp": "613da7bfd956e052feaa63f0c4426cd59159f5533a512cb4966865420390efc8",
+    "research_v4_math/critical_extension.hpp": "ed1b233d15c43542e1358d02ddc5570a0e6d504f026b786a697c9d5886f35366",
+    "run_sharded_v4.py": "8e1aa573da338759c7457efe9adbd6af394f98fb09591730350aa0763e42a39b"
+  },
+  "binary_sha256": "2720f2e5c6f1bd3cf58619c053c049302c344b02d2e48f3b98d2eeec17619a03",
+  "source_and_binary_unchanged_during_run": true
+}

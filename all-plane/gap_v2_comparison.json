@@ -1,0 +1,11 @@
+{
+  "bound": 100000,
+  "reference_points": 10,
+  "all_exact_three_point_sets_match": true,
+  "reorder_only_and_optional_gap_precheck_compared": true,
+  "max_allowed_denominator": 2000000,
+  "gap_valuation_default": false,
+  "source_sha256": "60bc78f33a598219ae9b31aedbc47968ffb797e7dc9ec63c5bcab6c7d7a07fea",
+  "dependency_sha256": "0351d243dcfbfec64a4198f5d04c4131a526f60709cae4c19e9b702ff11adbe1",
+  "frozen_v1_source_sha256": "5f7c61331654059464fb452c57cdbe5a2cf5cdf6dad13aafe391b5d2bab89044"
+}

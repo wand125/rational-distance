@@ -1,0 +1,12 @@
+{
+  "sha256": "4d695a817cdbddeb9647128701c90898c5acc95901da31197aa793eeb1667423",
+  "source_archive": "prototype1_source.txt",
+  "results": [
+    "reference_100000.json",
+    "late_100000.json",
+    "table_100000.json",
+    "rules_100000.json",
+    "generation_100000.json",
+    "lift_100000.json"
+  ]
+}

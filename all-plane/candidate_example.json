@@ -1,0 +1,26 @@
+{
+  "N": 34112496,
+  "X": 6616883,
+  "Y": 15684156,
+  "x": 0.19397240823421424,
+  "y": 0.4597774375700916,
+  "primitive_gcd": 1,
+  "squared_distances": [
+    289775890068025,
+    1002001483678105,
+    383386855791289,
+    1095612449401369
+  ],
+  "integer_distances": [
+    17022805,
+    null,
+    19580267,
+    33100037
+  ],
+  "missing_squared": 1002001483678105,
+  "nearest_root": 31654407,
+  "signed_residual": 1156456,
+  "first_obstructing_prime": 47,
+  "missing_squared_mod_prime": 22,
+  "unit_distance_difference_to_nearest_scaled_integer": "5.35490090121818063614876384818833362456470764132627527460905E-10"
+}

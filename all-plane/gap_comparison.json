@@ -1,0 +1,14 @@
+[
+  {
+    "bound": 10000,
+    "u_first_three_points": 2,
+    "gap_first_three_points": 2,
+    "exact_set_match": true
+  },
+  {
+    "bound": 100000,
+    "u_first_three_points": 10,
+    "gap_first_three_points": 10,
+    "exact_set_match": true
+  }
+]

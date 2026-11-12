@@ -1,0 +1,1 @@
+383/984 1 ok 1 4 res=[1,2,1,0] controls=2 wrong=0 blowup=0 cross=[36,15264,0] ms=346797,161,7,3015 an=2

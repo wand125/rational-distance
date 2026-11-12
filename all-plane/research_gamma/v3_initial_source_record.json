@@ -1,0 +1,11 @@
+{
+  "source_sha256": "9d146db994dc61304948e70a7a5d789a2192d90372943568a90f9a4de83fd629",
+  "source_archive": "v3_initial_source.txt",
+  "results": [
+    "v3_off_100000.json",
+    "v3_gamma_100000.json",
+    "v3_critical_100000.json",
+    "v3_both_100000.json"
+  ],
+  "scope": "preliminary experimental version; superseded by final v3"
+}

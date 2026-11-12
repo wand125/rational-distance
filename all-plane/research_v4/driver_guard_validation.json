@@ -1,0 +1,35 @@
+{
+  "recorded_utc": "2026-11-04T21:54:59.232411+00:00",
+  "driver_sha256": "8e1aa573da338759c7457efe9adbd6af394f98fb09591730350aa0763e42a39b",
+  "bound": 24,
+  "all_guards_passed": true,
+  "checks": [
+    {
+      "name": "python_optimized",
+      "returncode": 1,
+      "expected_error": "Verification requires assertions",
+      "passed": true,
+      "stderr_tail": [
+        "RuntimeError: Verification requires assertions; run Python without -O or PYTHONOPTIMIZE."
+      ]
+    },
+    {
+      "name": "wrong_generator",
+      "returncode": 1,
+      "expected_error": "expected whole-plane v4 generator",
+      "passed": true,
+      "stderr_tail": [
+        "RuntimeError: Worker output is not from the expected whole-plane v4 generator."
+      ]
+    },
+    {
+      "name": "nonempty_output",
+      "returncode": 1,
+      "expected_error": "output directory is not empty",
+      "passed": true,
+      "stderr_tail": [
+        "ValueError: output directory is not empty; use a new output directory"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "status": "passed",
+  "max_odd_leg": 5001,
+  "odd_legs_checked": 2501,
+  "positive_admissible_mates_checked": 7669,
+  "count_formula_and_maximum_match": true,
+  "small_low_mate_distinct_leg_pairs_checked": 13366,
+  "pairs_with_one_common_mate": 2,
+  "pairs_with_two_common_mates": 0,
+  "examples": {
+    "7": [
+      24
+    ],
+    "15": [
+      8,
+      112
+    ],
+    "45": [
+      28,
+      1012
+    ],
+    "49": [
+      168,
+      1200
+    ],
+    "75": [
+      308,
+      2812
+    ],
+    "143": [
+      24,
+      10224
+    ],
+    "225": [
+      272,
+      25312
+    ]
+  },
+  "illustrative_fixed_side": 99984,
+  "illustrative_column_counts": {
+    "odd_columns_below_midline": 24996,
+    "single_leg_count_below_two": 8418,
+    "additional_both_counts_exactly_two": 805
+  },
+  "caveat": "Finite checks support the written general proof. Column counts precede other sieves and are not a measured search speedup."
+}

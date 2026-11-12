@@ -1,0 +1,69 @@
+{
+  "purpose": "Primary-source computational reports, with scope and audit status; no world-record claim",
+  "session": "November 2026",
+  "verified_uniform_all_plane_public_denominator_frontier": null,
+  "reports": [
+    {
+      "author": "Ed Pegg",
+      "date": "2016-06-02",
+      "url": "https://community.wolfram.com/t/rational-distance-problem/8686",
+      "cutoff": 1410000,
+      "cutoff_type": "longest side of primitive Heronian triangle",
+      "reported_canonical_three_distance_points": 2877,
+      "larger_available_dataset_cutoff": 6000000,
+      "larger_dataset_completed_search_claimed": false,
+      "audit_status": "Original author post inspected; search code/run log not supplied in post",
+      "comparable_to_all_plane_square_denominator_cutoff": false
+    },
+    {
+      "author": "William McCloskey",
+      "date": "2020-06-05",
+      "url": "https://arxiv.org/html/1904.12097v3",
+      "section": "3",
+      "cutoff": "3^100",
+      "cutoff_type": "modulus with existence of local solutions verified",
+      "mod_3_power_solution_counts_k_1_to_5": [16, 1296, 34992, 1154736, 31177872],
+      "is_rational_denominator_exclusion_bound": false,
+      "audit_status": "Full primary text inspected"
+    },
+    {
+      "author": "Yuan Si",
+      "date": "2026-04-16",
+      "version": "v2",
+      "url": "https://zenodo.org/records/19613981",
+      "previous_version_url": "https://zenodo.org/records/19613346",
+      "domain": "interior of square",
+      "claimed_common_denominator_bound": 100000,
+      "claimed_pythagorean_leg_bound": 5000000,
+      "audit_status": "Downloaded ZIP checksum matches. Supplied leg-index generator misses an explicit primitive triple within bound; denominator-run count conflicts with supplied total_tested field. No search run logs found.",
+      "audit_script": "audit_zenodo_search_claims.py",
+      "audit_output": "public_search_audit.json",
+      "accepted_as_independently_verified_coverage": false
+    },
+    {
+      "author": "Yimin Rong",
+      "date": "2015-07-30",
+      "url": "https://math.stackexchange.com/questions/1379191/simplified-rational-distance-problem",
+      "cutoff": "L < 2^31",
+      "domain": "boundary condition a+b=L for two Pythagorean triples sharing leg L",
+      "is_all_plane_denominator_exclusion_bound": false,
+      "audit_status": "Original author's post inspected"
+    },
+    {
+      "authors": ["Andrew Bremner", "Richard K. Guy"],
+      "date": "1992-07",
+      "url": "https://doi.org/10.1090/S0025-5718-1992-1134716-2",
+      "primary_author_institution_record": "https://asu.elsevierpure.com/en/publications/nu-configurations-in-tiling-the-square/",
+      "reported_curves": 772,
+      "domain": "nu-configuration tilings and an elliptic pencil",
+      "is_four_corner_denominator_exclusion_bound": false,
+      "audit_status": "Primary institution abstract inspected; publisher PDF retrieval blocked"
+    }
+  ],
+  "accepted_literature_status_source": {
+    "authors": ["Pietro Corvaja", "Amos Turchet", "Umberto Zannier"],
+    "date": "2025-05-27",
+    "url": "https://link.springer.com/article/10.1007/s10711-025-01019-0",
+    "statement": "The unit-square four-distance problem has no known rational-distance point; geometric results do not prove emptiness."
+  }
+}

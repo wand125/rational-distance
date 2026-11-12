@@ -1,0 +1,1 @@
+{"engine":"rpart_v1","N":100000000,"M":1000000000,"c_lo":1,"c_hi":1000000000,"filtered":true,"threads":2,"c_values":750000000,"partners":3627294712,"pairs":20405325737,"q_candidates":9094319855,"d_tests":18105788226,"three":6133926,"solutions":0,"divisor_nodes":16289058227,"int_partners":0,"int_candidates":0,"seconds":556.495}

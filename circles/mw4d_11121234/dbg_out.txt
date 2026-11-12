@@ -1,0 +1,16 @@
+  ***   Warning: new maximum stack size = 2000003072 (1907.352 Mbytes).
+mw_four_iso: member 5 cover 1 -134831*x^4 + 651938*x^2 + 786769 #x 3
+mw_four_iso: member 1 cover 1 x^4 + 3416738*x^2 + 18179398561 #x 7
+mw_four_iso: member 1 cover 2 230400*x^4 - 325969*x^2 + 230400 #x 7
+mw_four_iso: member 1 cover 3 623*x^4 - 54606*x^3 + 466775*x^2 + 3140616*x + 1457648 #x 0
+mw_four_iso: member 3 cover 1 3276578*x^4 - 6817489*x^2 + 3546240 #x 7
+mw_four_iso: member 3 cover 2 1638289*x^4 - 6817489*x^2 + 7092480 #x 0
+mw_four_iso: member 6 cover 1 134831*x^4 + 1056431*x^2 + 921600 #x 3
+mw_four_iso: member 6 cover 2 -269662*x^4 + 1056431*x^2 - 460800 #x 0
+mw_four_iso: member 6 cover 3 184320*x^4 + 1056431*x^2 + 674155 #x 0
+mw_four_iso: member 6 cover 4 1847*x^4 + 1056431*x^2 + 67276800 #x 0
+mw_four_iso: member 4 cover 1 2190*x^4 + 3400751*x^2 - 8288128 #x 7
+mw_four_iso: member 4 cover 2 -4435*x^4 + 3400751*x^2 + 4092672 #x 0
+mw_four_iso: member 4 cover 3 -5*x^4 + 3400751*x^2 + 3630200064 #x 0
+mw_four_iso: member 4 cover 4 -18688*x^4 + 3400751*x^2 + 971265 #x 0
+error("user error: no 4-covering point up to MW_COVB")

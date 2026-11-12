@@ -1,0 +1,7 @@
+  ***   Warning: new stack size = 400000000 (381.470 Mbytes).
+701/60 open [2, 2, 2, 1, 1, 1] 135838 timeouts=1
+193/120 open [2, 2, 1, 2, 1, 1] 337543 timeouts=2
+401/120 open [2, 2, 1, 0, 3, 3] 123928 timeouts=1
+889/120 open [1, 1, 2, 2, 3, 3] 5457
+541/132 open [1, 1, 2, 1, 1, 1] 308658 timeouts=2
+505/192 open [1, 1, 1, 1, 2, 2] 363872 timeouts=3

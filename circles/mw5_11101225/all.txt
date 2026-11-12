@@ -1,0 +1,6 @@
+769/360 3 skip nopt
+769/360 6 skip nopt
+569/720 3 ok 1 4 res=[1,2,3,0] controls=0 wrong=0 blowup=0 cross=[36,15156,0] ms=74,80,4,1058 an=0
+769/360 4 skip nopt
+769/360 2 ok 2 4 res=[1,4,2,0] controls=2 wrong=0 blowup=1 cross=[100,42400,0] ms=139,76,8,65362 an=0
+769/360 5 skip nopt

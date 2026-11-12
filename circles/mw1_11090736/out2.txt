@@ -1,0 +1,68 @@
+401/120 1 ok 2 4 res=[1,8,4,0] controls=2 wrong=0 blowup=2 cross=[100,29700,0] ms=34,73,16,39262
+919/120 1 fail cypari2.handle_error.PariError:_subst:_impossible_inverse_in_Fl_inv:_Mod(0,_7)
+919/120 2 ok 2 4 res=[1,2,1,0] controls=4 wrong=0 blowup=2 cross=[100,29600,0] ms=100,71,5,349333
+775/168 1 ok 2 4 res=[1,240,17,0] controls=4 wrong=0 blowup=4 cross=[100,29300,0] ms=23,58,75,300915
+329/240 1 ok 1 4 res=[1,4,3,0] controls=2 wrong=0 blowup=0 cross=[36,10656,0] ms=43,71,6,1360
+751/240 1 skip ["rank",[0,2]]
+751/240 2 skip ["rank",[0,2]]
+751/240 3 skip nopt
+751/240 4 skip nopt
+751/240 5 skip nopt
+751/240 6 skip nopt
+919/288 1 ok 1 4 res=[1,2,2,0] controls=2 wrong=0 blowup=0 cross=[36,10692,0] ms=183,72,3,1504
+943/336 1 fail cypari2.handle_error.PariError:_subst:_impossible_inverse_in_Fl_inv:_Mod(0,_5)
+943/336 2 ok 3 4 res=[1,8,5,0] controls=4 wrong=0 blowup=4 cross=[500,148000,0] ms=35,72,241,137800
+631/360 1 ok 1 4 res=[1,2,1,0] controls=2 wrong=0 blowup=0 cross=[36,10692,0] ms=130,73,4,1453
+625/384 1 ok 1 4 res=[1,2,1,0] controls=2 wrong=0 blowup=0 cross=[36,10728,0] ms=23,72,4,1569
+575/456 1 fail cypari2.handle_error.PariError:_subst:_impossible_inverse_in_Fl_inv:_Mod(0,_31)
+575/456 2 ok 2 4 res=[1,24,5,0] controls=4 wrong=0 blowup=4 cross=[100,29500,0] ms=25,76,25,273740
+439/480 1 ok 1 4 res=[1,2,1,0] controls=2 wrong=0 blowup=0 cross=[36,10692,0] ms=61,73,4,1331
+647/480 1 fail cypari2.handle_error.PariError:_subst:_impossible_inverse_in_Fl_inv:_Mod(0,_17)
+647/480 2 ok 2 4 res=[1,8,4,0] controls=4 wrong=0 blowup=4 cross=[100,29600,0] ms=29,82,18,49746
+919/480 1 fail cypari2.handle_error.PariError:_subst:_impossible_inverse_in_Fl_inv:_Mod(0,_61)
+919/480 2 ok 1 4 res=[1,2,1,0] controls=4 wrong=0 blowup=0 cross=[36,10692,0] ms=123,82,4,1887
+575/528 1 fail cypari2.handle_error.PariError:_subst:_impossible_inverse_in_Fl_inv:_Mod(0,_7)
+575/528 2 ok 1 4 res=[1,2,1,0] controls=4 wrong=0 blowup=0 cross=[36,10656,0] ms=19,70,2,2074
+151/600 1 fail cypari2.handle_error.PariError:_subst:_impossible_inverse_in_Fl_inv:_Mod(0,_7)
+151/600 2 ok 1 4 res=[1,2,1,0] controls=4 wrong=0 blowup=0 cross=[36,10692,0] ms=103,73,2,1800
+47/600 1 fail cypari2.handle_error.PariError:_subst:_impossible_inverse_in_Fl_inv:_Mod(0,_73)
+47/600 2 ok 2 4 res=[1,2,1,0] controls=4 wrong=0 blowup=0 cross=[100,29600,0] ms=25,72,3,577942
+593/600 1 fail cypari2.handle_error.PariError:_subst:_impossible_inverse_in_Fl_inv:_Mod(0,_11)
+593/600 2 ok 2 4 res=[1,8,4,0] controls=4 wrong=0 blowup=3 cross=[100,29700,0] ms=30,72,13,385582
+833/600 1 fail cypari2.handle_error.PariError:_subst:_impossible_inverse_in_Fl_inv:_Mod(0,_13)
+833/600 2 ok 2 4 res=[1,8,4,0] controls=4 wrong=0 blowup=4 cross=[100,29600,0] ms=29,71,12,448950
+863/624 1 ok 1 4 res=[1,2,1,0] controls=2 wrong=0 blowup=0 cross=[36,10692,0] ms=122,73,4,1611
+625/672 1 fail cypari2.handle_error.PariError:_subst:_impossible_inverse_in_Fl_inv:_Mod(0,_31)
+625/672 2 ok 1 4 res=[1,2,1,0] controls=4 wrong=0 blowup=0 cross=[36,10692,0] ms=17,72,2,1750
+607/720 1 ok 1 4 res=[1,2,1,0] controls=2 wrong=0 blowup=0 cross=[36,10692,0] ms=97,71,3,2429
+881/720 1 ok 3 4 res=[1,48,13,0] controls=2 wrong=0 blowup=2 cross=[500,148000,0] ms=35,77,187,222823
+71/792 1 ok 1 4 res=[1,2,3,0] controls=2 wrong=0 blowup=0 cross=[36,10656,0] ms=53,71,3,1552
+865/816 1 ok 1 8 res=[1,4,5,0] controls=4 wrong=0 blowup=0 cross=[72,21312,0] ms=20,72,6,3325
+401/840 1 ok 1 4 res=[1,4,2,0] controls=2 wrong=0 blowup=0 cross=[36,10620,0] ms=18,61,4,1253
+79/840 1 ok 1 4 res=[1,2,2,0] controls=2 wrong=0 blowup=0 cross=[36,10656,0] ms=51,63,3,1481
+169/888 1 ok 1 4 res=[1,4,4,0] controls=4 wrong=0 blowup=0 cross=[36,10656,0] ms=105,63,8,1864
+455/912 1 fail cypari2.handle_error.PariError:_subst:_impossible_inverse_in_Fl_inv:_Mod(0,_11)
+455/912 2 ok 2 4 res=[1,4,1,0] controls=4 wrong=0 blowup=4 cross=[100,29500,0] ms=26,71,6,230845
+545/936 1 skip ["rank",[0,2]]
+545/936 2 skip ["rank",[0,2]]
+545/936 3 ok 2 4 res=[1,2,1,0] controls=4 wrong=0 blowup=0 cross=[100,29400,0] ms=23,65,3,82581
+343/960 1 timeout 600
+343/960 2 timeout 600
+343/960 3 skip nopt
+343/960 4 skip nopt
+343/960 5 skip nopt
+343/960 6 skip nopt
+673/960 1 skip ["rank",[0,2]]
+673/960 2 skip ["rank",[0,2]]
+673/960 3 skip nopt
+673/960 4 skip ["gens",[2,1]]
+673/960 5 skip nopt
+673/960 6 skip nopt
+911/960 1 timeout 600
+911/960 2 timeout 600
+911/960 3 skip nopt
+911/960 4 skip nopt
+911/960 5 skip nopt
+911/960 6 skip nopt
+983/984 1 fail cypari2.handle_error.PariError:_subst:_impossible_inverse_in_Fl_inv:_Mod(0,_73)
+983/984 2 ok 1 4 res=[1,2,1,0] controls=4 wrong=0 blowup=0 cross=[36,10692,0] ms=15,54,2,1390

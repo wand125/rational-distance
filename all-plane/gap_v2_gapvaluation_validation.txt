@@ -1,0 +1,1 @@
+Gap validation passed: 197146 compatible pairs for every n=1..256; 8 fully filtered parameter tuples at N<=2000 exactly match u-first; 152 positive primitive three-distance examples retained.

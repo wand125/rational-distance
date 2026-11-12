@@ -1,0 +1,5 @@
+607/120 3 ok torsK=4/4 |L|=3.042,err=8.6e-07,logN=10.7 |L|=6.819,err=3e-07,logN=9.8
+863/360 3 ok torsK=4/4 |L|=1.034,err=1.2e-06,logN=11.0 |L|=7.155,err=4.3e-07,logN=10.1
+967/360 3 ok torsK=4/4 |L|=0.2251,err=1.5e-06,logN=11.2 |L|=6.704,err=5.4e-07,logN=10.3
+727/720 3 logN=10.9 ngens=0 an=0 ok eps=1,|v|=0.2341,err=1.2e-06,k=1191198
+911/960 3 logN=11.3 ngens=0 an=0 ok eps=1,|v|=2.737,err=1.8e-06,k=1882745

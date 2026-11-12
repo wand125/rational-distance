@@ -1,0 +1,208 @@
+{
+  "recorded_utc": "2026-11-04T21:56:14.540202+00:00",
+  "status": "passed",
+  "description": "Fresh source installation, four-target compilation, nonempty exact v4 reference and independent witness validation. Documentation/result additions after this run do not change the tested source hashes.",
+  "system": "Linux",
+  "machine": "x86_64",
+  "user_mac_deployed": false,
+  "v4_largest_bound_in_this_deployment_check": 100000,
+  "receipt": {
+    "created_at_utc": "2026-11-04T21:54:36.276261+00:00",
+    "destination": "/workspace/scratch/48c819cf1cc9/local_deploy_v4_validation_final/installed",
+    "system": "Linux",
+    "machine": "x86_64",
+    "python_version": "3.12.14",
+    "manifest_sha256": "2e7a281f3e60084b1a4ef48b7cc66d090cf2f7a6ef86db9bc5e53d6d5438aea7",
+    "source_file_count": 276,
+    "copied_and_source_hashes_verified": true,
+    "commands": [
+      {
+        "action": "check",
+        "returncode": 0
+      },
+      {
+        "action": "build",
+        "returncode": 0
+      },
+      {
+        "action": "smoke",
+        "returncode": 0
+      }
+    ],
+    "status": "installed_and_smoke_verified",
+    "full_search_started": false
+  },
+  "smoke": {
+    "status": "passed",
+    "system": "Linux",
+    "machine": "x86_64",
+    "engine": "v4",
+    "bound": 100000,
+    "workers": 2,
+    "exact_parameter_pairs": 8710,
+    "matched_three_distance_candidates": 7,
+    "four_distance_solutions": 0,
+    "nonempty_reference_set_matches": true,
+    "interior_reference_matches": true,
+    "canonical_reference_sha256": {
+      "research_v4/final_100000.json": "7f74d5017ba22d119d3f41c2de4c21ed7f1c0243f1afedea88f5c70a11b6b413",
+      "research_v4/final_three_100000.csv": "90cc39b491e681b915768d7b0e8a5692bc0870de7f2458a4efc9deb6dfe3e5a6"
+    },
+    "source_sha256": {
+      "all_plane_gap_v2.cpp": "60bc78f33a598219ae9b31aedbc47968ffb797e7dc9ec63c5bcab6c7d7a07fea",
+      "all_plane_gap_v3.cpp": "d01f7a5b2e8d18c579121e045fdb797e52e28febc4e358a5bdd3f31001302639",
+      "all_plane_gap_v4.cpp": "80a382b9c131f3fe299dccf972931e5c8f3428cddd8b2155dae09f37cf9bd160",
+      "all_plane_sieved.cpp": "0351d243dcfbfec64a4198f5d04c4131a526f60709cae4c19e9b702ff11adbe1",
+      "research_v4_local/lifted_projection.hpp": "613da7bfd956e052feaa63f0c4426cd59159f5533a512cb4966865420390efc8",
+      "research_v4_math/critical_extension.hpp": "ed1b233d15c43542e1358d02ddc5570a0e6d504f026b786a697c9d5886f35366",
+      "run_sharded_v2.py": "014d234ba652f1c33e45840947189e44074a6c51612a185ad1693b18d9a88cea",
+      "run_sharded_v3.py": "09e84642a1d452cc63727a23132f6859ddde4da3bb2c4ec8f180b641e038ff36",
+      "run_sharded_v4.py": "8e1aa573da338759c7457efe9adbd6af394f98fb09591730350aa0763e42a39b",
+      "search.cpp": "04636556ec0a12c6fdb152f244094629d6fe87c021bed7477d2192f541c1b0e3"
+    },
+    "user_mac_verified": false
+  },
+  "build": {
+    "system": "Linux",
+    "machine": "x86_64",
+    "python": "3.12.14",
+    "source_sha256": {
+      "all_plane_gap_v2.cpp": "60bc78f33a598219ae9b31aedbc47968ffb797e7dc9ec63c5bcab6c7d7a07fea",
+      "all_plane_gap_v3.cpp": "d01f7a5b2e8d18c579121e045fdb797e52e28febc4e358a5bdd3f31001302639",
+      "all_plane_gap_v4.cpp": "80a382b9c131f3fe299dccf972931e5c8f3428cddd8b2155dae09f37cf9bd160",
+      "all_plane_sieved.cpp": "0351d243dcfbfec64a4198f5d04c4131a526f60709cae4c19e9b702ff11adbe1",
+      "research_v4_local/lifted_projection.hpp": "613da7bfd956e052feaa63f0c4426cd59159f5533a512cb4966865420390efc8",
+      "research_v4_math/critical_extension.hpp": "ed1b233d15c43542e1358d02ddc5570a0e6d504f026b786a697c9d5886f35366",
+      "run_sharded_v2.py": "014d234ba652f1c33e45840947189e44074a6c51612a185ad1693b18d9a88cea",
+      "run_sharded_v3.py": "09e84642a1d452cc63727a23132f6859ddde4da3bb2c4ec8f180b641e038ff36",
+      "run_sharded_v4.py": "8e1aa573da338759c7457efe9adbd6af394f98fb09591730350aa0763e42a39b",
+      "search.cpp": "04636556ec0a12c6fdb152f244094629d6fe87c021bed7477d2192f541c1b0e3"
+    },
+    "targets": {
+      "all_plane_gap_v2_local": {
+        "sha256": "6d77ba16aad2676255dc0ad7066172f21c9f496366a32c694bffd64f5370259d",
+        "command": [
+          "/usr/bin/g++",
+          "-O3",
+          "-std=c++17",
+          "/workspace/scratch/48c819cf1cc9/local_deploy_v4_validation_final/installed/all_plane_gap_v2.cpp",
+          "-o",
+          "/workspace/scratch/48c819cf1cc9/local_deploy_v4_validation_final/installed/all_plane_gap_v2_local_52ree2cc"
+        ]
+      },
+      "all_plane_gap_v3_local": {
+        "sha256": "33a4e757d25a6df162ce76bc0b6765fa5799ff1373db4535ec7edb4c4dfd924c",
+        "command": [
+          "/usr/bin/g++",
+          "-O3",
+          "-std=c++17",
+          "/workspace/scratch/48c819cf1cc9/local_deploy_v4_validation_final/installed/all_plane_gap_v3.cpp",
+          "-o",
+          "/workspace/scratch/48c819cf1cc9/local_deploy_v4_validation_final/installed/all_plane_gap_v3_local_25ll4ga1"
+        ]
+      },
+      "all_plane_gap_v4_local": {
+        "sha256": "00ad72e1999602f0c0c3d39de135ac5ed0670609221060e74d989b06fdda0083",
+        "command": [
+          "/usr/bin/g++",
+          "-O3",
+          "-std=c++17",
+          "/workspace/scratch/48c819cf1cc9/local_deploy_v4_validation_final/installed/all_plane_gap_v4.cpp",
+          "-o",
+          "/workspace/scratch/48c819cf1cc9/local_deploy_v4_validation_final/installed/all_plane_gap_v4_local_zbb02mxm"
+        ]
+      },
+      "square_search_local": {
+        "sha256": "4a1fe64baab073d9d135326077a27142e3eecbc19c899ee7d3537730ca5fa6ae",
+        "command": [
+          "/usr/bin/g++",
+          "-O3",
+          "-std=c++20",
+          "/workspace/scratch/48c819cf1cc9/local_deploy_v4_validation_final/installed/search.cpp",
+          "-o",
+          "/workspace/scratch/48c819cf1cc9/local_deploy_v4_validation_final/installed/square_search_local_kqk04mn7"
+        ]
+      }
+    }
+  },
+  "shard_summary": {
+    "generator_version": "v4",
+    "scope": "whole_plane_primitive_minimal_coordinate_denominator",
+    "min_denominator": 1,
+    "max_minimal_coordinate_denominator": 100000,
+    "workers": 2,
+    "threads_per_worker": 1,
+    "intervals": [
+      [
+        1,
+        70680
+      ],
+      [
+        70681,
+        100000
+      ]
+    ],
+    "all_intervals_completed": true,
+    "exact_interval_coverage_checked": true,
+    "generator_configuration_checked": true,
+    "generator_configuration": {
+      "reference_v3": false,
+      "gamma_stage": "late",
+      "skip_redundant19": true,
+      "additional_filters": true,
+      "endpoint_pruning": true,
+      "fifth_power_condition": "early",
+      "prime_power_projections": true,
+      "critical_extension": true,
+      "fast_fifth_mark": true
+    },
+    "three_distance_witnesses_independently_verified": true,
+    "four_distance_witnesses_independently_verified": true,
+    "counts": {
+      "sides": 4166,
+      "dense_even_pairs": 1736059002776,
+      "gap_rows": 104162498,
+      "local_gap_rows": 14850588,
+      "difference_gap_rows": 3166381,
+      "critical_gap_rows": 3130770,
+      "endpoint_empty_rows": 793,
+      "crt_residue_choices": 35153034,
+      "generated_pairs": 51095175,
+      "valuation_pairs": 21207533,
+      "gamma_early_rejected": 0,
+      "gamma_lifted_progressions": 0,
+      "gamma_lift_residues": 0,
+      "examined_generation_rejections": 0,
+      "local_pairs": 18737,
+      "additional_pairs": 9969,
+      "additional_rejected": 8768,
+      "scale_pairs": 8729,
+      "gamma_pairs": 8710,
+      "gamma_rejected": 19,
+      "critical_projection_pairs": 8710,
+      "critical_projection_rejected": 0,
+      "exact_parameter_pairs": 8710,
+      "square_discriminants": 8,
+      "linear_pairs": 0,
+      "primitive_three_candidates": 7,
+      "solutions": 0
+    },
+    "wall_seconds_including_startup": 1.001995511000132,
+    "worker_cpu_seconds": 1.6914449999999999,
+    "three_candidates_on_supporting_lines": 7,
+    "three_candidates_strictly_inside": 0,
+    "solutions": [],
+    "source_sha256": {
+      "all_plane_gap_v4.cpp": "80a382b9c131f3fe299dccf972931e5c8f3428cddd8b2155dae09f37cf9bd160",
+      "all_plane_gap_v3.cpp": "d01f7a5b2e8d18c579121e045fdb797e52e28febc4e358a5bdd3f31001302639",
+      "all_plane_sieved.cpp": "0351d243dcfbfec64a4198f5d04c4131a526f60709cae4c19e9b702ff11adbe1",
+      "research_v4_local/lifted_projection.hpp": "613da7bfd956e052feaa63f0c4426cd59159f5533a512cb4966865420390efc8",
+      "research_v4_math/critical_extension.hpp": "ed1b233d15c43542e1358d02ddc5570a0e6d504f026b786a697c9d5886f35366",
+      "run_sharded_v4.py": "8e1aa573da338759c7457efe9adbd6af394f98fb09591730350aa0763e42a39b"
+    },
+    "binary_sha256": "00ad72e1999602f0c0c3d39de135ac5ed0670609221060e74d989b06fdda0083",
+    "source_and_binary_unchanged_during_run": true
+  },
+  "guard_validation": "research_v4/driver_guard_validation.json",
+  "tested_sources_match_final_research_manifest": true
+}

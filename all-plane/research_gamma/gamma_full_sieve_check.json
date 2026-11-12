@@ -1,0 +1,165 @@
+{
+  "max_n": 50000,
+  "examples": [
+    {
+      "n": 3300,
+      "u": 2160,
+      "v": 825,
+      "h": 1335,
+      "gamma": [
+        5,
+        1,
+        5
+      ],
+      "all_existing_filters_pass": true
+    },
+    {
+      "n": 3900,
+      "u": 1355,
+      "v": 0,
+      "h": 1355,
+      "gamma": [
+        5,
+        1,
+        5
+      ],
+      "all_existing_filters_pass": true
+    },
+    {
+      "n": 4200,
+      "u": 3885,
+      "v": 1600,
+      "h": 2285,
+      "gamma": [
+        5,
+        1,
+        5
+      ],
+      "all_existing_filters_pass": true
+    },
+    {
+      "n": 4200,
+      "u": 4185,
+      "v": 2400,
+      "h": 1785,
+      "gamma": [
+        5,
+        1,
+        5
+      ],
+      "all_existing_filters_pass": true
+    },
+    {
+      "n": 5700,
+      "u": 5645,
+      "v": 800,
+      "h": 4845,
+      "gamma": [
+        5,
+        1,
+        5
+      ],
+      "all_existing_filters_pass": true
+    },
+    {
+      "n": 6300,
+      "u": 935,
+      "v": 900,
+      "h": 35,
+      "gamma": [
+        5,
+        1,
+        5
+      ],
+      "all_existing_filters_pass": true
+    },
+    {
+      "n": 6600,
+      "u": 5320,
+      "v": 2475,
+      "h": 2845,
+      "gamma": [
+        5,
+        1,
+        5
+      ],
+      "all_existing_filters_pass": true
+    },
+    {
+      "n": 7800,
+      "u": 2925,
+      "v": 920,
+      "h": 2005,
+      "gamma": [
+        1,
+        5,
+        5
+      ],
+      "all_existing_filters_pass": true
+    },
+    {
+      "n": 8400,
+      "u": 5075,
+      "v": 2595,
+      "h": 2480,
+      "gamma": [
+        1,
+        5,
+        5
+      ],
+      "all_existing_filters_pass": true
+    },
+    {
+      "n": 9900,
+      "u": 9365,
+      "v": 0,
+      "h": 9365,
+      "gamma": [
+        5,
+        1,
+        5
+      ],
+      "all_existing_filters_pass": true
+    },
+    {
+      "n": 10092,
+      "u": 10092,
+      "v": 4321,
+      "h": 5771,
+      "gamma": [
+        1,
+        29,
+        29
+      ],
+      "all_existing_filters_pass": true
+    },
+    {
+      "n": 10140,
+      "u": 3523,
+      "v": 0,
+      "h": 3523,
+      "gamma": [
+        13,
+        1,
+        13
+      ],
+      "all_existing_filters_pass": true
+    }
+  ],
+  "old_pass_on_selected_denominators": 2448,
+  "gamma_rejected": 309,
+  "gamma_rejected_after_critical5_13_h_only": 125,
+  "gamma_rejected_after_critical5_13_all_three": 47,
+  "noncritical_nondegenerate_example": {
+    "n": 16500,
+    "u": 4035,
+    "v": 2660,
+    "h": 1375,
+    "gamma": [
+      5,
+      5,
+      1
+    ]
+  },
+  "elapsed_wall_including_build": 5.177824137999778
+}

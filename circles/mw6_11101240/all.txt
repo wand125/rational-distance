@@ -1,0 +1,1 @@
+175/576 1 ok 1 4 res=[1,2,1,0] controls=2 wrong=0 blowup=0 cross=[36,15264,0] ms=2771416,70,3,1329 an=0

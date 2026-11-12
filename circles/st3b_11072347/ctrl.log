@@ -1,0 +1,10 @@
+[1, 2]: 1118 radii, wrongly killed (pmax 400, 1e6) [0, 0]
+[1, 3]: 1118 radii, wrongly killed (pmax 400, 1e6) [0, 0]
+[1, 4]: 95 radii, wrongly killed (pmax 400, 1e6) [0, 0]
+[2, 3]: 18 radii, wrongly killed (pmax 400, 1e6) [0, 0]
+[2, 4]: 52 radii, wrongly killed (pmax 400, 1e6) [0, 0]
+[3, 4]: 52 radii, wrongly killed (pmax 400, 1e6) [0, 0]
+[1, 2, 3]: 22 radii, wrongly killed (pmax 400, 1e6) [0, 0]
+[1, 2, 4]: 52 radii, wrongly killed (pmax 400, 1e6) [0, 0]
+[1, 3, 4]: 52 radii, wrongly killed (pmax 400, 1e6) [0, 0]
+DONE

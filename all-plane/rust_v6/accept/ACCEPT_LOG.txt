@@ -1,0 +1,17 @@
+PASS release build (offline, jobs=1; rustc 1.99.0)
+PASS compatibility release build (offline, jobs=1; rustc 1.86.0)
+PASS validate: rsq6 1000 --validate; 0.766 seconds
+PASS validate_1.86: rsq6 1000 --validate; 0.782 seconds
+PASS CLI edge checks: empty ranges, denominator rounding, four threads, invalid lower bound/minimum/threads/options
+PASS 100000 threads=1: both CSVs byte-identical; solutions and all non-timing JSON values/keys/order match
+TIMING 100000 threads=1: C++ seconds_search=1.46866; rsq6 seconds_search=1.478238
+PASS 200000_min150001 threads=1: both CSVs byte-identical; solutions and all non-timing JSON values/keys/order match
+TIMING 200000_min150001 threads=1: C++ seconds_search=2.78758; rsq6 seconds_search=2.759546792
+PASS 100000_no_new_filters threads=1: both CSVs byte-identical; solutions and all non-timing JSON values/keys/order match
+TIMING 100000_no_new_filters threads=1: C++ seconds_search=1.55543; rsq6 seconds_search=1.652439708
+PASS 200000_threads threads=1: both CSVs byte-identical; solutions and all non-timing JSON values/keys/order match
+TIMING 200000_threads threads=1: C++ seconds_search=6.33156; rsq6 seconds_search=6.276821416
+PASS 200000_threads threads=4: both CSVs byte-identical; solutions and all non-timing JSON values/keys/order match
+TIMING 200000_threads threads=4: C++ seconds_search=6.33156; rsq6 seconds_search=1.807789833
+PASS 200000 threads=1 vs threads=4: both CSVs byte-identical (both match C++)
+PASS all requested acceptance cases

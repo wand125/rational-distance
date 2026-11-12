@@ -1,0 +1,9 @@
+# r j method result (qi_rank0: [ok, r, j, t0, #E(Q(i))_tors, cyc, rational t, solutions]; qi_rank0b: [ok, r, j, #E(Q(i))_tors, #tau-fixed S, #halves tried, rational t, solutions]) rankJ=ellrank(J) rankJt=ellrank(J^-1)
+607/120 3 qi_rank0 [1, 607/120, 3, -i_, 4, [2, 2], [], []] rankJ=[0, 0] rankJt=[0, 0]
+607/120 3 qi_rank0b [1, 607/120, 3, 4, 4, 4, [], []] rankJ=[0, 0] rankJt=[0, 0]
+863/360 3 qi_rank0 [1, 863/360, 3, -i_, 4, [2, 2], [], []] rankJ=[0, 0] rankJt=[0, 0]
+863/360 3 qi_rank0b [1, 863/360, 3, 4, 4, 4, [], []] rankJ=[0, 0] rankJt=[0, 0]
+967/360 3 qi_rank0 [1, 967/360, 3, -i_, 4, [2, 2], [], []] rankJ=[0, 0] rankJt=[0, 0]
+967/360 3 qi_rank0b [1, 967/360, 3, 4, 4, 4, [], []] rankJ=[0, 0] rankJt=[0, 0]
+727/720 3 qi_rank0b [1, 727/720, 3, 4, 4, 4, [], []] rankJ=[0, 0] rankJt=[1, 1]
+911/960 3 qi_rank0b [1, 911/960, 3, 4, 4, 4, [], []] rankJ=[0, 2] rankJt=[3, 3]

@@ -1,0 +1,30 @@
+{
+  "test_platform": "Linux",
+  "test_machine": "x86_64",
+  "user_mac_deployed": false,
+  "source_manifest_sha256_tested": "080b533e00b2c6998a8cc9dafd0cf5947937fbe99c2d695c5f3c5caa41ef4673",
+  "installer_source_sha256": "a61c3c77ae51ec1a8340fa267763c849dd3020afd927cf242523331d43bb3a1e",
+  "local_launcher_source_sha256": "4ff83faafdfcb76ed9a1613c53cfd4f844a99d9600a51b53f27b0e4df555df1c",
+  "end_to_end_copy_check_build_smoke_passed": true,
+  "nonempty_destination_refused_without_changes": true,
+  "full_search_started": false,
+  "smoke": {
+    "status": "passed",
+    "system": "Linux",
+    "machine": "x86_64",
+    "bound": 100000,
+    "workers": 2,
+    "matched_three_distance_candidates": 10,
+    "four_distance_solutions": 0,
+    "nonempty_reference_set_matches": true,
+    "interior_reference_matches": true,
+    "source_sha256": {
+      "all_plane_gap_v2.cpp": "60bc78f33a598219ae9b31aedbc47968ffb797e7dc9ec63c5bcab6c7d7a07fea",
+      "all_plane_sieved.cpp": "0351d243dcfbfec64a4198f5d04c4131a526f60709cae4c19e9b702ff11adbe1",
+      "run_sharded_v2.py": "014d234ba652f1c33e45840947189e44074a6c51612a185ad1693b18d9a88cea",
+      "search.cpp": "04636556ec0a12c6fdb152f244094629d6fe87c021bed7477d2192f541c1b0e3"
+    },
+    "user_mac_verified": false
+  },
+  "test_destination": "/workspace/scratch/48c819cf1cc9/local_deploy_validation_3lyi6t2_/installed"
+}

@@ -1,0 +1,63 @@
+{
+ "engine": "rpart_v1+rpart_v3",
+ "N": 10000000000,
+ "M": 100000000000,
+ "box": "all points (A/Q, C/Q) with Q <= N and max(|A|,|Q-A|,|C|,|Q-C|) <= M",
+ "shards": 1000,
+ "all_shards_exactly_once": true,
+ "c_range_contiguous": true,
+ "source_sha256": [
+  {
+   "src/main.rs": "5eece4d68c70a6e59fdc9251176b6d60acd3ffa0af380c68d3ace32bc6c0e8d0",
+   "Cargo.toml": "c048186f9af48613e7a319d1e9254004b0e700bc6c9b7c771ebd899624a28494",
+   "run_rpart.py": "da853c2570d74909f6dee6ee3b7d10c9aa8cde30387dc9ad7245a266cf80a02f"
+  },
+  {
+   "src/main.rs": "5eece4d68c70a6e59fdc9251176b6d60acd3ffa0af380c68d3ace32bc6c0e8d0",
+   "Cargo.toml": "c048186f9af48613e7a319d1e9254004b0e700bc6c9b7c771ebd899624a28494",
+   "run_rpart.py": "da853c2570d74909f6dee6ee3b7d10c9aa8cde30387dc9ad7245a266cf80a02f"
+  },
+  {
+   "src/main.rs": "5eece4d68c70a6e59fdc9251176b6d60acd3ffa0af380c68d3ace32bc6c0e8d0",
+   "Cargo.toml": "c048186f9af48613e7a319d1e9254004b0e700bc6c9b7c771ebd899624a28494",
+   "run_rpart.py": "da853c2570d74909f6dee6ee3b7d10c9aa8cde30387dc9ad7245a266cf80a02f"
+  },
+  {
+   "src/main.rs": "13033b224909cf8604a8995d0ad3ebc98de666409f041e049fc30d66a80b894b",
+   "Cargo.toml": "d3942b2f0c3009ec114f332b3e0ba6863256d6e9b4b5297422118b0e1cb5ce65",
+   "run_rpart.py": "79d07b195beaf095909257104e2fb263455e1a985a760b99c379cbaa2ae3c15e"
+  },
+  {
+   "src/main.rs": "13033b224909cf8604a8995d0ad3ebc98de666409f041e049fc30d66a80b894b",
+   "Cargo.toml": "d3942b2f0c3009ec114f332b3e0ba6863256d6e9b4b5297422118b0e1cb5ce65",
+   "run_rpart.py": "79d07b195beaf095909257104e2fb263455e1a985a760b99c379cbaa2ae3c15e"
+  },
+  {
+   "src/main.rs": "13033b224909cf8604a8995d0ad3ebc98de666409f041e049fc30d66a80b894b",
+   "Cargo.toml": "d3942b2f0c3009ec114f332b3e0ba6863256d6e9b4b5297422118b0e1cb5ce65",
+   "run_rpart.py": "79d07b195beaf095909257104e2fb263455e1a985a760b99c379cbaa2ae3c15e"
+  }
+ ],
+ "shards_by_engine": {
+  "rpart_v1": 166,
+  "rpart_v3": 834
+ },
+ "totals": {
+  "c_values": 75000000000,
+  "partners": 444979382974,
+  "pairs": 4626725071150,
+  "q_candidates": 2087231266514,
+  "d_tests": 4156548460682,
+  "three": 613541176,
+  "solutions": 0,
+  "divisor_nodes": 2012182695239
+ },
+ "solutions": [],
+ "cpu_seconds": 160343.063894,
+ "hosts": [
+  "DESKTOP-UQHBDCU",
+  "host-m1",
+  "host-mbp"
+ ],
+ "merged": "2026-11-05 17:39:34 JST"
+}

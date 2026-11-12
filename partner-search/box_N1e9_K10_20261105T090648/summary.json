@@ -1,0 +1,31 @@
+{
+ "engine": "rpart_v1",
+ "N": 1000000000,
+ "M": 10000000000,
+ "box": "all points (A/Q, C/Q) with Q <= N and max(|A|,|Q-A|,|C|,|Q-C|) <= M",
+ "shards": 200,
+ "all_shards_exactly_once": true,
+ "c_range_contiguous": true,
+ "source_sha256": {
+  "src/main.rs": "5eece4d68c70a6e59fdc9251176b6d60acd3ffa0af380c68d3ace32bc6c0e8d0",
+  "Cargo.toml": "c048186f9af48613e7a319d1e9254004b0e700bc6c9b7c771ebd899624a28494",
+  "run_rpart.py": "da853c2570d74909f6dee6ee3b7d10c9aa8cde30387dc9ad7245a266cf80a02f"
+ },
+ "totals": {
+  "c_values": 7500000000,
+  "partners": 40385438406,
+  "pairs": 312397292507,
+  "q_candidates": 140241394774,
+  "d_tests": 279245353115,
+  "three": 61351352,
+  "solutions": 0,
+  "divisor_nodes": 182050711043
+ },
+ "solutions": [],
+ "cpu_seconds": 11956.720492,
+ "hosts": [
+  "DESKTOP-UQHBDCU",
+  "host-m1"
+ ],
+ "merged": "2026-11-05 09:51:28 JST"
+}

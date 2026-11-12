@@ -1,0 +1,63 @@
+{
+  "system": "Darwin",
+  "machine": "arm64",
+  "python": "3.12.2",
+  "source_sha256": {
+    "all_plane_gap_v2.cpp": "60bc78f33a598219ae9b31aedbc47968ffb797e7dc9ec63c5bcab6c7d7a07fea",
+    "all_plane_gap_v3.cpp": "d01f7a5b2e8d18c579121e045fdb797e52e28febc4e358a5bdd3f31001302639",
+    "all_plane_gap_v4.cpp": "80a382b9c131f3fe299dccf972931e5c8f3428cddd8b2155dae09f37cf9bd160",
+    "all_plane_sieved.cpp": "0351d243dcfbfec64a4198f5d04c4131a526f60709cae4c19e9b702ff11adbe1",
+    "research_v4_local/lifted_projection.hpp": "613da7bfd956e052feaa63f0c4426cd59159f5533a512cb4966865420390efc8",
+    "research_v4_math/critical_extension.hpp": "ed1b233d15c43542e1358d02ddc5570a0e6d504f026b786a697c9d5886f35366",
+    "run_sharded_v2.py": "014d234ba652f1c33e45840947189e44074a6c51612a185ad1693b18d9a88cea",
+    "run_sharded_v3.py": "09e84642a1d452cc63727a23132f6859ddde4da3bb2c4ec8f180b641e038ff36",
+    "run_sharded_v4.py": "8e1aa573da338759c7457efe9adbd6af394f98fb09591730350aa0763e42a39b",
+    "search.cpp": "04636556ec0a12c6fdb152f244094629d6fe87c021bed7477d2192f541c1b0e3"
+  },
+  "targets": {
+    "all_plane_gap_v2_local": {
+      "sha256": "8ae77a87e5e81f2d9c35714fb0c21ff6308ff8e5bf919a462dc3b2bf6eaca89a",
+      "command": [
+        "/usr/bin/clang++",
+        "-O3",
+        "-std=c++17",
+        "~/Files/03_ThinkAndPlay/WandsBox/Mathematics/RationalDistance/rational_square_search_v4/all_plane_gap_v2.cpp",
+        "-o",
+        "~/Files/03_ThinkAndPlay/WandsBox/Mathematics/RationalDistance/rational_square_search_v4/all_plane_gap_v2_local_64vo0a3u"
+      ]
+    },
+    "all_plane_gap_v3_local": {
+      "sha256": "11c62779bc0590119508694d1b2cce915b3fbc199b59da795d26f71ec021e52a",
+      "command": [
+        "/usr/bin/clang++",
+        "-O3",
+        "-std=c++17",
+        "~/Files/03_ThinkAndPlay/WandsBox/Mathematics/RationalDistance/rational_square_search_v4/all_plane_gap_v3.cpp",
+        "-o",
+        "~/Files/03_ThinkAndPlay/WandsBox/Mathematics/RationalDistance/rational_square_search_v4/all_plane_gap_v3_local_mzx9qm11"
+      ]
+    },
+    "all_plane_gap_v4_local": {
+      "sha256": "2720f2e5c6f1bd3cf58619c053c049302c344b02d2e48f3b98d2eeec17619a03",
+      "command": [
+        "/usr/bin/clang++",
+        "-O3",
+        "-std=c++17",
+        "~/Files/03_ThinkAndPlay/WandsBox/Mathematics/RationalDistance/rational_square_search_v4/all_plane_gap_v4.cpp",
+        "-o",
+        "~/Files/03_ThinkAndPlay/WandsBox/Mathematics/RationalDistance/rational_square_search_v4/all_plane_gap_v4_local_p86nzwpn"
+      ]
+    },
+    "square_search_local": {
+      "sha256": "005828e1b981b054dddc50ccb1f7cc6959f84274e85630eb15befacfd0f0794f",
+      "command": [
+        "/usr/bin/clang++",
+        "-O3",
+        "-std=c++20",
+        "~/Files/03_ThinkAndPlay/WandsBox/Mathematics/RationalDistance/rational_square_search_v4/search.cpp",
+        "-o",
+        "~/Files/03_ThinkAndPlay/WandsBox/Mathematics/RationalDistance/rational_square_search_v4/square_search_local_sw94cpr7"
+      ]
+    }
+  }
+}

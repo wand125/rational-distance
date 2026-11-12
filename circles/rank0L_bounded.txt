@@ -1,0 +1,7 @@
+719/240 1 logN=10.9 ngens=0 an=0 ok eps=1,|v|=4.607,err=1.1e-06,k=1126188
+961/240 1 logN=9.8 ngens=0 an=0 ok eps=1,|v|=3.402,err=3.1e-07,k=321069
+865/432 1 logN=10.4 ngens=0 an=0 ok eps=1,|v|=3.99,err=5.9e-07,k=610815
+991/480 1 logN=11.3 ngens=0 an=0 ok eps=1,|v|=3.467,err=1.6e-06,k=1691304
+911/720 1 logN=10.8 ngens=0 an=0 ok eps=1,|v|=4.445,err=1e-06,k=1043932
+761/960 1 logN=10.8 ngens=0 an=0 ok eps=1,|v|=4.227,err=9.7e-07,k=1000412
+673/960 1 logN=10.9 ngens=0 an=0 ok eps=1,|v|=15.76,err=1.1e-06,k=1100553

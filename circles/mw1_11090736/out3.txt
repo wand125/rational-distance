@@ -1,0 +1,56 @@
+449/120 1 ok 1 4 res=[1,4,3,0] controls=2 wrong=0 blowup=0 cross=[36,10656,0] ms=24,78,4,1682
+929/120 1 ok 2 4 res=[1,4,4,0] controls=2 wrong=0 blowup=2 cross=[100,29700,0] ms=34,80,12,19997
+865/168 1 ok 1 4 res=[1,4,2,0] controls=4 wrong=0 blowup=0 cross=[36,10620,0] ms=131,70,4,2877
+593/240 1 ok 1 4 res=[1,2,2,0] controls=2 wrong=0 blowup=0 cross=[36,10656,0] ms=21,82,5,1863
+961/240 1 skip ["rank",[0,2]]
+961/240 2 skip ["rank",[0,2]]
+961/240 3 skip nopt
+961/240 4 skip nopt
+961/240 5 skip nopt
+961/240 6 skip nopt
+797/300 1 ok 1 4 res=[1,2,3,0] controls=2 wrong=0 blowup=0 cross=[36,10656,0] ms=24,67,5,1479
+391/360 1 ok 2 4 res=[1,8,6,0] controls=4 wrong=0 blowup=4 cross=[100,29600,0] ms=25,84,16,275181
+769/360 1 ok 2 4 res=[1,4,2,0] controls=2 wrong=0 blowup=2 cross=[100,29700,0] ms=151,83,13,34136
+985/408 1 fail cypari2.handle_error.PariError:_subst:_impossible_inverse_in_Fl_inv:_Mod(0,_37)
+985/408 2 ok 2 4 res=[1,24,6,0] controls=4 wrong=0 blowup=0 cross=[100,29500,0] ms=22,76,38,118274
+167/480 1 timeout 600
+167/480 2 timeout 600
+167/480 3 skip nopt
+167/480 4 skip nopt
+167/480 5 skip nopt
+167/480 6 skip nopt
+479/480 1 ok 1 4 res=[1,2,2,0] controls=2 wrong=0 blowup=0 cross=[36,10692,0] ms=22,82,4,1431
+791/480 1 ok 1 4 res=[1,4,1,0] controls=4 wrong=0 blowup=0 cross=[36,10620,0] ms=133,65,4,2738
+991/480 1 skip ["rank",[0,2]]
+991/480 2 skip ["rank",[0,2]]
+991/480 3 skip nopt
+991/480 4 skip nopt
+991/480 5 skip nopt
+991/480 6 skip nopt
+821/540 1 skip ["rank",[0,2]]
+821/540 2 skip ["rank",[0,2]]
+821/540 3 ok 2 4 res=[1,8,2,0] controls=2 wrong=0 blowup=1 cross=[100,29500,0] ms=26,79,16,95919
+199/600 1 ok 2 4 res=[1,2,1,0] controls=4 wrong=0 blowup=0 cross=[100,29400,0] ms=23,89,5,232989
+481/600 1 ok 3 4 res=[1,24,6,0] controls=4 wrong=0 blowup=4 cross=[500,146500,0] ms=33,79,424,349999
+617/600 1 fail cypari2.handle_error.PariError:_subst:_impossible_inverse_in_Fl_inv:_Mod(0,_167)
+617/600 2 ok 2 4 res=[1,4,3,0] controls=4 wrong=0 blowup=4 cross=[100,29700,0] ms=33,87,12,320864
+839/600 1 ok 1 4 res=[1,2,1,0] controls=2 wrong=0 blowup=0 cross=[36,10692,0] ms=48,76,3,1614
+887/624 1 ok 1 4 res=[1,2,3,0] controls=2 wrong=0 blowup=0 cross=[36,10692,0] ms=136,81,4,1569
+961/672 1 ok 1 4 res=[1,2,2,0] controls=2 wrong=0 blowup=0 cross=[36,10656,0] ms=56,73,3,1563
+673/720 1 ok 1 4 res=[1,2,3,0] controls=2 wrong=0 blowup=0 cross=[36,10656,0] ms=17,75,3,1451
+911/720 1 skip ["rank",[0,2]]
+911/720 2 skip ["rank",[0,2]]
+911/720 3 skip nopt
+911/720 4 skip nopt
+911/720 5 skip nopt
+911/720 6 skip nopt
+217/816 1 ok 1 4 res=[1,4,3,0] controls=2 wrong=0 blowup=0 cross=[36,10656,0] ms=50,66,8,1728
+983/816 1 ok 2 4 res=[1,2,1,0] controls=2 wrong=0 blowup=1 cross=[100,29600,0] ms=30,74,6,208167
+409/840 1 ok 2 4 res=[1,8,3,0] controls=2 wrong=0 blowup=2 cross=[100,29600,0] ms=25,85,39,326481
+809/840 1 ok 1 4 res=[1,2,2,0] controls=2 wrong=0 blowup=0 cross=[36,10620,0] ms=26,77,5,2298
+785/888 1 ok 2 4 res=[1,24,9,0] controls=4 wrong=0 blowup=4 cross=[100,29500,0] ms=28,75,33,315680
+745/912 1 ok 2 4 res=[1,4,2,0] controls=2 wrong=0 blowup=2 cross=[100,29600,0] ms=23,78,8,37363
+725/948 1 ok 1 4 res=[1,2,1,0] controls=4 wrong=0 blowup=0 cross=[36,10620,0] ms=19,67,4,1732
+439/960 1 ok 1 4 res=[1,2,1,0] controls=2 wrong=0 blowup=0 cross=[36,10692,0] ms=337,66,3,2328
+719/960 1 ok 2 4 res=[1,2,1,0] controls=2 wrong=0 blowup=2 cross=[100,29600,0] ms=29,71,4,123886
+919/960 1 ok 1 4 res=[1,2,1,0] controls=2 wrong=0 blowup=0 cross=[36,10692,0] ms=49,60,4,1585

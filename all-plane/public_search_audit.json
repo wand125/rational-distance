@@ -1,0 +1,43 @@
+{
+  "source_record": "https://zenodo.org/records/19613981",
+  "source_zip": "https://zenodo.org/records/19613981/files/reports_v1_2.zip?download=1",
+  "source_zip_published_md5": "ddc41e2c31d8a5a80b45c2179662b43f",
+  "denominator_counter": {
+    "q_max": 100000,
+    "stage": "total_tested increment: after mod-3 and gcd, before mod-5/7 and square tests",
+    "required_total_tested": 21330687731144,
+    "report_combinations_tested": 1476656036,
+    "numbers_agree": false,
+    "caveat": "Comparison identifies an inconsistency if the report's combinations field is the supplied script's total_tested field. No search-run log was found in the ZIP.",
+    "formula_brute_checks": [
+      {
+        "q_max": 30,
+        "formula": 576,
+        "direct": 576
+      },
+      {
+        "q_max": 300,
+        "formula": 576164,
+        "direct": 576164
+      }
+    ]
+  },
+  "leg_index_counterexample": {
+    "leg_bound": 5000000,
+    "published_m_cap": 2237,
+    "primitive_euclid_parameters": [
+      2238,
+      925
+    ],
+    "primitive_triple": [
+      4153019,
+      4140300,
+      5864269
+    ],
+    "both_legs_within_bound": true,
+    "m_beyond_published_cap": true,
+    "conclusion": "The published generator does not index every Pythagorean triple with both legs within the stated bound.",
+    "caveat": "This is not a four-distance point and does not show that the search missed an actual solution."
+  },
+  "source_zip_observed_md5": "ddc41e2c31d8a5a80b45c2179662b43f"
+}

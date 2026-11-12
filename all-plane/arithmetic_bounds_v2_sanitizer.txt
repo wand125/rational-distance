@@ -1,0 +1,1 @@
+Range audit passed: N=1999992,2000000,2097151; extreme K; wide integer square roots; positive exterior point; 7 factors/128 CRT residues. 3 additional positive three-distance reconstructions.

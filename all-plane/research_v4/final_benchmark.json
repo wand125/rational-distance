@@ -1,0 +1,3116 @@
+{
+  "description": "Alternating single-process timing; exact integers and no CSV output in timed runs.",
+  "compiler": "g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0",
+  "source_sha256": {
+    "all_plane_gap_v4.cpp": "80a382b9c131f3fe299dccf972931e5c8f3428cddd8b2155dae09f37cf9bd160",
+    "all_plane_gap_v3.cpp": "d01f7a5b2e8d18c579121e045fdb797e52e28febc4e358a5bdd3f31001302639",
+    "all_plane_sieved.cpp": "0351d243dcfbfec64a4198f5d04c4131a526f60709cae4c19e9b702ff11adbe1",
+    "research_v4_local/lifted_projection.hpp": "613da7bfd956e052feaa63f0c4426cd59159f5533a512cb4966865420390efc8",
+    "research_v4_math/critical_extension.hpp": "ed1b233d15c43542e1358d02ddc5570a0e6d504f026b786a697c9d5886f35366"
+  },
+  "binary_sha256": {
+    "all_plane_gap_v3": "33a4e757d25a6df162ce76bc0b6765fa5799ff1373db4535ec7edb4c4dfd924c",
+    "all_plane_gap_v4": "00ad72e1999602f0c0c3d39de135ac5ed0670609221060e74d989b06fdda0083"
+  },
+  "mark_tuning": [
+    {
+      "round": 1,
+      "mode": "fast_mark",
+      "command": [
+        "/workspace/scratch/48c819cf1cc9/rational_square_search/all_plane_gap_v4",
+        "100000"
+      ],
+      "result": {
+        "scope": "whole_plane",
+        "generator": "gap_CRT_v4",
+        "max_minimal_coordinate_denominator": 100000,
+        "min_denominator": 1,
+        "reference_v3": false,
+        "gamma_stage": "late",
+        "skip_redundant19": true,
+        "additional_filters": true,
+        "endpoint_pruning": true,
+        "fifth_power_condition": "early",
+        "prime_power_projections": true,
+        "critical_extension": true,
+        "fast_fifth_mark": true,
+        "sides": 4166,
+        "dense_even_pairs": 1736059002776,
+        "gap_rows": 104162498,
+        "local_gap_rows": 14850588,
+        "difference_gap_rows": 3166381,
+        "critical_gap_rows": 3130770,
+        "endpoint_empty_rows": 793,
+        "crt_residue_choices": 35153034,
+        "generated_pairs": 51095175,
+        "valuation_pairs": 21207533,
+        "gamma_early_rejected": 0,
+        "gamma_lifted_progressions": 0,
+        "gamma_lift_residues": 0,
+        "examined_generation_rejections": 0,
+        "local_pairs": 18737,
+        "additional_pairs": 9969,
+        "additional_rejected": 8768,
+        "scale_pairs": 8729,
+        "gamma_pairs": 8710,
+        "gamma_rejected": 19,
+        "critical_projection_pairs": 8710,
+        "critical_projection_rejected": 0,
+        "exact_parameter_pairs": 8710,
+        "square_discriminants": 8,
+        "linear_pairs": 0,
+        "primitive_three_candidates": 7,
+        "solutions": 0,
+        "seconds_setup": 0.01086,
+        "seconds_search": 1.37945,
+        "seconds_total_excluding_validation": 1.39031
+      }
+    },
+    {
+      "round": 1,
+      "mode": "direct_mark",
+      "command": [
+        "/workspace/scratch/48c819cf1cc9/rational_square_search/all_plane_gap_v4",
+        "100000",
+        "--slow-five-adic-mark"
+      ],
+      "result": {
+        "scope": "whole_plane",
+        "generator": "gap_CRT_v4",
+        "max_minimal_coordinate_denominator": 100000,
+        "min_denominator": 1,
+        "reference_v3": false,
+        "gamma_stage": "late",
+        "skip_redundant19": true,
+        "additional_filters": true,
+        "endpoint_pruning": true,
+        "fifth_power_condition": "early",
+        "prime_power_projections": true,
+        "critical_extension": true,
+        "fast_fifth_mark": false,
+        "sides": 4166,
+        "dense_even_pairs": 1736059002776,
+        "gap_rows": 104162498,
+        "local_gap_rows": 14850588,
+        "difference_gap_rows": 3166381,
+        "critical_gap_rows": 3130770,
+        "endpoint_empty_rows": 793,
+        "crt_residue_choices": 35153034,
+        "generated_pairs": 51095175,
+        "valuation_pairs": 21207533,
+        "gamma_early_rejected": 0,
+        "gamma_lifted_progressions": 0,
+        "gamma_lift_residues": 0,
+        "examined_generation_rejections": 0,
+        "local_pairs": 18737,
+        "additional_pairs": 9969,
+        "additional_rejected": 8768,
+        "scale_pairs": 8729,
+        "gamma_pairs": 8710,
+        "gamma_rejected": 19,
+        "critical_projection_pairs": 8710,
+        "critical_projection_rejected": 0,
+        "exact_parameter_pairs": 8710,
+        "square_discriminants": 8,
+        "linear_pairs": 0,
+        "primitive_three_candidates": 7,
+        "solutions": 0,
+        "seconds_setup": 0.0121926,
+        "seconds_search": 1.44494,
+        "seconds_total_excluding_validation": 1.45714
+      }
+    },
+    {
+      "round": 1,
+      "mode": "late_fifth",
+      "command": [
+        "/workspace/scratch/48c819cf1cc9/rational_square_search/all_plane_gap_v4",
+        "100000",
+        "--five-adic-late"
+      ],
+      "result": {
+        "scope": "whole_plane",
+        "generator": "gap_CRT_v4",
+        "max_minimal_coordinate_denominator": 100000,
+        "min_denominator": 1,
+        "reference_v3": false,
+        "gamma_stage": "late",
+        "skip_redundant19": true,
+        "additional_filters": true,
+        "endpoint_pruning": true,
+        "fifth_power_condition": "late",
+        "prime_power_projections": true,
+        "critical_extension": true,
+        "fast_fifth_mark": false,
+        "sides": 4166,
+        "dense_even_pairs": 1736059002776,
+        "gap_rows": 104162498,
+        "local_gap_rows": 14850588,
+        "difference_gap_rows": 3166381,
+        "critical_gap_rows": 3130770,
+        "endpoint_empty_rows": 793,
+        "crt_residue_choices": 35153034,
+        "generated_pairs": 51095175,
+        "valuation_pairs": 29371945,
+        "gamma_early_rejected": 0,
+        "gamma_lifted_progressions": 0,
+        "gamma_lift_residues": 0,
+        "examined_generation_rejections": 0,
+        "local_pairs": 24160,
+        "additional_pairs": 9969,
+        "additional_rejected": 14191,
+        "scale_pairs": 8729,
+        "gamma_pairs": 8710,
+        "gamma_rejected": 19,
+        "critical_projection_pairs": 8710,
+        "critical_projection_rejected": 0,
+        "exact_parameter_pairs": 8710,
+        "square_discriminants": 8,
+        "linear_pairs": 0,
+        "primitive_three_candidates": 7,
+        "solutions": 0,
+        "seconds_setup": 0.012178,
+        "seconds_search": 1.46824,
+        "seconds_total_excluding_validation": 1.48041
+      }
+    },
+    {
+      "round": 2,
+      "mode": "late_fifth",
+      "command": [
+        "/workspace/scratch/48c819cf1cc9/rational_square_search/all_plane_gap_v4",
+        "100000",
+        "--five-adic-late"
+      ],
+      "result": {
+        "scope": "whole_plane",
+        "generator": "gap_CRT_v4",
+        "max_minimal_coordinate_denominator": 100000,
+        "min_denominator": 1,
+        "reference_v3": false,
+        "gamma_stage": "late",
+        "skip_redundant19": true,
+        "additional_filters": true,
+        "endpoint_pruning": true,
+        "fifth_power_condition": "late",
+        "prime_power_projections": true,
+        "critical_extension": true,
+        "fast_fifth_mark": false,
+        "sides": 4166,
+        "dense_even_pairs": 1736059002776,
+        "gap_rows": 104162498,
+        "local_gap_rows": 14850588,
+        "difference_gap_rows": 3166381,
+        "critical_gap_rows": 3130770,
+        "endpoint_empty_rows": 793,
+        "crt_residue_choices": 35153034,
+        "generated_pairs": 51095175,
+        "valuation_pairs": 29371945,
+        "gamma_early_rejected": 0,
+        "gamma_lifted_progressions": 0,
+        "gamma_lift_residues": 0,
+        "examined_generation_rejections": 0,
+        "local_pairs": 24160,
+        "additional_pairs": 9969,
+        "additional_rejected": 14191,
+        "scale_pairs": 8729,
+        "gamma_pairs": 8710,
+        "gamma_rejected": 19,
+        "critical_projection_pairs": 8710,
+        "critical_projection_rejected": 0,
+        "exact_parameter_pairs": 8710,
+        "square_discriminants": 8,
+        "linear_pairs": 0,
+        "primitive_three_candidates": 7,
+        "solutions": 0,
+        "seconds_setup": 0.00982599,
+        "seconds_search": 1.4504,
+        "seconds_total_excluding_validation": 1.46022
+      }
+    },
+    {
+      "round": 2,
+      "mode": "direct_mark",
+      "command": [
+        "/workspace/scratch/48c819cf1cc9/rational_square_search/all_plane_gap_v4",
+        "100000",
+        "--slow-five-adic-mark"
+      ],
+      "result": {
+        "scope": "whole_plane",
+        "generator": "gap_CRT_v4",
+        "max_minimal_coordinate_denominator": 100000,
+        "min_denominator": 1,
+        "reference_v3": false,
+        "gamma_stage": "late",
+        "skip_redundant19": true,
+        "additional_filters": true,
+        "endpoint_pruning": true,
+        "fifth_power_condition": "early",
+        "prime_power_projections": true,
+        "critical_extension": true,
+        "fast_fifth_mark": false,
+        "sides": 4166,
+        "dense_even_pairs": 1736059002776,
+        "gap_rows": 104162498,
+        "local_gap_rows": 14850588,
+        "difference_gap_rows": 3166381,
+        "critical_gap_rows": 3130770,
+        "endpoint_empty_rows": 793,
+        "crt_residue_choices": 35153034,
+        "generated_pairs": 51095175,
+        "valuation_pairs": 21207533,
+        "gamma_early_rejected": 0,
+        "gamma_lifted_progressions": 0,
+        "gamma_lift_residues": 0,
+        "examined_generation_rejections": 0,
+        "local_pairs": 18737,
+        "additional_pairs": 9969,
+        "additional_rejected": 8768,
+        "scale_pairs": 8729,
+        "gamma_pairs": 8710,
+        "gamma_rejected": 19,
+        "critical_projection_pairs": 8710,
+        "critical_projection_rejected": 0,
+        "exact_parameter_pairs": 8710,
+        "square_discriminants": 8,
+        "linear_pairs": 0,
+        "primitive_three_candidates": 7,
+        "solutions": 0,
+        "seconds_setup": 0.0107021,
+        "seconds_search": 1.5918,
+        "seconds_total_excluding_validation": 1.60251
+      }
+    },
+    {
+      "round": 2,
+      "mode": "fast_mark",
+      "command": [
+        "/workspace/scratch/48c819cf1cc9/rational_square_search/all_plane_gap_v4",
+        "100000"
+      ],
+      "result": {
+        "scope": "whole_plane",
+        "generator": "gap_CRT_v4",
+        "max_minimal_coordinate_denominator": 100000,
+        "min_denominator": 1,
+        "reference_v3": false,
+        "gamma_stage": "late",
+        "skip_redundant19": true,
+        "additional_filters": true,
+        "endpoint_pruning": true,
+        "fifth_power_condition": "early",
+        "prime_power_projections": true,
+        "critical_extension": true,
+        "fast_fifth_mark": true,
+        "sides": 4166,
+        "dense_even_pairs": 1736059002776,
+        "gap_rows": 104162498,
+        "local_gap_rows": 14850588,
+        "difference_gap_rows": 3166381,
+        "critical_gap_rows": 3130770,
+        "endpoint_empty_rows": 793,
+        "crt_residue_choices": 35153034,
+        "generated_pairs": 51095175,
+        "valuation_pairs": 21207533,
+        "gamma_early_rejected": 0,
+        "gamma_lifted_progressions": 0,
+        "gamma_lift_residues": 0,
+        "examined_generation_rejections": 0,
+        "local_pairs": 18737,
+        "additional_pairs": 9969,
+        "additional_rejected": 8768,
+        "scale_pairs": 8729,
+        "gamma_pairs": 8710,
+        "gamma_rejected": 19,
+        "critical_projection_pairs": 8710,
+        "critical_projection_rejected": 0,
+        "exact_parameter_pairs": 8710,
+        "square_discriminants": 8,
+        "linear_pairs": 0,
+        "primitive_three_candidates": 7,
+        "solutions": 0,
+        "seconds_setup": 0.0102131,
+        "seconds_search": 1.43291,
+        "seconds_total_excluding_validation": 1.44312
+      }
+    },
+    {
+      "round": 3,
+      "mode": "direct_mark",
+      "command": [
+        "/workspace/scratch/48c819cf1cc9/rational_square_search/all_plane_gap_v4",
+        "100000",
+        "--slow-five-adic-mark"
+      ],
+      "result": {
+        "scope": "whole_plane",
+        "generator": "gap_CRT_v4",
+        "max_minimal_coordinate_denominator": 100000,
+        "min_denominator": 1,
+        "reference_v3": false,
+        "gamma_stage": "late",
+        "skip_redundant19": true,
+        "additional_filters": true,
+        "endpoint_pruning": true,
+        "fifth_power_condition": "early",
+        "prime_power_projections": true,
+        "critical_extension": true,
+        "fast_fifth_mark": false,
+        "sides": 4166,
+        "dense_even_pairs": 1736059002776,
+        "gap_rows": 104162498,
+        "local_gap_rows": 14850588,
+        "difference_gap_rows": 3166381,
+        "critical_gap_rows": 3130770,
+        "endpoint_empty_rows": 793,
+        "crt_residue_choices": 35153034,
+        "generated_pairs": 51095175,
+        "valuation_pairs": 21207533,
+        "gamma_early_rejected": 0,
+        "gamma_lifted_progressions": 0,
+        "gamma_lift_residues": 0,
+        "examined_generation_rejections": 0,
+        "local_pairs": 18737,
+        "additional_pairs": 9969,
+        "additional_rejected": 8768,
+        "scale_pairs": 8729,
+        "gamma_pairs": 8710,
+        "gamma_rejected": 19,
+        "critical_projection_pairs": 8710,
+        "critical_projection_rejected": 0,
+        "exact_parameter_pairs": 8710,
+        "square_discriminants": 8,
+        "linear_pairs": 0,
+        "primitive_three_candidates": 7,
+        "solutions": 0,
+        "seconds_setup": 0.0120506,
+        "seconds_search": 1.50811,
+        "seconds_total_excluding_validation": 1.52016
+      }
+    },
+    {
+      "round": 3,
+      "mode": "fast_mark",
+      "command": [
+        "/workspace/scratch/48c819cf1cc9/rational_square_search/all_plane_gap_v4",
+        "100000"
+      ],
+      "result": {
+        "scope": "whole_plane",
+        "generator": "gap_CRT_v4",
+        "max_minimal_coordinate_denominator": 100000,
+        "min_denominator": 1,
+        "reference_v3": false,
+        "gamma_stage": "late",
+        "skip_redundant19": true,
+        "additional_filters": true,
+        "endpoint_pruning": true,
+        "fifth_power_condition": "early",
+        "prime_power_projections": true,
+        "critical_extension": true,
+        "fast_fifth_mark": true,
+        "sides": 4166,
+        "dense_even_pairs": 1736059002776,
+        "gap_rows": 104162498,
+        "local_gap_rows": 14850588,
+        "difference_gap_rows": 3166381,
+        "critical_gap_rows": 3130770,
+        "endpoint_empty_rows": 793,
+        "crt_residue_choices": 35153034,
+        "generated_pairs": 51095175,
+        "valuation_pairs": 21207533,
+        "gamma_early_rejected": 0,
+        "gamma_lifted_progressions": 0,
+        "gamma_lift_residues": 0,
+        "examined_generation_rejections": 0,
+        "local_pairs": 18737,
+        "additional_pairs": 9969,
+        "additional_rejected": 8768,
+        "scale_pairs": 8729,
+        "gamma_pairs": 8710,
+        "gamma_rejected": 19,
+        "critical_projection_pairs": 8710,
+        "critical_projection_rejected": 0,
+        "exact_parameter_pairs": 8710,
+        "square_discriminants": 8,
+        "linear_pairs": 0,
+        "primitive_three_candidates": 7,
+        "solutions": 0,
+        "seconds_setup": 0.0103887,
+        "seconds_search": 1.40259,
+        "seconds_total_excluding_validation": 1.41298
+      }
+    },
+    {
+      "round": 3,
+      "mode": "late_fifth",
+      "command": [
+        "/workspace/scratch/48c819cf1cc9/rational_square_search/all_plane_gap_v4",
+        "100000",
+        "--five-adic-late"
+      ],
+      "result": {
+        "scope": "whole_plane",
+        "generator": "gap_CRT_v4",
+        "max_minimal_coordinate_denominator": 100000,
+        "min_denominator": 1,
+        "reference_v3": false,
+        "gamma_stage": "late",
+        "skip_redundant19": true,
+        "additional_filters": true,
+        "endpoint_pruning": true,
+        "fifth_power_condition": "late",
+        "prime_power_projections": true,
+        "critical_extension": true,
+        "fast_fifth_mark": false,
+        "sides": 4166,
+        "dense_even_pairs": 1736059002776,
+        "gap_rows": 104162498,
+        "local_gap_rows": 14850588,
+        "difference_gap_rows": 3166381,
+        "critical_gap_rows": 3130770,
+        "endpoint_empty_rows": 793,
+        "crt_residue_choices": 35153034,
+        "generated_pairs": 51095175,
+        "valuation_pairs": 29371945,
+        "gamma_early_rejected": 0,
+        "gamma_lifted_progressions": 0,
+        "gamma_lift_residues": 0,
+        "examined_generation_rejections": 0,
+        "local_pairs": 24160,
+        "additional_pairs": 9969,
+        "additional_rejected": 14191,
+        "scale_pairs": 8729,
+        "gamma_pairs": 8710,
+        "gamma_rejected": 19,
+        "critical_projection_pairs": 8710,
+        "critical_projection_rejected": 0,
+        "exact_parameter_pairs": 8710,
+        "square_discriminants": 8,
+        "linear_pairs": 0,
+        "primitive_three_candidates": 7,
+        "solutions": 0,
+        "seconds_setup": 0.00978972,
+        "seconds_search": 1.41704,
+        "seconds_total_excluding_validation": 1.42683
+      }
+    }
+  ],
+  "runs": [
+    {
+      "bound": 100000,
+      "round": 1,
+      "mode": "external_v3",
+      "command": [
+        "/workspace/scratch/48c819cf1cc9/rational_square_search/all_plane_gap_v3",
+        "100000"
+      ],
+      "result": {
+        "scope": "whole_plane",
+        "generator": "gap_CRT_mod1045_v3",
+        "max_minimal_coordinate_denominator": 100000,
+        "min_denominator": 1,
+        "local_filters": true,
+        "difference_filters": true,
+        "valuation_filters": true,
+        "gap_valuation_precheck": false,
+        "scale_filter": true,
+        "gamma_filter": true,
+        "critical_5_13_content_filter": true,
+        "field_wheel19": true,
+        "critical_projections": true,
+        "sides": 4166,
+        "dense_even_pairs": 1736059002776,
+        "gap_rows": 104162498,
+        "local_gap_rows": 14850588,
+        "valuation_gap_rows": 14850588,
+        "difference_gap_rows": 3166729,
+        "critical_gap_rows": 3131118,
+        "crt_residue_choices": 35156673,
+        "generated_pairs": 54958196,
+        "valuation_pairs": 32731989,
+        "scale_pairs": 24325,
+        "local_pairs": 27865,
+        "gamma_pairs": 24278,
+        "gamma_rejected": 47,
+        "critical_projection_pairs": 24270,
+        "critical_projection_rejected": 8,
+        "exact_parameter_pairs": 24270,
+        "square_discriminants": 1452,
+        "linear_pairs": 0,
+        "primitive_three_candidates": 10,
+        "solutions": 0,
+        "seconds_setup": 0.00909895,
+        "seconds_search": 1.51866,
+        "seconds_total_excluding_validation": 1.52776,
+        "gamma_rejection_examples": [
+          {
+            "n": 10092,
+            "u": 10092,
+            "v": 4321,
+            "gamma_h": 29,
+            "gamma_u": 1,
+            "gamma_v": 29
+          },
+          {
+            "n": 16500,
+            "u": 4035,
+            "v": 2660,
+            "gamma_h": 1,
+            "gamma_u": 5,
+            "gamma_v": 5
+          },
+          {
+            "n": 16500,
+            "u": 16500,
+            "v": 13865,
+            "gamma_h": 5,
+            "gamma_u": 1,
+            "gamma_v": 5
+          },
+          {
+            "n": 19500,
+            "u": 7820,
+            "v": 0,
+            "gamma_h": 5,
+            "gamma_u": 5,
+            "gamma_v": 1
+          },
+          {
+            "n": 19500,
+            "u": 17355,
+            "v": 3375,
+            "gamma_h": 5,
+            "gamma_u": 5,
+            "gamma_v": 1
+          },
+          {
+            "n": 22500,
+            "u": 12500,
+            "v": 10665,
+            "gamma_h": 5,
+            "gamma_u": 1,
+            "gamma_v": 5
+          },
+          {
+            "n": 25500,
+            "u": 22000,
+            "v": 11545,
+            "gamma_h": 5,
+            "gamma_u": 1,
+            "gamma_v": 5
+          },
+          {
+            "n": 25500,
+            "u": 24340,
+            "v": 2125,
+            "gamma_h": 5,
+            "gamma_u": 5,
+            "gamma_v": 1
+          },
+          {
+            "n": 28500,
+            "u": 16625,
+            "v": 14565,
+            "gamma_h": 5,
+            "gamma_u": 1,
+            "gamma_v": 5
+          },
+          {
+            "n": 28500,
+            "u": 28500,
+            "v": 25505,
+            "gamma_h": 5,
+            "gamma_u": 1,
+            "gamma_v": 5
+          },
+          {
+            "n": 28500,
+            "u": 5045,
+            "v": 0,
+            "gamma_h": 5,
+            "gamma_u": 5,
+            "gamma_v": 1
+          },
+          {
+            "n": 28500,
+            "u": 15840,
+            "v": 6340,
+            "gamma_h": 1,
+            "gamma_u": 5,
+            "gamma_v": 5
+          },
+          {
+            "n": 31500,
+            "u": 16880,
+            "v": 10125,
+            "gamma_h": 5,
+            "gamma_u": 5,
+            "gamma_v": 1
+          },
+          {
+            "n": 31500,
+            "u": 18415,
+            "v": 5500,
+            "gamma_h": 5,
+            "gamma_u": 5,
+            "gamma_v": 1
+          },
+          {
+            "n": 33000,
+            "u": 28375,
+            "v": 25960,
+            "gamma_h": 5,
+            "gamma_u": 1,
+            "gamma_v": 5
+          },
+          {
+            "n": 33000,
+            "u": 21505,
+            "v": 18880,
+            "gamma_h": 1,
+            "gamma_u": 5,
+            "gamma_v": 5
+          },
+          {
+            "n": 33000,
+            "u": 33000,
+            "v": 28285,
+            "gamma_h": 5,
+            "gamma_u": 1,
+            "gamma_v": 5
+          },
+          {
+            "n": 33000,
+            "u": 33000,
+            "v": 25065,
+            "gamma_h": 5,
+            "gamma_u": 1,
+            "gamma_v": 5
+          },
+          {
+            "n": 33000,
+            "u": 12375,
+            "v": 3695,
+            "gamma_h": 5,
+            "gamma_u": 1,
+            "gamma_v": 5
+          },
+          {
+            "n": 33000,
+            "u": 19560,
+            "v": 7625,
+            "gamma_h": 5,
+            "gamma_u": 5,
+            "gamma_v": 1
+          }
+        ],
+        "critical_projection_rejection_examples": [
+          {
+            "n": 20808,
+            "u": 18904,
+            "v": 2295,
+            "prime": 17,
+            "z": 3
+          },
+          {
+            "n": 24276,
+            "u": 23273,
+            "v": 8636,
+            "prime": 17,
+            "z": 7
+          },
+          {
+            "n": 38148,
+            "u": 2720,
+            "v": 2244,
+            "prime": 17,
+            "z": 13
+          },
+          {
+            "n": 38148,
+            "u": 24123,
+            "v": 15759,
+            "prime": 17,
+            "z": 9
+          },
+          {
+            "n": 45084,
+            "u": 11713,
+            "v": 5236,
+            "prime": 17,
+            "z": 11
+          },
+          {
+            "n": 45084,
+            "u": 32045,
+            "v": 25568,
+            "prime": 17,
+            "z": 7
+          },
+          {
+            "n": 45084,
+            "u": 28475,
+            "v": 1292,
+            "prime": 17,
+            "z": 9
+          },
+          {
+            "n": 48552,
+            "u": 4981,
+            "v": 952,
+            "prime": 17,
+            "z": 13
+          }
+        ]
+      }
+    },
+    {
+      "bound": 100000,
+      "round": 1,
+      "mode": "v4_no_new_filters",
+      "command": [
+        "/workspace/scratch/48c819cf1cc9/rational_square_search/all_plane_gap_v4",
+        "100000",
+        "--no-new-filters"
+      ],
+      "result": {
+        "scope": "whole_plane",
+        "generator": "gap_CRT_v4",
+        "max_minimal_coordinate_denominator": 100000,
+        "min_denominator": 1,
+        "reference_v3": false,
+        "gamma_stage": "late",
+        "skip_redundant19": true,
+        "additional_filters": false,
+        "endpoint_pruning": false,
+        "fifth_power_condition": "off",
+        "prime_power_projections": false,
+        "critical_extension": false,
+        "fast_fifth_mark": false,
+        "sides": 4166,
+        "dense_even_pairs": 1736059002776,
+        "gap_rows": 104162498,
+        "local_gap_rows": 14850588,
+        "difference_gap_rows": 3166729,
+        "critical_gap_rows": 3131118,
+        "endpoint_empty_rows": 0,
+        "crt_residue_choices": 35156673,
+        "generated_pairs": 54958196,
+        "valuation_pairs": 32731989,
+        "gamma_early_rejected": 0,
+        "gamma_lifted_progressions": 0,
+        "gamma_lift_residues": 0,
+        "examined_generation_rejections": 0,
+        "local_pairs": 27865,
+        "additional_pairs": 27865,
+        "additional_rejected": 0,
+        "scale_pairs": 24325,
+        "gamma_pairs": 24278,
+        "gamma_rejected": 47,
+        "critical_projection_pairs": 24270,
+        "critical_projection_rejected": 8,
+        "exact_parameter_pairs": 24270,
+        "square_discriminants": 1452,
+        "linear_pairs": 0,
+        "primitive_three_candidates": 10,
+        "solutions": 0,
+        "seconds_setup": 0.0128203,
+        "seconds_search": 1.60847,
+        "seconds_total_excluding_validation": 1.62129
+      }
+    },
+    {
+      "bound": 100000,
+      "round": 1,
+      "mode": "v4_default",
+      "command": [
+        "/workspace/scratch/48c819cf1cc9/rational_square_search/all_plane_gap_v4",
+        "100000"
+      ],
+      "result": {
+        "scope": "whole_plane",
+        "generator": "gap_CRT_v4",
+        "max_minimal_coordinate_denominator": 100000,
+        "min_denominator": 1,
+        "reference_v3": false,
+        "gamma_stage": "late",
+        "skip_redundant19": true,
+        "additional_filters": true,
+        "endpoint_pruning": true,
+        "fifth_power_condition": "early",
+        "prime_power_projections": true,
+        "critical_extension": true,
+        "fast_fifth_mark": true,
+        "sides": 4166,
+        "dense_even_pairs": 1736059002776,
+        "gap_rows": 104162498,
+        "local_gap_rows": 14850588,
+        "difference_gap_rows": 3166381,
+        "critical_gap_rows": 3130770,
+        "endpoint_empty_rows": 793,
+        "crt_residue_choices": 35153034,
+        "generated_pairs": 51095175,
+        "valuation_pairs": 21207533,
+        "gamma_early_rejected": 0,
+        "gamma_lifted_progressions": 0,
+        "gamma_lift_residues": 0,
+        "examined_generation_rejections": 0,
+        "local_pairs": 18737,
+        "additional_pairs": 9969,
+        "additional_rejected": 8768,
+        "scale_pairs": 8729,
+        "gamma_pairs": 8710,
+        "gamma_rejected": 19,
+        "critical_projection_pairs": 8710,
+        "critical_projection_rejected": 0,
+        "exact_parameter_pairs": 8710,
+        "square_discriminants": 8,
+        "linear_pairs": 0,
+        "primitive_three_candidates": 7,
+        "solutions": 0,
+        "seconds_setup": 0.0117712,
+        "seconds_search": 1.36068,
+        "seconds_total_excluding_validation": 1.37245
+      }
+    },
+    {
+      "bound": 100000,
+      "round": 2,
+      "mode": "v4_default",
+      "command": [
+        "/workspace/scratch/48c819cf1cc9/rational_square_search/all_plane_gap_v4",
+        "100000"
+      ],
+      "result": {
+        "scope": "whole_plane",
+        "generator": "gap_CRT_v4",
+        "max_minimal_coordinate_denominator": 100000,
+        "min_denominator": 1,
+        "reference_v3": false,
+        "gamma_stage": "late",
+        "skip_redundant19": true,
+        "additional_filters": true,
+        "endpoint_pruning": true,
+        "fifth_power_condition": "early",
+        "prime_power_projections": true,
+        "critical_extension": true,
+        "fast_fifth_mark": true,
+        "sides": 4166,
+        "dense_even_pairs": 1736059002776,
+        "gap_rows": 104162498,
+        "local_gap_rows": 14850588,
+        "difference_gap_rows": 3166381,
+        "critical_gap_rows": 3130770,
+        "endpoint_empty_rows": 793,
+        "crt_residue_choices": 35153034,
+        "generated_pairs": 51095175,
+        "valuation_pairs": 21207533,
+        "gamma_early_rejected": 0,
+        "gamma_lifted_progressions": 0,
+        "gamma_lift_residues": 0,
+        "examined_generation_rejections": 0,
+        "local_pairs": 18737,
+        "additional_pairs": 9969,
+        "additional_rejected": 8768,
+        "scale_pairs": 8729,
+        "gamma_pairs": 8710,
+        "gamma_rejected": 19,
+        "critical_projection_pairs": 8710,
+        "critical_projection_rejected": 0,
+        "exact_parameter_pairs": 8710,
+        "square_discriminants": 8,
+        "linear_pairs": 0,
+        "primitive_three_candidates": 7,
+        "solutions": 0,
+        "seconds_setup": 0.0132419,
+        "seconds_search": 1.51159,
+        "seconds_total_excluding_validation": 1.52483
+      }
+    },
+    {
+      "bound": 100000,
+      "round": 2,
+      "mode": "v4_no_new_filters",
+      "command": [
+        "/workspace/scratch/48c819cf1cc9/rational_square_search/all_plane_gap_v4",
+        "100000",
+        "--no-new-filters"
+      ],
+      "result": {
+        "scope": "whole_plane",
+        "generator": "gap_CRT_v4",
+        "max_minimal_coordinate_denominator": 100000,
+        "min_denominator": 1,
+        "reference_v3": false,
+        "gamma_stage": "late",
+        "skip_redundant19": true,
+        "additional_filters": false,
+        "endpoint_pruning": false,
+        "fifth_power_condition": "off",
+        "prime_power_projections": false,
+        "critical_extension": false,
+        "fast_fifth_mark": false,
+        "sides": 4166,
+        "dense_even_pairs": 1736059002776,
+        "gap_rows": 104162498,
+        "local_gap_rows": 14850588,
+        "difference_gap_rows": 3166729,
+        "critical_gap_rows": 3131118,
+        "endpoint_empty_rows": 0,
+        "crt_residue_choices": 35156673,
+        "generated_pairs": 54958196,
+        "valuation_pairs": 32731989,
+        "gamma_early_rejected": 0,
+        "gamma_lifted_progressions": 0,
+        "gamma_lift_residues": 0,
+        "examined_generation_rejections": 0,
+        "local_pairs": 27865,
+        "additional_pairs": 27865,
+        "additional_rejected": 0,
+        "scale_pairs": 24325,
+        "gamma_pairs": 24278,
+        "gamma_rejected": 47,
+        "critical_projection_pairs": 24270,
+        "critical_projection_rejected": 8,
+        "exact_parameter_pairs": 24270,
+        "square_discriminants": 1452,
+        "linear_pairs": 0,
+        "primitive_three_candidates": 10,
+        "solutions": 0,
+        "seconds_setup": 0.0109009,
+        "seconds_search": 1.61191,
+        "seconds_total_excluding_validation": 1.62281
+      }
+    },
+    {
+      "bound": 100000,
+      "round": 2,
+      "mode": "external_v3",
+      "command": [
+        "/workspace/scratch/48c819cf1cc9/rational_square_search/all_plane_gap_v3",
+        "100000"
+      ],
+      "result": {
+        "scope": "whole_plane",
+        "generator": "gap_CRT_mod1045_v3",
+        "max_minimal_coordinate_denominator": 100000,
+        "min_denominator": 1,
+        "local_filters": true,
+        "difference_filters": true,
+        "valuation_filters": true,
+        "gap_valuation_precheck": false,
+        "scale_filter": true,
+        "gamma_filter": true,
+        "critical_5_13_content_filter": true,
+        "field_wheel19": true,
+        "critical_projections": true,
+        "sides": 4166,
+        "dense_even_pairs": 1736059002776,
+        "gap_rows": 104162498,
+        "local_gap_rows": 14850588,
+        "valuation_gap_rows": 14850588,
+        "difference_gap_rows": 3166729,
+        "critical_gap_rows": 3131118,
+        "crt_residue_choices": 35156673,
+        "generated_pairs": 54958196,
+        "valuation_pairs": 32731989,
+        "scale_pairs": 24325,
+        "local_pairs": 27865,
+        "gamma_pairs": 24278,
+        "gamma_rejected": 47,
+        "critical_projection_pairs": 24270,
+        "critical_projection_rejected": 8,
+        "exact_parameter_pairs": 24270,
+        "square_discriminants": 1452,
+        "linear_pairs": 0,
+        "primitive_three_candidates": 10,
+        "solutions": 0,
+        "seconds_setup": 0.0103286,
+        "seconds_search": 1.62568,
+        "seconds_total_excluding_validation": 1.636,
+        "gamma_rejection_examples": [
+          {
+            "n": 10092,
+            "u": 10092,
+            "v": 4321,
+            "gamma_h": 29,
+            "gamma_u": 1,
+            "gamma_v": 29
+          },
+          {
+            "n": 16500,
+            "u": 4035,
+            "v": 2660,
+            "gamma_h": 1,
+            "gamma_u": 5,
+            "gamma_v": 5
+          },
+          {
+            "n": 16500,
+            "u": 16500,
+            "v": 13865,
+            "gamma_h": 5,
+            "gamma_u": 1,
+            "gamma_v": 5
+          },
+          {
+            "n": 19500,
+            "u": 7820,
+            "v": 0,
+            "gamma_h": 5,
+            "gamma_u": 5,
+            "gamma_v": 1
+          },
+          {
+            "n": 19500,
+            "u": 17355,
+            "v": 3375,
+            "gamma_h": 5,
+            "gamma_u": 5,
+            "gamma_v": 1
+          },
+          {
+            "n": 22500,
+            "u": 12500,
+            "v": 10665,
+            "gamma_h": 5,
+            "gamma_u": 1,
+            "gamma_v": 5
+          },
+          {
+            "n": 25500,
+            "u": 22000,
+            "v": 11545,
+            "gamma_h": 5,
+            "gamma_u": 1,
+            "gamma_v": 5
+          },
+          {
+            "n": 25500,
+            "u": 24340,
+            "v": 2125,
+            "gamma_h": 5,
+            "gamma_u": 5,
+            "gamma_v": 1
+          },
+          {
+            "n": 28500,
+            "u": 16625,
+            "v": 14565,
+            "gamma_h": 5,
+            "gamma_u": 1,
+            "gamma_v": 5
+          },
+          {
+            "n": 28500,
+            "u": 28500,
+            "v": 25505,
+            "gamma_h": 5,
+            "gamma_u": 1,
+            "gamma_v": 5
+          },
+          {
+            "n": 28500,
+            "u": 5045,
+            "v": 0,
+            "gamma_h": 5,
+            "gamma_u": 5,
+            "gamma_v": 1
+          },
+          {
+            "n": 28500,
+            "u": 15840,
+            "v": 6340,
+            "gamma_h": 1,
+            "gamma_u": 5,
+            "gamma_v": 5
+          },
+          {
+            "n": 31500,
+            "u": 16880,
+            "v": 10125,
+            "gamma_h": 5,
+            "gamma_u": 5,
+            "gamma_v": 1
+          },
+          {
+            "n": 31500,
+            "u": 18415,
+            "v": 5500,
+            "gamma_h": 5,
+            "gamma_u": 5,
+            "gamma_v": 1
+          },
+          {
+            "n": 33000,
+            "u": 28375,
+            "v": 25960,
+            "gamma_h": 5,
+            "gamma_u": 1,
+            "gamma_v": 5
+          },
+          {
+            "n": 33000,
+            "u": 21505,
+            "v": 18880,
+            "gamma_h": 1,
+            "gamma_u": 5,
+            "gamma_v": 5
+          },
+          {
+            "n": 33000,
+            "u": 33000,
+            "v": 28285,
+            "gamma_h": 5,
+            "gamma_u": 1,
+            "gamma_v": 5
+          },
+          {
+            "n": 33000,
+            "u": 33000,
+            "v": 25065,
+            "gamma_h": 5,
+            "gamma_u": 1,
+            "gamma_v": 5
+          },
+          {
+            "n": 33000,
+            "u": 12375,
+            "v": 3695,
+            "gamma_h": 5,
+            "gamma_u": 1,
+            "gamma_v": 5
+          },
+          {
+            "n": 33000,
+            "u": 19560,
+            "v": 7625,
+            "gamma_h": 5,
+            "gamma_u": 5,
+            "gamma_v": 1
+          }
+        ],
+        "critical_projection_rejection_examples": [
+          {
+            "n": 20808,
+            "u": 18904,
+            "v": 2295,
+            "prime": 17,
+            "z": 3
+          },
+          {
+            "n": 24276,
+            "u": 23273,
+            "v": 8636,
+            "prime": 17,
+            "z": 7
+          },
+          {
+            "n": 38148,
+            "u": 2720,
+            "v": 2244,
+            "prime": 17,
+            "z": 13
+          },
+          {
+            "n": 38148,
+            "u": 24123,
+            "v": 15759,
+            "prime": 17,
+            "z": 9
+          },
+          {
+            "n": 45084,
+            "u": 11713,
+            "v": 5236,
+            "prime": 17,
+            "z": 11
+          },
+          {
+            "n": 45084,
+            "u": 32045,
+            "v": 25568,
+            "prime": 17,
+            "z": 7
+          },
+          {
+            "n": 45084,
+            "u": 28475,
+            "v": 1292,
+            "prime": 17,
+            "z": 9
+          },
+          {
+            "n": 48552,
+            "u": 4981,
+            "v": 952,
+            "prime": 17,
+            "z": 13
+          }
+        ]
+      }
+    },
+    {
+      "bound": 100000,
+      "round": 3,
+      "mode": "v4_no_new_filters",
+      "command": [
+        "/workspace/scratch/48c819cf1cc9/rational_square_search/all_plane_gap_v4",
+        "100000",
+        "--no-new-filters"
+      ],
+      "result": {
+        "scope": "whole_plane",
+        "generator": "gap_CRT_v4",
+        "max_minimal_coordinate_denominator": 100000,
+        "min_denominator": 1,
+        "reference_v3": false,
+        "gamma_stage": "late",
+        "skip_redundant19": true,
+        "additional_filters": false,
+        "endpoint_pruning": false,
+        "fifth_power_condition": "off",
+        "prime_power_projections": false,
+        "critical_extension": false,
+        "fast_fifth_mark": false,
+        "sides": 4166,
+        "dense_even_pairs": 1736059002776,
+        "gap_rows": 104162498,
+        "local_gap_rows": 14850588,
+        "difference_gap_rows": 3166729,
+        "critical_gap_rows": 3131118,
+        "endpoint_empty_rows": 0,
+        "crt_residue_choices": 35156673,
+        "generated_pairs": 54958196,
+        "valuation_pairs": 32731989,
+        "gamma_early_rejected": 0,
+        "gamma_lifted_progressions": 0,
+        "gamma_lift_residues": 0,
+        "examined_generation_rejections": 0,
+        "local_pairs": 27865,
+        "additional_pairs": 27865,
+        "additional_rejected": 0,
+        "scale_pairs": 24325,
+        "gamma_pairs": 24278,
+        "gamma_rejected": 47,
+        "critical_projection_pairs": 24270,
+        "critical_projection_rejected": 8,
+        "exact_parameter_pairs": 24270,
+        "square_discriminants": 1452,
+        "linear_pairs": 0,
+        "primitive_three_candidates": 10,
+        "solutions": 0,
+        "seconds_setup": 0.012416,
+        "seconds_search": 1.56482,
+        "seconds_total_excluding_validation": 1.57724
+      }
+    },
+    {
+      "bound": 100000,
+      "round": 3,
+      "mode": "external_v3",
+      "command": [
+        "/workspace/scratch/48c819cf1cc9/rational_square_search/all_plane_gap_v3",
+        "100000"
+      ],
+      "result": {
+        "scope": "whole_plane",
+        "generator": "gap_CRT_mod1045_v3",
+        "max_minimal_coordinate_denominator": 100000,
+        "min_denominator": 1,
+        "local_filters": true,
+        "difference_filters": true,
+        "valuation_filters": true,
+        "gap_valuation_precheck": false,
+        "scale_filter": true,
+        "gamma_filter": true,
+        "critical_5_13_content_filter": true,
+        "field_wheel19": true,
+        "critical_projections": true,
+        "sides": 4166,
+        "dense_even_pairs": 1736059002776,
+        "gap_rows": 104162498,
+        "local_gap_rows": 14850588,
+        "valuation_gap_rows": 14850588,
+        "difference_gap_rows": 3166729,
+        "critical_gap_rows": 3131118,
+        "crt_residue_choices": 35156673,
+        "generated_pairs": 54958196,
+        "valuation_pairs": 32731989,
+        "scale_pairs": 24325,
+        "local_pairs": 27865,
+        "gamma_pairs": 24278,
+        "gamma_rejected": 47,
+        "critical_projection_pairs": 24270,
+        "critical_projection_rejected": 8,
+        "exact_parameter_pairs": 24270,
+        "square_discriminants": 1452,
+        "linear_pairs": 0,
+        "primitive_three_candidates": 10,
+        "solutions": 0,
+        "seconds_setup": 0.00913725,
+        "seconds_search": 1.73828,
+        "seconds_total_excluding_validation": 1.74742,
+        "gamma_rejection_examples": [
+          {
+            "n": 10092,
+            "u": 10092,
+            "v": 4321,
+            "gamma_h": 29,
+            "gamma_u": 1,
+            "gamma_v": 29
+          },
+          {
+            "n": 16500,
+            "u": 4035,
+            "v": 2660,
+            "gamma_h": 1,
+            "gamma_u": 5,
+            "gamma_v": 5
+          },
+          {
+            "n": 16500,
+            "u": 16500,
+            "v": 13865,
+            "gamma_h": 5,
+            "gamma_u": 1,
+            "gamma_v": 5
+          },
+          {
+            "n": 19500,
+            "u": 7820,
+            "v": 0,
+            "gamma_h": 5,
+            "gamma_u": 5,
+            "gamma_v": 1
+          },
+          {
+            "n": 19500,
+            "u": 17355,
+            "v": 3375,
+            "gamma_h": 5,
+            "gamma_u": 5,
+            "gamma_v": 1
+          },
+          {
+            "n": 22500,
+            "u": 12500,
+            "v": 10665,
+            "gamma_h": 5,
+            "gamma_u": 1,
+            "gamma_v": 5
+          },
+          {
+            "n": 25500,
+            "u": 22000,
+            "v": 11545,
+            "gamma_h": 5,
+            "gamma_u": 1,
+            "gamma_v": 5
+          },
+          {
+            "n": 25500,
+            "u": 24340,
+            "v": 2125,
+            "gamma_h": 5,
+            "gamma_u": 5,
+            "gamma_v": 1
+          },
+          {
+            "n": 28500,
+            "u": 16625,
+            "v": 14565,
+            "gamma_h": 5,
+            "gamma_u": 1,
+            "gamma_v": 5
+          },
+          {
+            "n": 28500,
+            "u": 28500,
+            "v": 25505,
+            "gamma_h": 5,
+            "gamma_u": 1,
+            "gamma_v": 5
+          },
+          {
+            "n": 28500,
+            "u": 5045,
+            "v": 0,
+            "gamma_h": 5,
+            "gamma_u": 5,
+            "gamma_v": 1
+          },
+          {
+            "n": 28500,
+            "u": 15840,
+            "v": 6340,
+            "gamma_h": 1,
+            "gamma_u": 5,
+            "gamma_v": 5
+          },
+          {
+            "n": 31500,
+            "u": 16880,
+            "v": 10125,
+            "gamma_h": 5,
+            "gamma_u": 5,
+            "gamma_v": 1
+          },
+          {
+            "n": 31500,
+            "u": 18415,
+            "v": 5500,
+            "gamma_h": 5,
+            "gamma_u": 5,
+            "gamma_v": 1
+          },
+          {
+            "n": 33000,
+            "u": 28375,
+            "v": 25960,
+            "gamma_h": 5,
+            "gamma_u": 1,
+            "gamma_v": 5
+          },
+          {
+            "n": 33000,
+            "u": 21505,
+            "v": 18880,
+            "gamma_h": 1,
+            "gamma_u": 5,
+            "gamma_v": 5
+          },
+          {
+            "n": 33000,
+            "u": 33000,
+            "v": 28285,
+            "gamma_h": 5,
+            "gamma_u": 1,
+            "gamma_v": 5
+          },
+          {
+            "n": 33000,
+            "u": 33000,
+            "v": 25065,
+            "gamma_h": 5,
+            "gamma_u": 1,
+            "gamma_v": 5
+          },
+          {
+            "n": 33000,
+            "u": 12375,
+            "v": 3695,
+            "gamma_h": 5,
+            "gamma_u": 1,
+            "gamma_v": 5
+          },
+          {
+            "n": 33000,
+            "u": 19560,
+            "v": 7625,
+            "gamma_h": 5,
+            "gamma_u": 5,
+            "gamma_v": 1
+          }
+        ],
+        "critical_projection_rejection_examples": [
+          {
+            "n": 20808,
+            "u": 18904,
+            "v": 2295,
+            "prime": 17,
+            "z": 3
+          },
+          {
+            "n": 24276,
+            "u": 23273,
+            "v": 8636,
+            "prime": 17,
+            "z": 7
+          },
+          {
+            "n": 38148,
+            "u": 2720,
+            "v": 2244,
+            "prime": 17,
+            "z": 13
+          },
+          {
+            "n": 38148,
+            "u": 24123,
+            "v": 15759,
+            "prime": 17,
+            "z": 9
+          },
+          {
+            "n": 45084,
+            "u": 11713,
+            "v": 5236,
+            "prime": 17,
+            "z": 11
+          },
+          {
+            "n": 45084,
+            "u": 32045,
+            "v": 25568,
+            "prime": 17,
+            "z": 7
+          },
+          {
+            "n": 45084,
+            "u": 28475,
+            "v": 1292,
+            "prime": 17,
+            "z": 9
+          },
+          {
+            "n": 48552,
+            "u": 4981,
+            "v": 952,
+            "prime": 17,
+            "z": 13
+          }
+        ]
+      }
+    },
+    {
+      "bound": 100000,
+      "round": 3,
+      "mode": "v4_default",
+      "command": [
+        "/workspace/scratch/48c819cf1cc9/rational_square_search/all_plane_gap_v4",
+        "100000"
+      ],
+      "result": {
+        "scope": "whole_plane",
+        "generator": "gap_CRT_v4",
+        "max_minimal_coordinate_denominator": 100000,
+        "min_denominator": 1,
+        "reference_v3": false,
+        "gamma_stage": "late",
+        "skip_redundant19": true,
+        "additional_filters": true,
+        "endpoint_pruning": true,
+        "fifth_power_condition": "early",
+        "prime_power_projections": true,
+        "critical_extension": true,
+        "fast_fifth_mark": true,
+        "sides": 4166,
+        "dense_even_pairs": 1736059002776,
+        "gap_rows": 104162498,
+        "local_gap_rows": 14850588,
+        "difference_gap_rows": 3166381,
+        "critical_gap_rows": 3130770,
+        "endpoint_empty_rows": 793,
+        "crt_residue_choices": 35153034,
+        "generated_pairs": 51095175,
+        "valuation_pairs": 21207533,
+        "gamma_early_rejected": 0,
+        "gamma_lifted_progressions": 0,
+        "gamma_lift_residues": 0,
+        "examined_generation_rejections": 0,
+        "local_pairs": 18737,
+        "additional_pairs": 9969,
+        "additional_rejected": 8768,
+        "scale_pairs": 8729,
+        "gamma_pairs": 8710,
+        "gamma_rejected": 19,
+        "critical_projection_pairs": 8710,
+        "critical_projection_rejected": 0,
+        "exact_parameter_pairs": 8710,
+        "square_discriminants": 8,
+        "linear_pairs": 0,
+        "primitive_three_candidates": 7,
+        "solutions": 0,
+        "seconds_setup": 0.0135722,
+        "seconds_search": 1.39991,
+        "seconds_total_excluding_validation": 1.41348
+      }
+    },
+    {
+      "bound": 200000,
+      "round": 1,
+      "mode": "external_v3",
+      "command": [
+        "/workspace/scratch/48c819cf1cc9/rational_square_search/all_plane_gap_v3",
+        "200000"
+      ],
+      "result": {
+        "scope": "whole_plane",
+        "generator": "gap_CRT_mod1045_v3",
+        "max_minimal_coordinate_denominator": 200000,
+        "min_denominator": 1,
+        "local_filters": true,
+        "difference_filters": true,
+        "valuation_filters": true,
+        "gap_valuation_precheck": false,
+        "scale_filter": true,
+        "gamma_filter": true,
+        "critical_5_13_content_filter": true,
+        "field_wheel19": true,
+        "critical_projections": true,
+        "sides": 8333,
+        "dense_even_pairs": 13890347222219,
+        "gap_rows": 416691665,
+        "local_gap_rows": 59433246,
+        "valuation_gap_rows": 59433246,
+        "difference_gap_rows": 12254403,
+        "critical_gap_rows": 12115660,
+        "crt_residue_choices": 146094714,
+        "generated_pairs": 240853779,
+        "valuation_pairs": 142481513,
+        "scale_pairs": 110866,
+        "local_pairs": 126570,
+        "gamma_pairs": 110651,
+        "gamma_rejected": 215,
+        "critical_projection_pairs": 110604,
+        "critical_projection_rejected": 47,
+        "exact_parameter_pairs": 110604,
+        "square_discriminants": 5646,
+        "linear_pairs": 0,
+        "primitive_three_candidates": 22,
+        "solutions": 0,
+        "seconds_setup": 0.0171432,
+        "seconds_search": 6.93522,
+        "seconds_total_excluding_validation": 6.95236,
+        "gamma_rejection_examples": [
+          {
+            "n": 10092,
+            "u": 10092,
+            "v": 4321,
+            "gamma_h": 29,
+            "gamma_u": 1,
+            "gamma_v": 29
+          },
+          {
+            "n": 16500,
+            "u": 4035,
+            "v": 2660,
+            "gamma_h": 1,
+            "gamma_u": 5,
+            "gamma_v": 5
+          },
+          {
+            "n": 16500,
+            "u": 16500,
+            "v": 13865,
+            "gamma_h": 5,
+            "gamma_u": 1,
+            "gamma_v": 5
+          },
+          {
+            "n": 19500,
+            "u": 7820,
+            "v": 0,
+            "gamma_h": 5,
+            "gamma_u": 5,
+            "gamma_v": 1
+          },
+          {
+            "n": 19500,
+            "u": 17355,
+            "v": 3375,
+            "gamma_h": 5,
+            "gamma_u": 5,
+            "gamma_v": 1
+          },
+          {
+            "n": 22500,
+            "u": 12500,
+            "v": 10665,
+            "gamma_h": 5,
+            "gamma_u": 1,
+            "gamma_v": 5
+          },
+          {
+            "n": 25500,
+            "u": 22000,
+            "v": 11545,
+            "gamma_h": 5,
+            "gamma_u": 1,
+            "gamma_v": 5
+          },
+          {
+            "n": 25500,
+            "u": 24340,
+            "v": 2125,
+            "gamma_h": 5,
+            "gamma_u": 5,
+            "gamma_v": 1
+          },
+          {
+            "n": 28500,
+            "u": 16625,
+            "v": 14565,
+            "gamma_h": 5,
+            "gamma_u": 1,
+            "gamma_v": 5
+          },
+          {
+            "n": 28500,
+            "u": 28500,
+            "v": 25505,
+            "gamma_h": 5,
+            "gamma_u": 1,
+            "gamma_v": 5
+          },
+          {
+            "n": 28500,
+            "u": 5045,
+            "v": 0,
+            "gamma_h": 5,
+            "gamma_u": 5,
+            "gamma_v": 1
+          },
+          {
+            "n": 28500,
+            "u": 15840,
+            "v": 6340,
+            "gamma_h": 1,
+            "gamma_u": 5,
+            "gamma_v": 5
+          },
+          {
+            "n": 31500,
+            "u": 16880,
+            "v": 10125,
+            "gamma_h": 5,
+            "gamma_u": 5,
+            "gamma_v": 1
+          },
+          {
+            "n": 31500,
+            "u": 18415,
+            "v": 5500,
+            "gamma_h": 5,
+            "gamma_u": 5,
+            "gamma_v": 1
+          },
+          {
+            "n": 33000,
+            "u": 28375,
+            "v": 25960,
+            "gamma_h": 5,
+            "gamma_u": 1,
+            "gamma_v": 5
+          },
+          {
+            "n": 33000,
+            "u": 21505,
+            "v": 18880,
+            "gamma_h": 1,
+            "gamma_u": 5,
+            "gamma_v": 5
+          },
+          {
+            "n": 33000,
+            "u": 33000,
+            "v": 28285,
+            "gamma_h": 5,
+            "gamma_u": 1,
+            "gamma_v": 5
+          },
+          {
+            "n": 33000,
+            "u": 33000,
+            "v": 25065,
+            "gamma_h": 5,
+            "gamma_u": 1,
+            "gamma_v": 5
+          },
+          {
+            "n": 33000,
+            "u": 12375,
+            "v": 3695,
+            "gamma_h": 5,
+            "gamma_u": 1,
+            "gamma_v": 5
+          },
+          {
+            "n": 33000,
+            "u": 19560,
+            "v": 7625,
+            "gamma_h": 5,
+            "gamma_u": 5,
+            "gamma_v": 1
+          }
+        ],
+        "critical_projection_rejection_examples": [
+          {
+            "n": 20808,
+            "u": 18904,
+            "v": 2295,
+            "prime": 17,
+            "z": 3
+          },
+          {
+            "n": 24276,
+            "u": 23273,
+            "v": 8636,
+            "prime": 17,
+            "z": 7
+          },
+          {
+            "n": 38148,
+            "u": 2720,
+            "v": 2244,
+            "prime": 17,
+            "z": 13
+          },
+          {
+            "n": 38148,
+            "u": 24123,
+            "v": 15759,
+            "prime": 17,
+            "z": 9
+          },
+          {
+            "n": 45084,
+            "u": 11713,
+            "v": 5236,
+            "prime": 17,
+            "z": 11
+          },
+          {
+            "n": 45084,
+            "u": 32045,
+            "v": 25568,
+            "prime": 17,
+            "z": 7
+          },
+          {
+            "n": 45084,
+            "u": 28475,
+            "v": 1292,
+            "prime": 17,
+            "z": 9
+          },
+          {
+            "n": 48552,
+            "u": 4981,
+            "v": 952,
+            "prime": 17,
+            "z": 13
+          },
+          {
+            "n": 50460,
+            "u": 44196,
+            "v": 25520,
+            "prime": 29,
+            "z": 22
+          },
+          {
+            "n": 52020,
+            "u": 40205,
+            "v": 15572,
+            "prime": 17,
+            "z": 9
+          },
+          {
+            "n": 52020,
+            "u": 45356,
+            "v": 13991,
+            "prime": 17,
+            "z": 15
+          },
+          {
+            "n": 52020,
+            "u": 51340,
+            "v": 18139,
+            "prime": 17,
+            "z": 3
+          },
+          {
+            "n": 65712,
+            "u": 41181,
+            "v": 14800,
+            "prime": 37,
+            "z": 4
+          },
+          {
+            "n": 65892,
+            "u": 53397,
+            "v": 51136,
+            "prime": 17,
+            "z": 7
+          },
+          {
+            "n": 65892,
+            "u": 33456,
+            "v": 187,
+            "prime": 17,
+            "z": 15
+          },
+          {
+            "n": 65892,
+            "u": 57868,
+            "v": 18139,
+            "prime": 17,
+            "z": 9
+          },
+          {
+            "n": 65892,
+            "u": 61965,
+            "v": 22236,
+            "prime": 17,
+            "z": 3
+          },
+          {
+            "n": 65892,
+            "u": 42636,
+            "v": 85,
+            "prime": 17,
+            "z": 15
+          },
+          {
+            "n": 65892,
+            "u": 52649,
+            "v": 3740,
+            "prime": 17,
+            "z": 5
+          },
+          {
+            "n": 69360,
+            "u": 39287,
+            "v": 36720,
+            "prime": 17,
+            "z": 9
+          }
+        ]
+      }
+    },
+    {
+      "bound": 200000,
+      "round": 1,
+      "mode": "v4_no_new_filters",
+      "command": [
+        "/workspace/scratch/48c819cf1cc9/rational_square_search/all_plane_gap_v4",
+        "200000",
+        "--no-new-filters"
+      ],
+      "result": {
+        "scope": "whole_plane",
+        "generator": "gap_CRT_v4",
+        "max_minimal_coordinate_denominator": 200000,
+        "min_denominator": 1,
+        "reference_v3": false,
+        "gamma_stage": "late",
+        "skip_redundant19": true,
+        "additional_filters": false,
+        "endpoint_pruning": false,
+        "fifth_power_condition": "off",
+        "prime_power_projections": false,
+        "critical_extension": false,
+        "fast_fifth_mark": false,
+        "sides": 8333,
+        "dense_even_pairs": 13890347222219,
+        "gap_rows": 416691665,
+        "local_gap_rows": 59433246,
+        "difference_gap_rows": 12254403,
+        "critical_gap_rows": 12115660,
+        "endpoint_empty_rows": 0,
+        "crt_residue_choices": 146094714,
+        "generated_pairs": 240853779,
+        "valuation_pairs": 142481513,
+        "gamma_early_rejected": 0,
+        "gamma_lifted_progressions": 0,
+        "gamma_lift_residues": 0,
+        "examined_generation_rejections": 0,
+        "local_pairs": 126570,
+        "additional_pairs": 126570,
+        "additional_rejected": 0,
+        "scale_pairs": 110866,
+        "gamma_pairs": 110651,
+        "gamma_rejected": 215,
+        "critical_projection_pairs": 110604,
+        "critical_projection_rejected": 47,
+        "exact_parameter_pairs": 110604,
+        "square_discriminants": 5646,
+        "linear_pairs": 0,
+        "primitive_three_candidates": 22,
+        "solutions": 0,
+        "seconds_setup": 0.0214698,
+        "seconds_search": 6.56375,
+        "seconds_total_excluding_validation": 6.58522
+      }
+    },
+    {
+      "bound": 200000,
+      "round": 1,
+      "mode": "v4_default",
+      "command": [
+        "/workspace/scratch/48c819cf1cc9/rational_square_search/all_plane_gap_v4",
+        "200000"
+      ],
+      "result": {
+        "scope": "whole_plane",
+        "generator": "gap_CRT_v4",
+        "max_minimal_coordinate_denominator": 200000,
+        "min_denominator": 1,
+        "reference_v3": false,
+        "gamma_stage": "late",
+        "skip_redundant19": true,
+        "additional_filters": true,
+        "endpoint_pruning": true,
+        "fifth_power_condition": "early",
+        "prime_power_projections": true,
+        "critical_extension": true,
+        "fast_fifth_mark": true,
+        "sides": 8333,
+        "dense_even_pairs": 13890347222219,
+        "gap_rows": 416691665,
+        "local_gap_rows": 59433246,
+        "difference_gap_rows": 12253734,
+        "critical_gap_rows": 12114991,
+        "endpoint_empty_rows": 1586,
+        "crt_residue_choices": 146087271,
+        "generated_pairs": 225902341,
+        "valuation_pairs": 93964641,
+        "gamma_early_rejected": 0,
+        "gamma_lifted_progressions": 0,
+        "gamma_lift_residues": 0,
+        "examined_generation_rejections": 0,
+        "local_pairs": 87576,
+        "additional_pairs": 47739,
+        "additional_rejected": 39837,
+        "scale_pairs": 41807,
+        "gamma_pairs": 41736,
+        "gamma_rejected": 71,
+        "critical_projection_pairs": 41736,
+        "critical_projection_rejected": 0,
+        "exact_parameter_pairs": 41736,
+        "square_discriminants": 13,
+        "linear_pairs": 0,
+        "primitive_three_candidates": 12,
+        "solutions": 0,
+        "seconds_setup": 0.0185688,
+        "seconds_search": 5.99003,
+        "seconds_total_excluding_validation": 6.0086
+      }
+    },
+    {
+      "bound": 200000,
+      "round": 2,
+      "mode": "v4_default",
+      "command": [
+        "/workspace/scratch/48c819cf1cc9/rational_square_search/all_plane_gap_v4",
+        "200000"
+      ],
+      "result": {
+        "scope": "whole_plane",
+        "generator": "gap_CRT_v4",
+        "max_minimal_coordinate_denominator": 200000,
+        "min_denominator": 1,
+        "reference_v3": false,
+        "gamma_stage": "late",
+        "skip_redundant19": true,
+        "additional_filters": true,
+        "endpoint_pruning": true,
+        "fifth_power_condition": "early",
+        "prime_power_projections": true,
+        "critical_extension": true,
+        "fast_fifth_mark": true,
+        "sides": 8333,
+        "dense_even_pairs": 13890347222219,
+        "gap_rows": 416691665,
+        "local_gap_rows": 59433246,
+        "difference_gap_rows": 12253734,
+        "critical_gap_rows": 12114991,
+        "endpoint_empty_rows": 1586,
+        "crt_residue_choices": 146087271,
+        "generated_pairs": 225902341,
+        "valuation_pairs": 93964641,
+        "gamma_early_rejected": 0,
+        "gamma_lifted_progressions": 0,
+        "gamma_lift_residues": 0,
+        "examined_generation_rejections": 0,
+        "local_pairs": 87576,
+        "additional_pairs": 47739,
+        "additional_rejected": 39837,
+        "scale_pairs": 41807,
+        "gamma_pairs": 41736,
+        "gamma_rejected": 71,
+        "critical_projection_pairs": 41736,
+        "critical_projection_rejected": 0,
+        "exact_parameter_pairs": 41736,
+        "square_discriminants": 13,
+        "linear_pairs": 0,
+        "primitive_three_candidates": 12,
+        "solutions": 0,
+        "seconds_setup": 0.0179958,
+        "seconds_search": 6.08097,
+        "seconds_total_excluding_validation": 6.09897
+      }
+    },
+    {
+      "bound": 200000,
+      "round": 2,
+      "mode": "v4_no_new_filters",
+      "command": [
+        "/workspace/scratch/48c819cf1cc9/rational_square_search/all_plane_gap_v4",
+        "200000",
+        "--no-new-filters"
+      ],
+      "result": {
+        "scope": "whole_plane",
+        "generator": "gap_CRT_v4",
+        "max_minimal_coordinate_denominator": 200000,
+        "min_denominator": 1,
+        "reference_v3": false,
+        "gamma_stage": "late",
+        "skip_redundant19": true,
+        "additional_filters": false,
+        "endpoint_pruning": false,
+        "fifth_power_condition": "off",
+        "prime_power_projections": false,
+        "critical_extension": false,
+        "fast_fifth_mark": false,
+        "sides": 8333,
+        "dense_even_pairs": 13890347222219,
+        "gap_rows": 416691665,
+        "local_gap_rows": 59433246,
+        "difference_gap_rows": 12254403,
+        "critical_gap_rows": 12115660,
+        "endpoint_empty_rows": 0,
+        "crt_residue_choices": 146094714,
+        "generated_pairs": 240853779,
+        "valuation_pairs": 142481513,
+        "gamma_early_rejected": 0,
+        "gamma_lifted_progressions": 0,
+        "gamma_lift_residues": 0,
+        "examined_generation_rejections": 0,
+        "local_pairs": 126570,
+        "additional_pairs": 126570,
+        "additional_rejected": 0,
+        "scale_pairs": 110866,
+        "gamma_pairs": 110651,
+        "gamma_rejected": 215,
+        "critical_projection_pairs": 110604,
+        "critical_projection_rejected": 47,
+        "exact_parameter_pairs": 110604,
+        "square_discriminants": 5646,
+        "linear_pairs": 0,
+        "primitive_three_candidates": 22,
+        "solutions": 0,
+        "seconds_setup": 0.0169875,
+        "seconds_search": 6.45191,
+        "seconds_total_excluding_validation": 6.4689
+      }
+    },
+    {
+      "bound": 200000,
+      "round": 2,
+      "mode": "external_v3",
+      "command": [
+        "/workspace/scratch/48c819cf1cc9/rational_square_search/all_plane_gap_v3",
+        "200000"
+      ],
+      "result": {
+        "scope": "whole_plane",
+        "generator": "gap_CRT_mod1045_v3",
+        "max_minimal_coordinate_denominator": 200000,
+        "min_denominator": 1,
+        "local_filters": true,
+        "difference_filters": true,
+        "valuation_filters": true,
+        "gap_valuation_precheck": false,
+        "scale_filter": true,
+        "gamma_filter": true,
+        "critical_5_13_content_filter": true,
+        "field_wheel19": true,
+        "critical_projections": true,
+        "sides": 8333,
+        "dense_even_pairs": 13890347222219,
+        "gap_rows": 416691665,
+        "local_gap_rows": 59433246,
+        "valuation_gap_rows": 59433246,
+        "difference_gap_rows": 12254403,
+        "critical_gap_rows": 12115660,
+        "crt_residue_choices": 146094714,
+        "generated_pairs": 240853779,
+        "valuation_pairs": 142481513,
+        "scale_pairs": 110866,
+        "local_pairs": 126570,
+        "gamma_pairs": 110651,
+        "gamma_rejected": 215,
+        "critical_projection_pairs": 110604,
+        "critical_projection_rejected": 47,
+        "exact_parameter_pairs": 110604,
+        "square_discriminants": 5646,
+        "linear_pairs": 0,
+        "primitive_three_candidates": 22,
+        "solutions": 0,
+        "seconds_setup": 0.0157218,
+        "seconds_search": 7.53022,
+        "seconds_total_excluding_validation": 7.54594,
+        "gamma_rejection_examples": [
+          {
+            "n": 10092,
+            "u": 10092,
+            "v": 4321,
+            "gamma_h": 29,
+            "gamma_u": 1,
+            "gamma_v": 29
+          },
+          {
+            "n": 16500,
+            "u": 4035,
+            "v": 2660,
+            "gamma_h": 1,
+            "gamma_u": 5,
+            "gamma_v": 5
+          },
+          {
+            "n": 16500,
+            "u": 16500,
+            "v": 13865,
+            "gamma_h": 5,
+            "gamma_u": 1,
+            "gamma_v": 5
+          },
+          {
+            "n": 19500,
+            "u": 7820,
+            "v": 0,
+            "gamma_h": 5,
+            "gamma_u": 5,
+            "gamma_v": 1
+          },
+          {
+            "n": 19500,
+            "u": 17355,
+            "v": 3375,
+            "gamma_h": 5,
+            "gamma_u": 5,
+            "gamma_v": 1
+          },
+          {
+            "n": 22500,
+            "u": 12500,
+            "v": 10665,
+            "gamma_h": 5,
+            "gamma_u": 1,
+            "gamma_v": 5
+          },
+          {
+            "n": 25500,
+            "u": 22000,
+            "v": 11545,
+            "gamma_h": 5,
+            "gamma_u": 1,
+            "gamma_v": 5
+          },
+          {
+            "n": 25500,
+            "u": 24340,
+            "v": 2125,
+            "gamma_h": 5,
+            "gamma_u": 5,
+            "gamma_v": 1
+          },
+          {
+            "n": 28500,
+            "u": 16625,
+            "v": 14565,
+            "gamma_h": 5,
+            "gamma_u": 1,
+            "gamma_v": 5
+          },
+          {
+            "n": 28500,
+            "u": 28500,
+            "v": 25505,
+            "gamma_h": 5,
+            "gamma_u": 1,
+            "gamma_v": 5
+          },
+          {
+            "n": 28500,
+            "u": 5045,
+            "v": 0,
+            "gamma_h": 5,
+            "gamma_u": 5,
+            "gamma_v": 1
+          },
+          {
+            "n": 28500,
+            "u": 15840,
+            "v": 6340,
+            "gamma_h": 1,
+            "gamma_u": 5,
+            "gamma_v": 5
+          },
+          {
+            "n": 31500,
+            "u": 16880,
+            "v": 10125,
+            "gamma_h": 5,
+            "gamma_u": 5,
+            "gamma_v": 1
+          },
+          {
+            "n": 31500,
+            "u": 18415,
+            "v": 5500,
+            "gamma_h": 5,
+            "gamma_u": 5,
+            "gamma_v": 1
+          },
+          {
+            "n": 33000,
+            "u": 28375,
+            "v": 25960,
+            "gamma_h": 5,
+            "gamma_u": 1,
+            "gamma_v": 5
+          },
+          {
+            "n": 33000,
+            "u": 21505,
+            "v": 18880,
+            "gamma_h": 1,
+            "gamma_u": 5,
+            "gamma_v": 5
+          },
+          {
+            "n": 33000,
+            "u": 33000,
+            "v": 28285,
+            "gamma_h": 5,
+            "gamma_u": 1,
+            "gamma_v": 5
+          },
+          {
+            "n": 33000,
+            "u": 33000,
+            "v": 25065,
+            "gamma_h": 5,
+            "gamma_u": 1,
+            "gamma_v": 5
+          },
+          {
+            "n": 33000,
+            "u": 12375,
+            "v": 3695,
+            "gamma_h": 5,
+            "gamma_u": 1,
+            "gamma_v": 5
+          },
+          {
+            "n": 33000,
+            "u": 19560,
+            "v": 7625,
+            "gamma_h": 5,
+            "gamma_u": 5,
+            "gamma_v": 1
+          }
+        ],
+        "critical_projection_rejection_examples": [
+          {
+            "n": 20808,
+            "u": 18904,
+            "v": 2295,
+            "prime": 17,
+            "z": 3
+          },
+          {
+            "n": 24276,
+            "u": 23273,
+            "v": 8636,
+            "prime": 17,
+            "z": 7
+          },
+          {
+            "n": 38148,
+            "u": 2720,
+            "v": 2244,
+            "prime": 17,
+            "z": 13
+          },
+          {
+            "n": 38148,
+            "u": 24123,
+            "v": 15759,
+            "prime": 17,
+            "z": 9
+          },
+          {
+            "n": 45084,
+            "u": 11713,
+            "v": 5236,
+            "prime": 17,
+            "z": 11
+          },
+          {
+            "n": 45084,
+            "u": 32045,
+            "v": 25568,
+            "prime": 17,
+            "z": 7
+          },
+          {
+            "n": 45084,
+            "u": 28475,
+            "v": 1292,
+            "prime": 17,
+            "z": 9
+          },
+          {
+            "n": 48552,
+            "u": 4981,
+            "v": 952,
+            "prime": 17,
+            "z": 13
+          },
+          {
+            "n": 50460,
+            "u": 44196,
+            "v": 25520,
+            "prime": 29,
+            "z": 22
+          },
+          {
+            "n": 52020,
+            "u": 40205,
+            "v": 15572,
+            "prime": 17,
+            "z": 9
+          },
+          {
+            "n": 52020,
+            "u": 45356,
+            "v": 13991,
+            "prime": 17,
+            "z": 15
+          },
+          {
+            "n": 52020,
+            "u": 51340,
+            "v": 18139,
+            "prime": 17,
+            "z": 3
+          },
+          {
+            "n": 65712,
+            "u": 41181,
+            "v": 14800,
+            "prime": 37,
+            "z": 4
+          },
+          {
+            "n": 65892,
+            "u": 53397,
+            "v": 51136,
+            "prime": 17,
+            "z": 7
+          },
+          {
+            "n": 65892,
+            "u": 33456,
+            "v": 187,
+            "prime": 17,
+            "z": 15
+          },
+          {
+            "n": 65892,
+            "u": 57868,
+            "v": 18139,
+            "prime": 17,
+            "z": 9
+          },
+          {
+            "n": 65892,
+            "u": 61965,
+            "v": 22236,
+            "prime": 17,
+            "z": 3
+          },
+          {
+            "n": 65892,
+            "u": 42636,
+            "v": 85,
+            "prime": 17,
+            "z": 15
+          },
+          {
+            "n": 65892,
+            "u": 52649,
+            "v": 3740,
+            "prime": 17,
+            "z": 5
+          },
+          {
+            "n": 69360,
+            "u": 39287,
+            "v": 36720,
+            "prime": 17,
+            "z": 9
+          }
+        ]
+      }
+    },
+    {
+      "bound": 200000,
+      "round": 3,
+      "mode": "v4_no_new_filters",
+      "command": [
+        "/workspace/scratch/48c819cf1cc9/rational_square_search/all_plane_gap_v4",
+        "200000",
+        "--no-new-filters"
+      ],
+      "result": {
+        "scope": "whole_plane",
+        "generator": "gap_CRT_v4",
+        "max_minimal_coordinate_denominator": 200000,
+        "min_denominator": 1,
+        "reference_v3": false,
+        "gamma_stage": "late",
+        "skip_redundant19": true,
+        "additional_filters": false,
+        "endpoint_pruning": false,
+        "fifth_power_condition": "off",
+        "prime_power_projections": false,
+        "critical_extension": false,
+        "fast_fifth_mark": false,
+        "sides": 8333,
+        "dense_even_pairs": 13890347222219,
+        "gap_rows": 416691665,
+        "local_gap_rows": 59433246,
+        "difference_gap_rows": 12254403,
+        "critical_gap_rows": 12115660,
+        "endpoint_empty_rows": 0,
+        "crt_residue_choices": 146094714,
+        "generated_pairs": 240853779,
+        "valuation_pairs": 142481513,
+        "gamma_early_rejected": 0,
+        "gamma_lifted_progressions": 0,
+        "gamma_lift_residues": 0,
+        "examined_generation_rejections": 0,
+        "local_pairs": 126570,
+        "additional_pairs": 126570,
+        "additional_rejected": 0,
+        "scale_pairs": 110866,
+        "gamma_pairs": 110651,
+        "gamma_rejected": 215,
+        "critical_projection_pairs": 110604,
+        "critical_projection_rejected": 47,
+        "exact_parameter_pairs": 110604,
+        "square_discriminants": 5646,
+        "linear_pairs": 0,
+        "primitive_three_candidates": 22,
+        "solutions": 0,
+        "seconds_setup": 0.0181748,
+        "seconds_search": 6.79167,
+        "seconds_total_excluding_validation": 6.80985
+      }
+    },
+    {
+      "bound": 200000,
+      "round": 3,
+      "mode": "external_v3",
+      "command": [
+        "/workspace/scratch/48c819cf1cc9/rational_square_search/all_plane_gap_v3",
+        "200000"
+      ],
+      "result": {
+        "scope": "whole_plane",
+        "generator": "gap_CRT_mod1045_v3",
+        "max_minimal_coordinate_denominator": 200000,
+        "min_denominator": 1,
+        "local_filters": true,
+        "difference_filters": true,
+        "valuation_filters": true,
+        "gap_valuation_precheck": false,
+        "scale_filter": true,
+        "gamma_filter": true,
+        "critical_5_13_content_filter": true,
+        "field_wheel19": true,
+        "critical_projections": true,
+        "sides": 8333,
+        "dense_even_pairs": 13890347222219,
+        "gap_rows": 416691665,
+        "local_gap_rows": 59433246,
+        "valuation_gap_rows": 59433246,
+        "difference_gap_rows": 12254403,
+        "critical_gap_rows": 12115660,
+        "crt_residue_choices": 146094714,
+        "generated_pairs": 240853779,
+        "valuation_pairs": 142481513,
+        "scale_pairs": 110866,
+        "local_pairs": 126570,
+        "gamma_pairs": 110651,
+        "gamma_rejected": 215,
+        "critical_projection_pairs": 110604,
+        "critical_projection_rejected": 47,
+        "exact_parameter_pairs": 110604,
+        "square_discriminants": 5646,
+        "linear_pairs": 0,
+        "primitive_three_candidates": 22,
+        "solutions": 0,
+        "seconds_setup": 0.0156069,
+        "seconds_search": 6.85996,
+        "seconds_total_excluding_validation": 6.87556,
+        "gamma_rejection_examples": [
+          {
+            "n": 10092,
+            "u": 10092,
+            "v": 4321,
+            "gamma_h": 29,
+            "gamma_u": 1,
+            "gamma_v": 29
+          },
+          {
+            "n": 16500,
+            "u": 4035,
+            "v": 2660,
+            "gamma_h": 1,
+            "gamma_u": 5,
+            "gamma_v": 5
+          },
+          {
+            "n": 16500,
+            "u": 16500,
+            "v": 13865,
+            "gamma_h": 5,
+            "gamma_u": 1,
+            "gamma_v": 5
+          },
+          {
+            "n": 19500,
+            "u": 7820,
+            "v": 0,
+            "gamma_h": 5,
+            "gamma_u": 5,
+            "gamma_v": 1
+          },
+          {
+            "n": 19500,
+            "u": 17355,
+            "v": 3375,
+            "gamma_h": 5,
+            "gamma_u": 5,
+            "gamma_v": 1
+          },
+          {
+            "n": 22500,
+            "u": 12500,
+            "v": 10665,
+            "gamma_h": 5,
+            "gamma_u": 1,
+            "gamma_v": 5
+          },
+          {
+            "n": 25500,
+            "u": 22000,
+            "v": 11545,
+            "gamma_h": 5,
+            "gamma_u": 1,
+            "gamma_v": 5
+          },
+          {
+            "n": 25500,
+            "u": 24340,
+            "v": 2125,
+            "gamma_h": 5,
+            "gamma_u": 5,
+            "gamma_v": 1
+          },
+          {
+            "n": 28500,
+            "u": 16625,
+            "v": 14565,
+            "gamma_h": 5,
+            "gamma_u": 1,
+            "gamma_v": 5
+          },
+          {
+            "n": 28500,
+            "u": 28500,
+            "v": 25505,
+            "gamma_h": 5,
+            "gamma_u": 1,
+            "gamma_v": 5
+          },
+          {
+            "n": 28500,
+            "u": 5045,
+            "v": 0,
+            "gamma_h": 5,
+            "gamma_u": 5,
+            "gamma_v": 1
+          },
+          {
+            "n": 28500,
+            "u": 15840,
+            "v": 6340,
+            "gamma_h": 1,
+            "gamma_u": 5,
+            "gamma_v": 5
+          },
+          {
+            "n": 31500,
+            "u": 16880,
+            "v": 10125,
+            "gamma_h": 5,
+            "gamma_u": 5,
+            "gamma_v": 1
+          },
+          {
+            "n": 31500,
+            "u": 18415,
+            "v": 5500,
+            "gamma_h": 5,
+            "gamma_u": 5,
+            "gamma_v": 1
+          },
+          {
+            "n": 33000,
+            "u": 28375,
+            "v": 25960,
+            "gamma_h": 5,
+            "gamma_u": 1,
+            "gamma_v": 5
+          },
+          {
+            "n": 33000,
+            "u": 21505,
+            "v": 18880,
+            "gamma_h": 1,
+            "gamma_u": 5,
+            "gamma_v": 5
+          },
+          {
+            "n": 33000,
+            "u": 33000,
+            "v": 28285,
+            "gamma_h": 5,
+            "gamma_u": 1,
+            "gamma_v": 5
+          },
+          {
+            "n": 33000,
+            "u": 33000,
+            "v": 25065,
+            "gamma_h": 5,
+            "gamma_u": 1,
+            "gamma_v": 5
+          },
+          {
+            "n": 33000,
+            "u": 12375,
+            "v": 3695,
+            "gamma_h": 5,
+            "gamma_u": 1,
+            "gamma_v": 5
+          },
+          {
+            "n": 33000,
+            "u": 19560,
+            "v": 7625,
+            "gamma_h": 5,
+            "gamma_u": 5,
+            "gamma_v": 1
+          }
+        ],
+        "critical_projection_rejection_examples": [
+          {
+            "n": 20808,
+            "u": 18904,
+            "v": 2295,
+            "prime": 17,
+            "z": 3
+          },
+          {
+            "n": 24276,
+            "u": 23273,
+            "v": 8636,
+            "prime": 17,
+            "z": 7
+          },
+          {
+            "n": 38148,
+            "u": 2720,
+            "v": 2244,
+            "prime": 17,
+            "z": 13
+          },
+          {
+            "n": 38148,
+            "u": 24123,
+            "v": 15759,
+            "prime": 17,
+            "z": 9
+          },
+          {
+            "n": 45084,
+            "u": 11713,
+            "v": 5236,
+            "prime": 17,
+            "z": 11
+          },
+          {
+            "n": 45084,
+            "u": 32045,
+            "v": 25568,
+            "prime": 17,
+            "z": 7
+          },
+          {
+            "n": 45084,
+            "u": 28475,
+            "v": 1292,
+            "prime": 17,
+            "z": 9
+          },
+          {
+            "n": 48552,
+            "u": 4981,
+            "v": 952,
+            "prime": 17,
+            "z": 13
+          },
+          {
+            "n": 50460,
+            "u": 44196,
+            "v": 25520,
+            "prime": 29,
+            "z": 22
+          },
+          {
+            "n": 52020,
+            "u": 40205,
+            "v": 15572,
+            "prime": 17,
+            "z": 9
+          },
+          {
+            "n": 52020,
+            "u": 45356,
+            "v": 13991,
+            "prime": 17,
+            "z": 15
+          },
+          {
+            "n": 52020,
+            "u": 51340,
+            "v": 18139,
+            "prime": 17,
+            "z": 3
+          },
+          {
+            "n": 65712,
+            "u": 41181,
+            "v": 14800,
+            "prime": 37,
+            "z": 4
+          },
+          {
+            "n": 65892,
+            "u": 53397,
+            "v": 51136,
+            "prime": 17,
+            "z": 7
+          },
+          {
+            "n": 65892,
+            "u": 33456,
+            "v": 187,
+            "prime": 17,
+            "z": 15
+          },
+          {
+            "n": 65892,
+            "u": 57868,
+            "v": 18139,
+            "prime": 17,
+            "z": 9
+          },
+          {
+            "n": 65892,
+            "u": 61965,
+            "v": 22236,
+            "prime": 17,
+            "z": 3
+          },
+          {
+            "n": 65892,
+            "u": 42636,
+            "v": 85,
+            "prime": 17,
+            "z": 15
+          },
+          {
+            "n": 65892,
+            "u": 52649,
+            "v": 3740,
+            "prime": 17,
+            "z": 5
+          },
+          {
+            "n": 69360,
+            "u": 39287,
+            "v": 36720,
+            "prime": 17,
+            "z": 9
+          }
+        ]
+      }
+    },
+    {
+      "bound": 200000,
+      "round": 3,
+      "mode": "v4_default",
+      "command": [
+        "/workspace/scratch/48c819cf1cc9/rational_square_search/all_plane_gap_v4",
+        "200000"
+      ],
+      "result": {
+        "scope": "whole_plane",
+        "generator": "gap_CRT_v4",
+        "max_minimal_coordinate_denominator": 200000,
+        "min_denominator": 1,
+        "reference_v3": false,
+        "gamma_stage": "late",
+        "skip_redundant19": true,
+        "additional_filters": true,
+        "endpoint_pruning": true,
+        "fifth_power_condition": "early",
+        "prime_power_projections": true,
+        "critical_extension": true,
+        "fast_fifth_mark": true,
+        "sides": 8333,
+        "dense_even_pairs": 13890347222219,
+        "gap_rows": 416691665,
+        "local_gap_rows": 59433246,
+        "difference_gap_rows": 12253734,
+        "critical_gap_rows": 12114991,
+        "endpoint_empty_rows": 1586,
+        "crt_residue_choices": 146087271,
+        "generated_pairs": 225902341,
+        "valuation_pairs": 93964641,
+        "gamma_early_rejected": 0,
+        "gamma_lifted_progressions": 0,
+        "gamma_lift_residues": 0,
+        "examined_generation_rejections": 0,
+        "local_pairs": 87576,
+        "additional_pairs": 47739,
+        "additional_rejected": 39837,
+        "scale_pairs": 41807,
+        "gamma_pairs": 41736,
+        "gamma_rejected": 71,
+        "critical_projection_pairs": 41736,
+        "critical_projection_rejected": 0,
+        "exact_parameter_pairs": 41736,
+        "square_discriminants": 13,
+        "linear_pairs": 0,
+        "primitive_three_candidates": 12,
+        "solutions": 0,
+        "seconds_setup": 0.0188871,
+        "seconds_search": 6.27646,
+        "seconds_total_excluding_validation": 6.29535
+      }
+    }
+  ],
+  "mark_tuning_medians": {
+    "fast_mark": 1.40259,
+    "direct_mark": 1.50811,
+    "late_fifth": 1.4504
+  },
+  "summary": {
+    "100000": {
+      "external_v3": {
+        "seconds": [
+          1.51866,
+          1.62568,
+          1.73828
+        ],
+        "median_seconds": 1.62568
+      },
+      "v4_no_new_filters": {
+        "seconds": [
+          1.60847,
+          1.61191,
+          1.56482
+        ],
+        "median_seconds": 1.60847
+      },
+      "v4_default": {
+        "seconds": [
+          1.36068,
+          1.51159,
+          1.39991
+        ],
+        "median_seconds": 1.39991,
+        "paired_speedup_vs_external_v3": [
+          1.1161037128494575,
+          1.075476815803227,
+          1.2417083955397132
+        ],
+        "median_paired_speedup_vs_external_v3": 1.1161037128494575,
+        "paired_speedup_vs_v4_no_new_filters": [
+          1.1821074756739278,
+          1.0663672027467765,
+          1.1178004300276447
+        ],
+        "median_paired_speedup_vs_v4_no_new_filters": 1.1178004300276447
+      }
+    },
+    "200000": {
+      "external_v3": {
+        "seconds": [
+          6.93522,
+          7.53022,
+          6.85996
+        ],
+        "median_seconds": 6.93522
+      },
+      "v4_no_new_filters": {
+        "seconds": [
+          6.56375,
+          6.45191,
+          6.79167
+        ],
+        "median_seconds": 6.56375
+      },
+      "v4_default": {
+        "seconds": [
+          5.99003,
+          6.08097,
+          6.27646
+        ],
+        "median_seconds": 6.08097,
+        "paired_speedup_vs_external_v3": [
+          1.1577938674764567,
+          1.2383254645229298,
+          1.0929664173753995
+        ],
+        "median_paired_speedup_vs_external_v3": 1.1577938674764567,
+        "paired_speedup_vs_v4_no_new_filters": [
+          1.0957791530259446,
+          1.0610001364913821,
+          1.0820860803701449
+        ],
+        "median_paired_speedup_vs_v4_no_new_filters": 1.0820860803701449
+      }
+    }
+  },
+  "hash_verification": {
+    "verified_utc": "2026-11-04T21:50:42.284548+00:00",
+    "verification_timing": "after_completed_original_benchmark",
+    "source_sha256": {
+      "all_plane_gap_v4.cpp": "80a382b9c131f3fe299dccf972931e5c8f3428cddd8b2155dae09f37cf9bd160",
+      "all_plane_gap_v3.cpp": "d01f7a5b2e8d18c579121e045fdb797e52e28febc4e358a5bdd3f31001302639",
+      "all_plane_sieved.cpp": "0351d243dcfbfec64a4198f5d04c4131a526f60709cae4c19e9b702ff11adbe1",
+      "research_v4_local/lifted_projection.hpp": "613da7bfd956e052feaa63f0c4426cd59159f5533a512cb4966865420390efc8",
+      "research_v4_math/critical_extension.hpp": "ed1b233d15c43542e1358d02ddc5570a0e6d504f026b786a697c9d5886f35366"
+    },
+    "binary_sha256": {
+      "all_plane_gap_v3": "33a4e757d25a6df162ce76bc0b6765fa5799ff1373db4535ec7edb4c4dfd924c",
+      "all_plane_gap_v4": "00ad72e1999602f0c0c3d39de135ac5ed0670609221060e74d989b06fdda0083"
+    },
+    "sources_match_recorded_start": true,
+    "binaries_match_recorded_start": true
+  }
+}

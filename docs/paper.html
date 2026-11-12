@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rational Distances to a Square: Paper</title>
+<meta name="description" content="A whole-plane search to coordinate denominator 10^7 and per-circle proofs for all vertex-centred circles of height at most 1000.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&family=IBM+Plex+Sans:wght@400;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<link rel="stylesheet" href="style.css">
+<script>
+window.MathJax = { tex: { inlineMath: [["\\(", "\\)"]], displayMath: [["\\[", "\\]"]] }, svg: { fontCache: "global" } };
+</script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
+</head>
+<body>
+<div class="page paper">
+<div class="bar">
+  <a class="site" href="index.html">Rational distances to a square</a>
+  <nav aria-label="Site">
+    <a href="index.html">Overview</a>
+    <a href="paper.html" aria-current="page">Paper (English)</a>
+    <a href="paper.ja.html" lang="ja">論文（日本語）</a>
+  </nav>
+</div>
+
+<header>
+  <p class="eyebrow">Computational number theory · Preprint draft</p>
+  <h1>Points at rational distance from the vertices of the unit square: a whole-plane search to denominator 10<sup>7</sup> and all vertex-centred circles of height at most 1000</h1>
+  <p class="byline">wand125 · November 2026 · draft for preview</p>
+</header>
+
+<section class="abstract" aria-label="Abstract">
+  <p><strong>Abstract.</strong> It is not known whether some point of the plane has rational distances to all four vertices of the unit square. We report two computations that bear on this question; neither settles it. First, an exhaustive search shows that no such point has coordinates with least common denominator at most \(10^7\), anywhere in the plane. A second, simpler search shows the same for denominators up to \(10^{11}\) inside the box \([-9,10]^2\). The first search enumerates integer parameters through necessary arithmetic conditions, generates admissible residue classes by the Chinese remainder theorem, and reconstructs every surviving candidate with exact integer arithmetic. Second, every such point lies on a circle of rational radius \(r\) about a vertex. For every rational \(r \ne 1\) with \(\max(|\text{numerator}|, \text{denominator}) \le 1000\), which is 608,382 circles, we prove that the circle carries no such point; the circle \(r = 1\) is excluded by hand. Hence each of the four distances of a hypothetical point has height greater than 1000. The circle proofs combine a descent through square classes with \(p\)-adic tests, genus-one quotients of rank zero, a refined 2-descent over \(\mathbb{Q}(i)\), and a Mordell–Weil sieve. For the last four circles the sieve needed generators of height 79 to 129, which we obtained from a Heegner point, from 2-coverings of isogenous curves and from 4-coverings. The circle proofs are computer-assisted. They depend on the correctness of PARI/GP and Sage, and one circle uses a rank bound from a single system.</p>
+</section>
+
+<nav class="toc" aria-label="Contents">
+  <ol>
+    <li><a href="#intro">Introduction and results</a></li>
+    <li><a href="#related">Related work</a></li>
+    <li><a href="#plane">The whole-plane search</a></li>
+    <li><a href="#circles">Circles about a vertex</a></li>
+    <li><a href="#last">The last nine circles</a></li>
+    <li><a href="#trust">What the results rely on</a></li>
+    <li><a href="#data">Code and data</a></li>
+  </ol>
+</nav>
+
+<section id="intro" class="prose">
+<h2>1. Introduction and results</h2>
+<p>Let \(V_1 = (0,0)\), \(V_2 = (1,0)\), \(V_3 = (0,1)\), \(V_4 = (1,1)\). We call a point \(P \in \mathbb{R}^2\) a <em>four-distance point</em> if \(|P - V_j| \in \mathbb{Q}\) for \(j = 1, \dots, 4\). Such a point has rational coordinates, since \(|P-V_2|^2 - |P-V_1|^2 = 1 - 2x\) and similarly for \(y\). Whether a four-distance point exists is an open problem (Guy's <em>Unsolved Problems in Number Theory</em>, problem D19). Points with three rational distances are dense in the plane, and several parametric families of them are known; Section 2 summarises what has been proved and computed.</p>
+<p>We write \(P = (X/N, Y/N)\) with integers \(X, Y, N\), \(N \ge 1\) and \(\gcd(X, Y, N) = 1\), and call \(N\) the <em>denominator</em> of \(P\). The <em>height</em> of a rational number \(a/b\) in lowest terms is \(\max(|a|, |b|)\).</p>
+
+<div class="stmt">
+  <span class="label">Result 1 (finite search).</span>
+  <p>(a) No four-distance point has denominator \(N \le 10^7\). This covers the whole plane, inside and outside the square.</p>
+  <p>(b) No four-distance point in the box \([-9, 10]^2\) has denominator \(N \le 10^{11}\).</p>
+</div>
+<p>Result 1 is the outcome of two finite computations (Sections 3.1–3.5 and 3.6). It is not a proof that four-distance points do not exist, and it says nothing about larger denominators.</p>
+
+<div class="stmt">
+  <span class="label">Result 2 (computer-assisted proof).</span>
+  <p>Let \(P\) be a four-distance point. Then each of the four distances \(|P - V_j|\) is a rational number of height greater than 1000.</p>
+</div>
+<p>If \(|P - V_j| = r\), the symmetries of the square move \(V_j\) to the origin and keep the distance, so it suffices to show that no circle \(|P| = r\) about the origin with \(r\) of height at most 1000 carries a four-distance point. For \(r = 1\) this is elementary (Section 4.1). For the other 608,382 values of \(r\) we prove it circle by circle (Sections 4 and 5). The proof is computer-assisted; Section 6 lists exactly which software outputs it depends on.</p>
+<p>The two results constrain different quantities. A point of denominator \(N\) has distances with denominators dividing \(N\), but their numerators can be large; conversely a distance of small height does not bound \(N\). Neither result implies the other.</p>
+<div class="stmt">
+  <span class="label">Taken together.</span>
+  <p>Combining Results 1 and 2 with known necessary conditions (Sections 2 and 3.2), a four-distance point \(P = (X/N, Y/N)\) in lowest terms, if one exists, must satisfy all of the following.</p>
+  <ul>
+    <li>\(N > 10^7\); and \(N > 10^{11}\) if \(P \in [-9, 10]^2\).</li>
+    <li>\(24 \mid N\). Each distance is \(k/N\) with \(k\) odd and prime to 3, so its reduced denominator is also a multiple of 24.</li>
+    <li>Each distance, written in lowest terms, has numerator or denominator greater than 1000.</li>
+    <li>After swapping the coordinates, \(X\) is odd and \(4 \mid Y\); every prime factor of \(X - Y\) and of \(X + Y - N\) is \(\equiv \pm 1 \pmod 8\).</li>
+    <li>\(P\) is not on a side of the square [6], nor on the lines containing the sides, the diagonals or the midlines [7].</li>
+  </ul>
+  <p>These conditions do not reduce the problem to a finite computation; see Section 2.6.</p>
+</div>
+</section>
+
+<section id="related" class="prose">
+<h2>2. Related work</h2>
+<h3>2.1 Origin and status</h3>
+<p>The problem is §D19 of Guy's book [1]. The earliest printed source we could trace is C. W. Dodge's Problem 966 in <em>Mathematics Magazine</em> (1976), with a partial solution by G. Shute and K. L. Yocom (1977) [2]. The problem is usually stated for the whole plane [1, 5, 6]; several recent papers restrict to the interior [7, 8, 12, 13, 15]. All recent sources we checked state that it is open [10, 11, 12].</p>
+
+<h3>2.2 Three-distance points and the four-distance surface</h3>
+<p>Points with rational distances to three vertices are dense in the plane; one-parameter families go back to J. H. Hunter (1967) and to Leech, Conway and M. Guy, as recorded by Berry [3]. Berry identified the three-distance surface as a Kummer surface with infinitely many families of rational curves, and showed that the four-distance surface is a double cover of it, branched along two conjugate elliptic quartics over \(\mathbb{Q}(i)\), and of general type with geometric genus 5 [3]. He also showed that his families of degree 2 and 4 contain no four-distance point. This double cover over \(\mathbb{Q}(i)\) is why \(\mathbb{Q}(i)\) appears in Sections 4.4 and 5.1. Corvaja, Turchet and Zannier proved that the distance surfaces for four points in general position are simply connected and of general type [11]. Love studied the three-distance curves on families of lines [10]. Bremner and Ulas found four-distance points for rectangles with a dense set of aspect ratios, never inside the rectangle [5].</p>
+<p>Under the Bombieri–Lang conjecture the rational points of a surface of general type are not Zariski dense; Tao [17] and Shaffaf [18] derive from it that no rational distance set is dense in the plane. Solymosi and de Zeeuw proved unconditionally that a rational distance set on an algebraic curve without line or circle components is finite [19]. None of these results decides the unit-square problem.</p>
+
+<h3>2.3 Special loci and one-parameter fibrations</h3>
+<p>Barbara showed that there is no four-distance point on the sides of the square [6]. Ji excluded the diagonals, the midlines and the lines containing the sides, and some lines parallel to a side, and states that the arguments extend to the whole plane [7]. Ieno gave divisibility conditions on the integer model [8]. McCloskey gave a 3-adic condition for rectangles and excluded Berry's family of degree 8 [9].</p>
+<p>Two works fix one parameter and test the resulting fibres, which is closest to our Section 4. A MathOverflow question fixes the line \(x = r\), on which points with rational distance to two vertices correspond to points on an elliptic curve, and proposes excluding a line when that curve has rank 0; it reports a few values of \(r\) and no systematic result [14]. Si fixes a signed sum or difference of two distances, so that the fibres are confocal conics, and shows that each fibre lies on a curve of genus 5, gives a rank-zero criterion and analyses one fibre in detail; the work treats interior points and has not been refereed [12]. The congruences \(24 \mid N\) and the conditions modulo 8 that we use in Section 3.2 appear in [8, 12].</p>
+
+<h3>2.4 Searches</h3>
+<p>Pegg collected three-distance points from Heronian triangles [16]. Si searched the interior to common denominator \(10^5\) [13]. A repository by Mulatram-UwU reports a search of the interior to common denominator \(5 \times 10^{10}\), by enumerating Pythagorean partners [15]; it states that it was produced by an AI agent, and we have not checked its code. Our box search (Section 3.6) uses the same idea of enumerating partners, extended to signed coordinates; the code is our own. Forum posts by T. S. Roberts (c. 2013) report larger whole-plane bounds that we could not verify. We found no refereed exhaustive search.</p>
+
+<h3>2.5 Methods</h3>
+<p>The tools of Sections 4 and 5 are standard: 2-descent and Simon's algorithm as implemented in PARI/GP [25, 30]; 4-descent and the minimisation and reduction of coverings [22, 23, 24]; Heegner points [26, 28] and Kolyvagin's theorem [27]; and the Mordell–Weil sieve [20, 21]. The conversion of a quartic with a rational point to Weierstrass form follows [29, Thm 2.17].</p>
+
+<h3>2.6 What is new here</h3>
+<p>We know of no earlier work that fixes the distance to one vertex, that is, a circle of rational radius about a vertex, and proves circles empty one by one; the nearest precedents are the fibrations of [12] and [14]. The individual methods are not new. A whole-plane search to denominator \(10^7\) is larger than any verifiable whole-plane search we found, while the interior alone has been searched further [15], and our box search covers a bounded region only. Under Bombieri–Lang the four-distance points would lie on finitely many curves, so closing all circles of small height does not reduce the problem to a finite computation; Result 2 removes only circles of height at most 1000.</p>
+</section>
+
+<section id="plane" class="prose">
+<h2>3. The whole-plane search</h2>
+<h3>3.1 Integer model and normalisation</h3>
+<p>Scale the square by \(N\). A four-distance point of denominator \(N\) gives integers \(A, B, C, D \ge 0\) with</p>
+\[ A^2 = X^2 + Y^2,\quad B^2 = (N - X)^2 + Y^2,\quad C^2 = X^2 + (N - Y)^2,\quad D^2 = (N - X)^2 + (N - Y)^2 . \]
+<p>The symmetry group of the square has order 8, so we may assume \(X \le Y \le N/2\). The coordinates are not otherwise bounded: \(X\) may be negative, which is how points outside the square enter. Put \(p = B - A\) and \(q = C - A\). From \(B^2 - A^2 = N^2 - 2NX\) and \(C^2 - A^2 = N^2 - 2NY\) we get \(B \ge C \ge A\), and the triangle inequality gives \(0 \le q \le p \le N\). The coordinates are recovered as</p>
+\[ X = \frac{N^2 - p^2 - 2Ap}{2N}, \qquad Y = \frac{N^2 - q^2 - 2Aq}{2N}, \]
+<p>and \(A^2 = X^2 + Y^2\) becomes the quadratic \(4QA^2 - 4TA + R = 0\) with</p>
+\[ Q = p^2 + q^2 - N^2,\quad T = p(N^2 - p^2) + q(N^2 - q^2),\quad R = (N^2 - p^2)^2 + (N^2 - q^2)^2, \]
+\[ T^2 - QR = K = (N^2 - p^2)(N^2 - q^2)\bigl(2N^2 - (p - q)^2\bigr). \]
+<p>So a triple \((N, p, q)\) determines at most two candidate points, and \(K\) must be a perfect square (the degenerate cases \(Q = 0\) are handled separately). Enumerating all triples would cost about \(N^3/576\) per denominator range, which is too much at \(10^7\); the rest of this section is about avoiding that.</p>
+
+<h3>3.2 Necessary conditions</h3>
+<p>For a primitive four-distance point the following hold. The first group is known (Section 2); we use it, we do not claim it.</p>
+<ul>
+  <li>\(24 \mid N\), the four distances are odd and prime to 3, and after swapping coordinates \(X\) is odd and \(4 \mid Y\).</li>
+  <li>Every prime factor of \(X - Y\) and of \(X + Y - N\) is \(\equiv \pm 1 \pmod 8\). The reason is that 2 is a non-residue modulo a prime \(\ell \equiv \pm 3 \pmod 8\), so \(\ell\) dividing the sum or difference of two legs at a vertex would force \(\ell\) to divide \(N\) and both coordinates.</li>
+</ul>
+<p>Put \(n = N/2\), \(u = p/2\), \(v = q/2\) and \(h = u - v\). These are integers, and \(X = n - u(A+u)/n\), \(Y = n - v(A+v)/n\). The search uses the following further conditions. Each is a necessary condition, so no four-distance point is lost; the proofs are in the repository documents cited in Section 7.</p>
+<ol>
+  <li><strong>Integrality as a generator.</strong> A common integer \(A\) making \(X\) and \(Y\) integral exists exactly when \(\gcd\bigl(n/\gcd(n,u),\, n/\gcd(n,v)\bigr) \mid u - v\). For fixed \(h\) this is equivalent to: for every prime power \(\ell^e \parallel n\), with \(t = \ell^{\max(e - v_\ell(h), 0)}\), we have \(u \equiv 0\) or \(u \equiv h \pmod t\). The search combines these alternatives by the Chinese remainder theorem and generates only the admissible \(u\). Pairs that would fail integrality are never formed.</li>
+  <li><strong>Conditions on the difference \(h\).</strong> Since \(X - Y = -h(A + u + v)/n\) is odd with no prime factor \(\equiv \pm 3 \pmod 8\), the part of \(h\) made of such primes divides \(n\), and an even \(h\) has the same 2-adic valuation as \(n\). In addition \(h/n\) must lie in residue classes modulo \(5 \cdot 11 \cdot 19\) found by enumerating the four distance equations over the finite fields (for example \(h/n \equiv 2, 3 \pmod 5\)).</li>
+  <li><strong>Valuations.</strong> If \(\ell = 2\) or \(\ell \equiv 3 \pmod 4\) and \(\ell^e \parallel n\), then \(\ell^{1}, \dots, \ell^{e-1}\) cannot be the exact power of \(\ell\) dividing \(u\) or \(v\); for \(\ell = 2\), \(e \ge 2\), the valuation \(e + 1\) is also impossible.</li>
+  <li><strong>Common factor.</strong> With \(g = \gcd(n, u, v)\), \(n_0 = n/g\) and \(Q_0 = (u/g)^2 + (v/g)^2 - n_0^2\), we need \(g \mid n_0 Q_0\).</li>
+  <li><strong>Local solubility.</strong> The four distance equations must be solvable modulo each prime from 5 to 43. Later versions add conditions modulo \(125, 49, 121, 169\) and at further primes up to 281. The tables come from exhaustive enumeration over the finite rings, checked by a second, independent enumeration. A new condition was adopted only after the parameter sets that survive it agreed with those obtained by applying it after the previous version.</li>
+</ol>
+<p>A candidate that passes is reconstructed exactly: \(K\) must be a square, the divisions in the formula for \(A\), \(X\), \(Y\) must be exact, and all four distance identities are checked with exact integers.</p>
+<p><strong>Size of the enumeration.</strong> For fixed \(n\) and \(h\), with \(m = n/\gcd(n, h)\), at most \(2^{\omega(m)}(1 + n/m)\) values of \(u\) are generated. Summing over \(h\) gives at most \(2n\,\tau(n^2) \le 2n\,d_3(n)\) per \(n\), and \(\sum_{n \le M} d_3(n) \le M H_M^2\). The number of generated pairs up to denominator \(B\) is therefore \(O(B^2 \log^2 B)\), against \(\Theta(B^3)\) triples \((N, p, q)\).</p>
+
+<h3>3.3 Exact arithmetic</h3>
+<p>At \(N = 10^7\) the quantity \(K\) reaches \(2N^6\) (141 bits), and \(X^2 + Y^2\) and \(D^2\) reach \(2(N^3 + N)^2\) (141 bits). Earlier versions of the program used 128-bit integers and were therefore restricted to \(N \le 2 \times 10^6\). The version used beyond that bound (v5) computes these quantities with 256-bit unsigned integers, tests squares by residues modulo 64, 63, 65 and 11 followed by an exact bitwise integer square root, and never uses floating point in a decision. It follows the frozen earlier version step for step: same formulas, same order of roots, same counters. Only the width of the integers differs.</p>
+
+<h3>3.4 Validation</h3>
+<ul>
+  <li>For \(N \le 12\), with the four-distance conditions removed, the reconstruction returns exactly the integer three-distance points found by brute force over all coordinates allowed by a proven radius bound, including points outside the square.</li>
+  <li>The 256-bit routines were checked on about 720,000 squares \(r^2, r^2 - 1, r^2 + 2r\) and against Python big integers.</li>
+  <li>Three-distance points with \(N \le 12\) were scaled by factors up to \(N \approx 10^7\); every scaled point was recovered.</li>
+  <li>Each new version (v5 in C++; v6, v7, v8 in Rust) was accepted only if, on common ranges up to \(N = 2 \times 10^6\), it produced the same set of parameter triples reaching reconstruction, the same three-distance witnesses and the same counters as its predecessor. v6 is a port of v5 written with the help of OpenAI Codex and accepted by this comparison.</li>
+  <li>As a positive control, every run lists the three-distance points that pass all filters ("witnesses"). These are re-checked with Python integers.</li>
+</ul>
+
+<h3>3.5 Results</h3>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Denominator range</th><th>Version</th><th class="num">Shards</th><th class="num">CPU seconds</th><th class="num">Three-distance witnesses</th><th class="num">Four-distance points</th></tr></thead>
+  <tbody>
+    <tr><td>1 – 2,000,000</td><td>v2; repeated with v4 and v5</td><td class="num">8</td><td class="num">1,059</td><td class="num">218 (v2) / 120 (v4, v5)</td><td class="num">0</td></tr>
+    <tr><td>2,000,001 – 4,000,000</td><td>v5</td><td class="num">48</td><td class="num">2,933</td><td class="num">107</td><td class="num">0</td></tr>
+    <tr><td>4,000,001 – 6,000,000</td><td>v7</td><td class="num">48</td><td class="num">4,847</td><td class="num">104</td><td class="num">0</td></tr>
+    <tr><td>6,000,001 – 8,000,000</td><td>v8</td><td class="num">48</td><td class="num">10,312</td><td class="num">97</td><td class="num">0</td></tr>
+    <tr><td>8,000,001 – 10,000,000</td><td>v8</td><td class="num">48</td><td class="num">17,618</td><td class="num">99</td><td class="num">0</td></tr>
+  </tbody>
+  <caption>Table 1. The whole-plane search, by range of the denominator \(N\). Shards are disjoint denominator intervals run as separate processes; the merge step checks that each interval occurs exactly once, that all shards used the same source, and that the covered triples match the theoretical count. Witnesses are the three-distance points that pass every filter; v4 has stronger filters than v2, hence fewer witnesses. CPU seconds are worker totals on different machines and are only indicative.</caption>
+</table>
+</div>
+<p>Almost all witnesses lie on the lines that contain the sides of the square; one (for \(N \le 2 \times 10^6\)) is strictly inside. In every case the fourth squared distance fails to be a square, often already modulo a small prime: for the interior witness \(N = 353{,}400\), \(X = 25{,}912\), \(Y = 98{,}175\) the fourth squared distance is \(2 \pmod{13}\).</p>
+
+<h3>3.6 A partner search in a bounded box</h3>
+<p>A second program checks a bounded region by a different route. Write \(P = (A/Q, C/Q)\) with \(B = Q - A\), \(D = Q - C\); then \(P\) is a four-distance point exactly when \(A^2 + C^2\), \(B^2 + C^2\), \(A^2 + D^2\) and \(B^2 + D^2\) are all squares. With \(M = 10N\), the program examines every \((Q, A, C)\) with \(Q \le N\) and \(\max(|A|, |B|, |C|, |D|) \le M\), which covers every point of \([-9, 10]^2\) with denominator at most \(N\). For each \(c = |C| \le M\) it lists the partners \(v \le M\) with \(c^2 + v^2\) a square, from the factorisations \(c^2 = uw\); each pair of partners \(a < b\) gives \(Q = a + b\) or \(Q = b - a\), and \(d = |Q - c|\) or \(Q + c\) is tested. The same congruences as in Section 3.2 (\(12 \mid Q\), parities modulo 4, divisibility by 3) prune the pairs. The idea of enumerating partners is taken from [15], extended to signed coordinates; the program, in Rust, is our own.</p>
+<p>Validation: with the pruning switched off, the three-distance rows agree exactly with an independent brute force on five boxes up to \((N, M) = (720, 2160)\); with it switched on they agree with the brute force after the same conditions are applied; the interior counts of partners and pairs agree with the counts published in [15] for \(N = 10^4, \dots, 10^7\); and each faster version reproduced all counters and rows of its predecessor on common ranges. Squares are tested exactly in integers.</p>
+<div class="table-wrap">
+<table>
+  <thead><tr><th class="num">\(N\)</th><th class="num">\(M\)</th><th class="num">Shards</th><th class="num">CPU seconds</th><th class="num">Three-distance rows</th><th class="num">Four-distance points</th></tr></thead>
+  <tbody>
+    <tr><td class="num">\(10^8\)</td><td class="num">\(10^9\)</td><td class="num">1</td><td class="num">≤ 1,113</td><td class="num">—</td><td class="num">0</td></tr>
+    <tr><td class="num">\(10^9\)</td><td class="num">\(10^{10}\)</td><td class="num">200</td><td class="num">11,957</td><td class="num">61,351,352</td><td class="num">0</td></tr>
+    <tr><td class="num">\(10^{10}\)</td><td class="num">\(10^{11}\)</td><td class="num">1,000</td><td class="num">160,343</td><td class="num">613,541,176</td><td class="num">0</td></tr>
+    <tr><td class="num">\(10^{11}\)</td><td class="num">\(10^{12}\)</td><td class="num">10,000</td><td class="num">1,836,020</td><td class="num">6,135,464,566</td><td class="num">0</td></tr>
+  </tbody>
+  <caption>Table 2. The box search in \([-9, 10]^2\). Shards are disjoint intervals of \(c\); the merge checks that every shard occurs exactly once and that the intervals are contiguous. Three-distance rows are triples that pass the pruning and have three square sums.</caption>
+</table>
+</div>
+
+<figure>
+  <svg viewBox="0 0 400 370" role="img" aria-labelledby="sqfig-t-paper" xmlns="http://www.w3.org/2000/svg">
+<title id="sqfig-t-paper">A point with rational distances to three vertices of the unit square</title>
+<line class="dg-grid" x1="50.0" y1="330.0" x2="50.0" y2="30.0"/><line class="dg-grid" x1="50.0" y1="330.0" x2="350.0" y2="330.0"/><line class="dg-grid" x1="80.0" y1="330.0" x2="80.0" y2="30.0"/><line class="dg-grid" x1="50.0" y1="300.0" x2="350.0" y2="300.0"/><line class="dg-grid" x1="110.0" y1="330.0" x2="110.0" y2="30.0"/><line class="dg-grid" x1="50.0" y1="270.0" x2="350.0" y2="270.0"/><line class="dg-grid" x1="140.0" y1="330.0" x2="140.0" y2="30.0"/><line class="dg-grid" x1="50.0" y1="240.0" x2="350.0" y2="240.0"/><line class="dg-grid" x1="170.0" y1="330.0" x2="170.0" y2="30.0"/><line class="dg-grid" x1="50.0" y1="210.0" x2="350.0" y2="210.0"/><line class="dg-grid" x1="200.0" y1="330.0" x2="200.0" y2="30.0"/><line class="dg-grid" x1="50.0" y1="180.0" x2="350.0" y2="180.0"/><line class="dg-grid" x1="230.0" y1="330.0" x2="230.0" y2="30.0"/><line class="dg-grid" x1="50.0" y1="150.0" x2="350.0" y2="150.0"/><line class="dg-grid" x1="260.0" y1="330.0" x2="260.0" y2="30.0"/><line class="dg-grid" x1="50.0" y1="120.0" x2="350.0" y2="120.0"/><line class="dg-grid" x1="290.0" y1="330.0" x2="290.0" y2="30.0"/><line class="dg-grid" x1="50.0" y1="90.0" x2="350.0" y2="90.0"/><line class="dg-grid" x1="320.0" y1="330.0" x2="320.0" y2="30.0"/><line class="dg-grid" x1="50.0" y1="60.0" x2="350.0" y2="60.0"/><line class="dg-grid" x1="350.0" y1="330.0" x2="350.0" y2="30.0"/><line class="dg-grid" x1="50.0" y1="30.0" x2="350.0" y2="30.0"/><rect class="dg-square" x="50" y="30" width="300" height="300"/><path class="dg-circle" d="M199.7,330.0 A149.7,149.7 0 0 0 50.0,180.3"/><line class="dg-dist" x1="108.2" y1="192.1" x2="50.0" y2="330.0"/><line class="dg-dist" x1="108.2" y1="192.1" x2="50.0" y2="30.0"/><line class="dg-dist" x1="108.2" y1="192.1" x2="350.0" y2="30.0"/><line class="dg-dist4" x1="108.2" y1="192.1" x2="350.0" y2="330.0"/>
+<circle class="dg-pt" cx="108.2" cy="192.1" r="4.5"/>
+<text class="dg-text" x="116.2" y="184.1">P</text>
+<circle class="dg-v" cx="50" cy="330" r="3.5"/><circle class="dg-v" cx="350" cy="330" r="3.5"/><circle class="dg-v" cx="50" cy="30" r="3.5"/><circle class="dg-v" cx="350" cy="30" r="3.5"/>
+<text class="dg-text" x="44" y="348" text-anchor="end">(0,0)</text>
+<text class="dg-text" x="356" y="348">(1,0)</text>
+<text class="dg-text" x="44" y="22" text-anchor="end">(0,1)</text>
+<text class="dg-text" x="356" y="22">(1,1)</text>
+<text class="dg-mute" x="195.7" y="346.0" text-anchor="middle">r</text>
+</svg>
+  <figcaption>Figure 1. A point found by an earlier interior search (denominator \(N = 34{,}112{,}496\), \(P \approx (0.19397, 0.45978)\)). Its distances to \((0,0)\), \((0,1)\) and \((1,1)\) are \(17{,}022{,}805/N\), \(19{,}580{,}267/N\) and \(33{,}100{,}037/N\). The squared distance to \((1,0)\), times \(N^2\), is \(1{,}002{,}001{,}483{,}678{,}105\), a non-residue modulo 47. The dashed arc is the circle of radius \(r = |P|\) about the origin; Section 4 works on such circles. Drawn to scale.</figcaption>
+</figure>
+</section>
+
+<section id="circles" class="prose">
+<h2>4. Circles about a vertex</h2>
+<h3>4.1 Parametrisation</h3>
+<p>Fix a rational \(r > 0\) and parametrise the circle \(|P| = r\) by</p>
+\[ P(t) = \left( \frac{r(1 - t^2)}{1 + t^2}, \frac{2rt}{1 + t^2} \right), \qquad t \in \mathbb{P}^1(\mathbb{Q}), \]
+<p>with \(t = \infty\) giving \((-r, 0)\). Then \(|P(t) - V_j|^2 = N_j(t)/(1 + t^2)\) for \(j = 2, 3, 4\), where</p>
+\[ N_2 = (r-1)^2 + (r+1)^2 t^2,\quad N_3 = (r^2+1)(1+t^2) - 4rt,\quad N_4 = (r^2+2)(1+t^2) - 2r(1-t^2) - 4rt . \]
+<p>A rational \(t\) gives a four-distance point exactly when \((1+t^2)N_j(t)\) is a square for \(j = 2, 3, 4\). The four quadratics \(f_1 = 1 + t^2, f_2 = N_2, f_3 = N_3, f_4 = N_4\) are positive definite with roots in \(\mathbb{Q}(i)\). The curve defined by these three conditions has genus 9. Among its quotients are six curves of genus one, \(v^2 = f_a f_b\) for the six pairs \(\{a, b\}\); every four-distance point gives a rational point on each of them with the same \(t\).</p>
+<p>For \(r = 1\) we have \(N_2 = 4t^2\) and \(N_3 = 2(t-1)^2\). For \(t \notin \{0, 1, \infty\}\) both \(1 + t^2\) and \(2(1 + t^2)\) would have to be squares, which is impossible. The values \(t = 0, 1, \infty\) give \((1,0)\), \((0,1)\) and \((-1,0)\), each at distance \(\sqrt 2\) from some vertex.</p>
+
+<h3>4.2 Descent through a common square class</h3>
+<p>At a four-distance point \(t = a/b\), the four values \(F_j(a, b)\) (the binary forms of the \(f_j\)) lie in one square class \(d \cdot \mathbb{Q}^{\times 2}\), where \(d > 0\) is squarefree and divisible only by primes in the set \(S\) of primes dividing the pairwise resultants. For every such \(d\) we look for a prime \(p \le 2000\) such that the four values \(d F_j\) are never simultaneously squares in \(\mathbb{Q}_p\) for \(x \in \mathbb{P}^1(\mathbb{Q}_p)\). If every \(d\) fails at some prime, the circle has no four-distance point.</p>
+<p>The \(p\)-adic test splits \(\mathbb{P}^1(\mathbb{Z}_p)\) into discs and declares "no point" on a disc only when the square class of every value is determined on it. Undetermined discs count as possibly containing a point, so only "no point" verdicts are used, and they are proofs. Because the verdict depends only on the class of \(d\) in \(\mathbb{Q}_p^\times / \mathbb{Q}_p^{\times 2}\), the search over \(d\) becomes a system of linear equations over \(\mathbb{F}_2\) in the exponent vector of \(d\), solved by branching.</p>
+<p>This step excludes 606,491 of the 608,382 circles. Every circle that survives it has \(12 \mid \operatorname{denominator}(r)\).</p>
+
+<h3>4.3 Genus-one quotients of rank zero</h3>
+<p>If one of the six quotients has Mordell–Weil rank 0, its rational points are its torsion points. When PARI/GP's <code>ellrank</code> returns upper bound 0 and the points found (including points at infinity) account for the whole torsion group, the list of rational \(t\) is complete, and we check each \(t\) exactly. This excludes 588 circles. Seven more circles have a quotient whose rank we prove to be 0 from \(L(E, 1) \ne 0\) with an explicit error bound and Kolyvagin's theorem.</p>
+
+<h3>4.4 Refined 2-descent over \(\mathbb{Q}(i)\)</h3>
+<p>Write \(f_j = c_j (t - \alpha_j)(t - \bar\alpha_j)\) with \(\alpha_j \in \mathbb{Q}(i)\). At a rational point \(t = a/b\) the class of \(t - \alpha_j\) has the form \(b \cdot \delta_j\) with \(\delta_j\) in the 2-Selmer-type group \(\mathbb{Q}(i)(S, 2)\) and \(b \in \mathbb{Q}^\times\). The unknowns are the exponent vectors of the \(\delta_j\) and, for each prime, the local class of \(b\). The constraints are a global one, \(c_j N(\delta_j) \equiv c_1 N(\delta_1)\) in \(\mathbb{Q}^\times / \mathbb{Q}^{\times 2}\), and local ones at each prime of \(S\) up to \(10^6\), expressed through Hilbert symbols. Discs where the local image is not determined are treated as allowing every class, so the local images are over-approximated and "no solution" is a proof. We ran it on pairs of factors and, for some circles, on all four factors at once. It excludes 1,171 circles in total.</p>
+<p>A first implementation contained an error: a local stage with no remaining constraint was returned with the same marker as a contradiction, because <code>[] == 0</code> is true in GP. This made local images too small. It was found by a positive control (four circles carrying real points with three rational distances were wrongly excluded). All affected verdicts were discarded and recomputed with the corrected code, which was then tested on 2,579 cases of circles carrying real points, with primes up to 400 and up to \(10^6\), in two PARI versions. No real point was lost.</p>
+
+<h3>4.5 Mordell–Weil sieve</h3>
+<p>For the remaining circles, choose a quotient \(C: v^2 = f_a f_b\) with a known rational point and map it to a Weierstrass model \(E\) (Washington, <em>Elliptic Curves</em>, Theorem 2.17). A four-distance point gives \(P = \sum n_i G_i + T \in E(\mathbb{Q})\) with generators \(G_i\) and torsion \(T\). For an integer \(M\) we track the classes \((n \bmod M, T)\). At each prime \(\ell\) such that the orders of all \(G_i\) in \(E(\mathbb{F}_\ell)\) divide \(M\), we compute the point of each class modulo \(\ell\), map it back to \(t \bmod \ell\), and remove the class if one of the two remaining products \(f_a f_c\) is a non-zero non-square modulo \(\ell\). Undecidable cases (points with \(v = 0\), \(\ell\) dividing a denominator) keep the class. If every class is removed, the circle has no four-distance point.</p>
+<p>Generators come from <code>ellrank</code> (lower bound equal to upper bound) and are saturated. Each exclusion was checked in three ways: (i) positive controls, where the real conditions are replaced by random quartics that are squares at a known rational point, so a correct sieve must keep that class (no control was wrongly removed); (ii) a direct cross-check of small multiples \(\sum n_i G_i + T\) against the class tests (no violation); (iii) an independent second system in Sage with eclib, which checks the \(j\)-invariant against the invariants of the quartic, torsion, saturation index 1 with the height bound, and the rank. The rank in (iii) comes from <code>mwrank</code>; where <code>mwrank</code> could not decide, it comes from the root number and a rigorously bounded \(L(E,1)\) or \(L'(E,1) \ne 0\), via Gross–Zagier and Kolyvagin. The sieve excluded 116 circles that no earlier step had excluded.</p>
+</section>
+
+<section id="last" class="prose">
+<h2>5. The last nine circles</h2>
+<p>After Section 4 nine circles remained: \(r = 607/120, 863/360, 967/360, 167/480, 727/720, 343/960, 887/960, 911/960, 383/984\). On each, a search for rational \(t\) of height up to \(3 \times 10^6\) on a suitable quotient found no four-distance point. They were closed as follows.</p>
+
+<h3>5.1 Rank zero over \(\mathbb{Q}(i)\) (five circles)</h3>
+<p>Every \(f_j\) has a root \(t_0 \in \mathbb{Q}(i)\), so the quotient \(C\) of pair \(\{1, 4\}\) is isomorphic over \(K = \mathbb{Q}(i)\) to an elliptic curve \(E\), with \(t_0\) sent to the origin. Let \(J\) be the Jacobian of \(C\) over \(\mathbb{Q}\) and \(J^{(-1)}\) its quadratic twist by \(-1\).</p>
+<ul>
+  <li>If \(J\) and \(J^{(-1)}\) both have rank 0, then \(E(K)\) is finite. We list \(E(K)_{\mathrm{tors}}\), map each point back to \(C\), and keep the rational \(t\). (607/120, 863/360, 967/360.)</li>
+  <li>If only \(J(\mathbb{Q})\) has rank 0, complex conjugation acts on \(E(K)\) as \(\sigma(Q) = \tau(Q) + c\), with \(\tau\) a group automorphism of order dividing 2 and \(c = \sigma(O)\). A point of \(C(\mathbb{Q})\) gives \(Q\) with \(\sigma(Q) = Q\), so \(S = Q + \tau(Q)\) is fixed by \(\tau\) and \(2Q = S + c\). The \(\tau\)-fixed subgroup is isomorphic to \(J(\mathbb{Q})\), hence finite. We list all \(Q\) with \(2Q = S + c\) for \(\tau\)-fixed torsion \(S\), keep those fixed by \(\sigma\), and map them back. (727/720, 911/960, and as a check the three circles above.)</li>
+</ul>
+<p>No rational \(t\) obtained this way is a four-distance point. The ranks were proved from \(L(J,1) \ne 0\) (and \(L(J^{(-1)},1) \ne 0\) where needed) with error bounds, and the torsion of \(E(K)\) was checked in Sage. For 911/960, PARI's <code>ellrank</code> gives only the bounds \([0, 2]\) for \(J\), but \(L(J,1) = 2.737\) with error at most \(1.8 \times 10^{-6}\).</p>
+
+<h3>5.2 Finding generators for the Mordell–Weil sieve (four circles)</h3>
+<p>For the other four circles the Jacobian of pair \(\{1, 2\}\) has root number \(-1\) and rank 1, but <code>ellrank</code> returned no generator. The Birch and Swinnerton-Dyer formula predicted generator heights of 80 to 130, out of reach of a direct point search on the curve. We found generators in three ways:</p>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Circle \(r\)</th><th>Source of the generator</th><th class="num">Canonical height</th><th class="num">\(L'(E,1)\)</th><th class="num">Error bound</th></tr></thead>
+  <tbody>
+    <tr><td>343/960</td><td>Heegner point (PARI <code>ellheegner</code>, 3.4 hours)</td><td class="num">128.96</td><td class="num">13.97</td><td class="num">\(1.4 \times 10^{-7}\)</td></tr>
+    <tr><td>167/480</td><td>Rational point on a 2-covering of an isogenous curve</td><td class="num">79.61</td><td class="num">17.22</td><td class="num">\(3.5 \times 10^{-7}\)</td></tr>
+    <tr><td>383/984</td><td>Rational point on a 2-covering of an isogenous curve</td><td class="num">86.93</td><td class="num">9.25</td><td class="num">\(3.0 \times 10^{-6}\)</td></tr>
+    <tr><td>887/960</td><td>Rational point on a 4-covering</td><td class="num">128.86</td><td class="num">20.62</td><td class="num">\(6.6 \times 10^{-7}\)</td></tr>
+  </tbody>
+  <caption>Table 3. Generators for the last four circles. Heights use PARI/GP 2.17's normalisation. The \(L'(E,1)\) values with error bounds come from the second system and prove rank 1 together with root number \(-1\).</caption>
+</table>
+</div>
+<p><strong>2-coverings.</strong> We order the curves isogenous to \(E\) by the constant \(\Omega \prod c_p / |T|^2\) of the BSD formula, largest first, since a larger constant means a smaller expected regulator. On each curve we search the 2-coverings returned by PARI's <code>ell2cover</code> with <code>hyperellratpoints</code>, map a point of infinite order to the curve, and carry it back to \(E\) through an isogeny from <code>ellisomat</code>, followed by saturation.</p>
+<p><strong>4-coverings.</strong> For 887/960 the 2-covering search found nothing up to height \(7.29 \times 10^6\). The curve has full rational 2-torsion, so the quartic of a 2-covering factors over \(\mathbb{Q}\) as \(g = q_1 q_2\) with quadratics \(q_1, q_2\). A rational point gives \(q_1(x) = d w_1^2\) and \(q_2(x) = d w_2^2\) for a squarefree \(d\) composed of primes dividing \(2\,\mathrm{lc}(q_1)\,\mathrm{lc}(q_2)\,\mathrm{Res}(q_1, q_2)\). For each \(d\) with \(q_1 = d w^2\) solvable we parametrise this conic by \(s\), substitute into \(d\,q_2\), and obtain a quartic \(v^2 = G_d(s)\), a 4-covering. Its coefficients are large (discriminant up to \(10^{62}\)), so we minimise it (<code>hyperellminimalmodel</code>) and reduce it by the Gauss reduction of the positive definite quadratic covariant built from its roots, \(\sum_\theta |x - \theta z|^2 / |G'(\theta)|^{1/2}\). Locally soluble 4-coverings minimise to discriminants near that of the curve, so we search only those within a factor \(10^5\) of the smallest. On 167/480 and 383/984 this reproduces the known generators (heights 79.61 and 86.93) in about one second. On 887/960 it finds the generator at height \(10^6\) on the 4-coverings \(d = -64751\) and \(d = 1638289\).</p>
+<p>PARI 2.15.4 and PARI/GP 2.17.2 return different representatives from <code>ell2cover</code> for this curve, and the 4-coverings of the 2.15.4 representative have no point up to height \(10^6\). We therefore computed the generator with 2.17.2 and passed it to the sieve, which checks that it lies on the same minimal model and has infinite order.</p>
+<p>With these generators the sieve excludes all four circles, with no control wrongly removed and no cross-check violation. In the second system the \(j\)-invariant, torsion (of order 4) and saturation index 1 agree; <code>mwrank</code> cannot decide the rank of these curves, and rank 1 follows from the \(L'(E,1)\) values in Table 3.</p>
+
+<h3>5.3 Summary</h3>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Method</th><th>Section</th><th class="num">Circles excluded</th></tr></thead>
+  <tbody>
+    <tr><td>Descent through a common square class, \(p\)-adic tests (\(p \le 2000\))</td><td>4.2</td><td class="num">606,491</td></tr>
+    <tr><td>Genus-one quotient of rank 0 (<code>ellrank</code> bound; \(L(E,1)\) for 7 circles)</td><td>4.3</td><td class="num">595</td></tr>
+    <tr><td>Refined 2-descent over \(\mathbb{Q}(i)\) (primes up to \(10^6\))</td><td>4.4</td><td class="num">1,171</td></tr>
+    <tr><td>Mordell–Weil sieve (generators from <code>ellrank</code>)</td><td>4.5</td><td class="num">116</td></tr>
+    <tr><td>Mordell–Weil sieve (generators from a Heegner point, 2-coverings, 4-coverings)</td><td>5.2</td><td class="num">4</td></tr>
+    <tr><td>Rank zero over \(\mathbb{Q}(i)\)</td><td>5.1</td><td class="num">5</td></tr>
+    <tr class="total"><td>All circles with \(r \ne 1\) of height \(\le 1000\)</td><td></td><td class="num">608,382</td></tr>
+  </tbody>
+  <caption>Table 4. Each circle is counted once, in the first method that excluded it. The Mordell–Weil sieve (Sections 4.5 and 5.2) excluded 151 circles in all; 31 of them are counted under the refined descent, which also excluded them.</caption>
+</table>
+</div>
+</section>
+
+<section id="trust" class="prose">
+<h2>6. What the results rely on</h2>
+<p><strong>Result 1</strong> rests on the necessary conditions of Section 3.2, whose proofs are in the repository, and on the correctness of our programs. The validation in Sections 3.4 and 3.6 tests the programs; it does not prove them correct.</p>
+<p><strong>Result 2</strong> is a computer-assisted proof. Besides our own code (the \(p\)-adic tests, the refined descent, the sieve), it relies on:</p>
+<ul>
+  <li>PARI/GP: <code>ellrank</code> upper bounds for the 588 rank-zero quotients of Section 4.3 and for the sieve curves, torsion, saturation, isogenies, reduction of models.</li>
+  <li>Sage with eclib (second system): \(j\)-invariants, torsion, saturation with the height bound, <code>mwrank</code>, and error-bounded \(L(E,1)\) and \(L'(E,1)\) from <code>lseries().at1</code> and <code>deriv_at1</code>.</li>
+  <li>The theorems of Gross–Zagier and Kolyvagin, for ranks deduced from \(L\)-values.</li>
+</ul>
+<div class="stmt caveat">
+  <span class="label">One circle with a single-system rank bound.</span>
+  <p>For \(r = 769/360\) the sieve curve has rank 2. Its upper bound comes only from PARI's <code>ellrank</code>; <code>mwrank</code> could not decide the rank on any curve of the isogeny class, and \(L\)-value methods do not apply to rank 2. Every other rank used in Sections 4.5 and 5 is confirmed by the second system.</p>
+</div>
+<p>The rank-zero exclusions of Section 4.3 (588 circles) use the PARI upper bound without a second system. The descent and the refined descent were tested on circles that carry real points with rational distances to some vertices (372 circles and 2,579 cases); no real point was lost after the correction described in Section 4.4.</p>
+</section>
+
+<section id="data" class="prose">
+<h2>7. Code and data</h2>
+<p>The code, every verdict file and the detailed reports are in the repository <a href="https://github.com/wand125/rational-distance"><code>wand125/rational-distance</code></a>. <code>all-plane/</code> holds the search (frozen versions v2–v4, versions v5–v8, the proofs of the arithmetic conditions, the shard summaries and the witness lists); <code>partner-search/</code> holds the box search of Section 3.6; <code>circles/</code> holds the PARI/GP and Python code, the verdict files and a report in Japanese with SHA-256 prefixes of the cited files.</p>
+<p>Software: PARI/GP 2.17.2; PARI 2.15.4 through cypari2; Sage 10.9 and passagemath 10.6 with eclib; a C++17 compiler; Rust 1.86.</p>
+<h3>References</h3>
+<ol class="refs">
+  <li>R. K. Guy, <em>Unsolved Problems in Number Theory</em>, 3rd ed., Springer, 2004, §D19.</li>
+  <li>C. W. Dodge, Problem 966, <em>Math. Mag.</em> 49 (1976), 43; partial solution by G. Shute and K. L. Yocom, 50 (1977), 166–167.</li>
+  <li>T. G. Berry, Points at rational distance from the corners of a unit square, <em>Ann. Scuola Norm. Sup. Pisa Cl. Sci. (4)</em> 17 (1990), 505–529.</li>
+  <li>T. G. Berry, Points at rational distance from the vertices of a triangle, <em>Acta Arith.</em> 62 (1992), 391–398.</li>
+  <li>A. Bremner, M. Ulas, Points at rational distances from the vertices of certain geometric objects, <em>J. Number Theory</em> 158 (2016), 104–133.</li>
+  <li>R. Barbara, The rational distance problem, <em>Math. Gazette</em> 95 (2011), 59–61.</li>
+  <li>Yang Ji, Several special cases of a square problem, arXiv:2105.05250 (2021).</li>
+  <li>Y. Ieno, Other special cases of a square problem, arXiv:2111.02888 (2021).</li>
+  <li>W. McCloskey, A congruence condition for the four-distance problem, arXiv:1904.12097 (2020).</li>
+  <li>J. Love, Rational configuration problems and a family of curves, <em>J. Number Theory</em> 269 (2025), 370–396.</li>
+  <li>P. Corvaja, A. Turchet, U. Zannier, Rational distances from given rational points in the plane, <em>Geom. Dedicata</em> 219 (2025), Art. 59.</li>
+  <li>Yuan Si, Arithmetic constraints and covering curves for rational distances in a square, preprint, Zenodo, 2026, doi:10.5281/zenodo.23638745.</li>
+  <li>Yuan Si, Rational-distance points in the unit square: research archive, Zenodo, 2026, doi:10.5281/zenodo.19613346.</li>
+  <li>MathOverflow question 418260, “4-distance problem and elliptic curves”, 2022.</li>
+  <li>Mulatram-UwU, rational-distance-problem, GitHub repository, September 2026.</li>
+  <li>E. Pegg Jr., Rational distance problem, Wolfram Community, 2016.</li>
+  <li>T. Tao, The Erdős–Ulam problem, varieties of general type, and the Bombieri–Lang conjecture, blog post, 2014.</li>
+  <li>J. Shaffaf, A solution of the Erdős–Ulam problem on rational distance sets assuming the Bombieri–Lang conjecture, <em>Discrete Comput. Geom.</em> 60 (2018), 283–293.</li>
+  <li>J. Solymosi, F. de Zeeuw, On a question of Erdős and Ulam, <em>Discrete Comput. Geom.</em> 43 (2010), 393–401.</li>
+  <li>N. Bruin, M. Stoll, The Mordell–Weil sieve: proving non-existence of rational points on curves, <em>LMS J. Comput. Math.</em> 13 (2010), 272–306.</li>
+  <li>E. V. Flynn, The Hasse principle and the Brauer–Manin obstruction for curves, <em>Manuscripta Math.</em> 115 (2004), 437–466.</li>
+  <li>J. R. Merriman, S. Siksek, N. P. Smart, Explicit 4-descents on an elliptic curve, <em>Acta Arith.</em> 77 (1996), 385–404.</li>
+  <li>J. E. Cremona, T. A. Fisher, C. O'Neil, D. Simon, M. Stoll, Explicit \(n\)-descent on elliptic curves I. Algebra, <em>J. reine angew. Math.</em> 615 (2008).</li>
+  <li>J. E. Cremona, T. A. Fisher, M. Stoll, Minimisation and reduction of 2-, 3- and 4-coverings of elliptic curves, <em>Algebra Number Theory</em> 4 (2010), 763–820.</li>
+  <li>D. Simon, Computing the rank of elliptic curves over number fields, <em>LMS J. Comput. Math.</em> 5 (2002), 7–17.</li>
+  <li>B. H. Gross, D. B. Zagier, Heegner points and derivatives of \(L\)-series, <em>Invent. Math.</em> 84 (1986), 225–320.</li>
+  <li>V. A. Kolyvagin, Finiteness of \(E(\mathbb{Q})\) and Ш\((E,\mathbb{Q})\) for a subclass of Weil curves, <em>Math. USSR-Izv.</em> 32 (1989), 523–541.</li>
+  <li>M. Watkins, Some remarks on Heegner point computations, arXiv:math/0506325 (2006).</li>
+  <li>L. C. Washington, <em>Elliptic Curves: Number Theory and Cryptography</em>, 2nd ed., Chapman &amp; Hall/CRC, 2008.</li>
+  <li>The PARI Group, PARI/GP version 2.17.2.</li>
+  <li>J. E. Cremona, eclib (mwrank), https://github.com/JohnCremona/eclib.</li>
+</ol>
+</section>
+
+<p class="footer">wand125 · MIT License for code · Draft of November 2026. <a href="paper.ja.html" lang="ja">日本語版</a></p>
+</div>
+</body>
+</html>

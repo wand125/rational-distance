@@ -1,0 +1,1 @@
+343/960 1 BAD rank=-1 tors=4 sat=1 rank_unproved

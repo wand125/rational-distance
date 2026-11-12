@@ -1,0 +1,72 @@
+{
+  "created_at_utc": "2026-11-04T18:30:03.085037+00:00",
+  "status": "passed",
+  "system": "Linux",
+  "machine": "x86_64",
+  "user_mac_deployed": false,
+  "destination": "/workspace/scratch/48c819cf1cc9/local_deploy_v3_final_yhmfeeby/installed",
+  "wall_seconds": 16.699529306999466,
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "/workspace/scratch/48c819cf1cc9/rational_square_search/deploy_local.py",
+    "--destination",
+    "/workspace/scratch/48c819cf1cc9/local_deploy_v3_final_yhmfeeby/installed"
+  ],
+  "source_sha256": {
+    "deploy_local.py": "d7df717f0f6f840cad601b206b35fd40205ac2f5b951e2190735257c46bfed55",
+    "local_run.py": "30393d4b85cebad5cb0e79a0c010c81533b6f55389947211809054c868b3bba1",
+    "run_sharded_v3.py": "09e84642a1d452cc63727a23132f6859ddde4da3bb2c4ec8f180b641e038ff36",
+    "all_plane_gap_v3.cpp": "d01f7a5b2e8d18c579121e045fdb797e52e28febc4e358a5bdd3f31001302639",
+    "all_plane_sieved.cpp": "0351d243dcfbfec64a4198f5d04c4131a526f60709cae4c19e9b702ff11adbe1",
+    "search.cpp": "04636556ec0a12c6fdb152f244094629d6fe87c021bed7477d2192f541c1b0e3"
+  },
+  "receipt": {
+    "created_at_utc": "2026-11-04T18:29:46.449805+00:00",
+    "destination": "/workspace/scratch/48c819cf1cc9/local_deploy_v3_final_yhmfeeby/installed",
+    "system": "Linux",
+    "machine": "x86_64",
+    "python_version": "3.12.14",
+    "manifest_sha256": "98aac05ff301c8850724c2b86fcdf2752a6ba61b77c21d48c6c486354e329aa2",
+    "source_file_count": 206,
+    "copied_and_source_hashes_verified": true,
+    "commands": [
+      {
+        "action": "check",
+        "returncode": 0
+      },
+      {
+        "action": "build",
+        "returncode": 0
+      },
+      {
+        "action": "smoke",
+        "returncode": 0
+      }
+    ],
+    "status": "installed_and_smoke_verified",
+    "full_search_started": false
+  },
+  "smoke": {
+    "status": "passed",
+    "system": "Linux",
+    "machine": "x86_64",
+    "engine": "v3",
+    "bound": 100000,
+    "workers": 2,
+    "exact_parameter_pairs": 24270,
+    "matched_three_distance_candidates": 10,
+    "four_distance_solutions": 0,
+    "nonempty_reference_set_matches": true,
+    "interior_reference_matches": true,
+    "source_sha256": {
+      "all_plane_gap_v2.cpp": "60bc78f33a598219ae9b31aedbc47968ffb797e7dc9ec63c5bcab6c7d7a07fea",
+      "all_plane_gap_v3.cpp": "d01f7a5b2e8d18c579121e045fdb797e52e28febc4e358a5bdd3f31001302639",
+      "all_plane_sieved.cpp": "0351d243dcfbfec64a4198f5d04c4131a526f60709cae4c19e9b702ff11adbe1",
+      "run_sharded_v2.py": "014d234ba652f1c33e45840947189e44074a6c51612a185ad1693b18d9a88cea",
+      "run_sharded_v3.py": "09e84642a1d452cc63727a23132f6859ddde4da3bb2c4ec8f180b641e038ff36",
+      "search.cpp": "04636556ec0a12c6fdb152f244094629d6fe87c021bed7477d2192f541c1b0e3"
+    },
+    "user_mac_verified": false
+  },
+  "generator_configuration_checked": true
+}

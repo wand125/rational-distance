@@ -1,0 +1,23 @@
+{
+ "host": "host-m1",
+ "lower": 6000001,
+ "select": "2/3",
+ "selected": 16,
+ "shards_total": 48,
+ "bound": 8000000,
+ "workers": 1,
+ "threads_per_worker": 2,
+ "started": "2026-11-05 08:29:00 JST",
+ "started_epoch": 1793834940.91192,
+ "skipped_already_done": 5,
+ "done": 16,
+ "failed": [],
+ "running": {},
+ "cpu_seconds_this_session": 1224.275125,
+ "state": "done",
+ "binary_sha256": "0e15896a7ebb8ac1b8abed0a183960ff1f7fbd233ab96fbd34ec6cdea045f47c",
+ "pid": 73449,
+ "updated": "2026-11-05 08:40:14 JST",
+ "updated_epoch": 1793835614.848093,
+ "finished": "2026-11-05 08:40:14 JST"
+}

@@ -1,0 +1,99 @@
+{
+  "scope": "integer parameter family satisfying the implemented v4 arithmetic predicates except the critical 41^2 predicate",
+  "family": {
+    "s": "1+3603600k, k>=0",
+    "n": "12*41^(2s)",
+    "u": "384*41^s",
+    "v": "265*41^s"
+  },
+  "base": {
+    "n": 20172,
+    "u": 15744,
+    "v": 10865
+  },
+  "old_v3_period": 55440,
+  "new_period": 3603600,
+  "unit_projection_checks": [
+    {
+      "modulus": 49,
+      "normalized_u": 45,
+      "normalized_v": 10,
+      "radius_witness_count": 2,
+      "witness": {
+        "x": 25,
+        "y": 4,
+        "signed_radii": [
+          2,
+          47,
+          12,
+          12
+        ]
+      },
+      "multiplicative_order_of_41": 14
+    },
+    {
+      "modulus": 121,
+      "normalized_u": 48,
+      "normalized_v": 18,
+      "radius_witness_count": 2,
+      "witness": {
+        "x": 56,
+        "y": 72,
+        "signed_radii": [
+          24,
+          72,
+          42,
+          50
+        ]
+      },
+      "multiplicative_order_of_41": 110
+    },
+    {
+      "modulus": 169,
+      "normalized_u": 42,
+      "normalized_v": 95,
+      "radius_witness_count": 1,
+      "witness": {
+        "x": 118,
+        "y": 153,
+        "signed_radii": [
+          111,
+          153,
+          37,
+          17
+        ]
+      },
+      "multiplicative_order_of_41": 156
+    },
+    {
+      "modulus": 125,
+      "normalized_u": 77,
+      "normalized_v": 45,
+      "radius_witness_count": 1,
+      "witness": {
+        "x": 91,
+        "y": 38,
+        "signed_radii": [
+          35,
+          112,
+          80,
+          62
+        ]
+      },
+      "multiplicative_order_of_41": 25
+    }
+  ],
+  "fifth_condition_normalized_residues": [
+    2,
+    0
+  ],
+  "critical_41_square_obstruction": {
+    "r_mod_1681": 314,
+    "required_r_mod_1681": 355,
+    "F_1303_mod_1681": 533,
+    "F_378_mod_41": 11
+  },
+  "not_a_machine_bound_extension": true,
+  "not_a_family_of_reconstructed_points": true,
+  "mathematical_novelty_claimed": false
+}

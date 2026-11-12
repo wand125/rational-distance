@@ -1,0 +1,8 @@
+167/480 1 BAD rank=-1 tors=4 sat=1 rank_unproved
+383/984 1 BAD rank=-1 tors=4 sat=1 rank_unproved
+887/960 1 BAD rank=-1 tors=4 sat=1 rank_unproved
+343/960 1 BAD rank=-1 tors=4 sat=1 rank_unproved
+167/480 1 logN=9.9 ngens=1 an=1 ok eps=-1,|v|=17.22,err=3.5e-07,k=360379
+383/984 1 logN=11.8 ngens=1 an=1 ok eps=-1,|v|=9.25,err=3e-06,k=3147710
+887/960 1 logN=10.5 ngens=1 an=1 ok eps=-1,|v|=20.62,err=6.6e-07,k=677686
+343/960 1 logN=9.1 ngens=1 an=1 ok eps=-1,|v|=13.97,err=1.4e-07,k=147014
