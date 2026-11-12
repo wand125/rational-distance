@@ -99,7 +99,14 @@ are the last 9 circles to be closed (r = 607/120, 863/360, 967/360, 167/480, 727
 
 ## Notes
 
-Prior work and what may be new are discussed in Section 2 of the paper draft (`docs/paper.html`).
-The individual methods are standard.
+**What appears new, as far as our literature survey goes** (to November 2026; Section 2.6 of `docs/paper.html`):
+
+- We found no earlier work that fixes the distance to one vertex and proves the circles empty one by one.
+- We found no whole-plane search, with method and output we could check, reaching denominator 10⁷.
+  Larger whole-plane bounds in forum posts could not be verified.
+- The box [−9, 10]² contains the square, so result 1b covers the interior to 10¹¹. The largest interior
+  search we found (Mulatram-UwU, 5×10¹⁰) is the source of the partner idea.
+
+The individual methods are standard, and both searches are finite computations.
 
 License: MIT (see `LICENSE`). Author: wand125.

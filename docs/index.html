@@ -84,6 +84,25 @@
 </section>
 
 <section class="prose">
+  <h2 class="l" lang="en">What is notable</h2>
+  <h2 class="l" lang="ja">特筆すべき点</h2>
+  <p class="l" lang="en">As far as our literature survey goes (up to November 2026; details in Section 2 of the paper):</p>
+  <p class="l" lang="ja">2026 年 11 月までの文献調査の範囲では（詳しくは論文の第 2 節）：</p>
+  <ul class="l" lang="en">
+    <li><strong>Circle by circle.</strong> We found no earlier work that fixes the distance to one corner and proves the circles empty one by one. Here every circle of height ≤ 1000 is closed.</li>
+    <li><strong>Whole plane to 10<sup>7</sup>.</strong> We found no whole-plane search, with method and output we could check, reaching this denominator. Larger forum claims could not be verified.</li>
+    <li><strong>Box to 10<sup>11</sup>.</strong> The box contains the square, so the interior is covered to 10<sup>11</sup>; the largest interior search we found reports 5 × 10<sup>10</sup>, and our box search borrows its idea.</li>
+  </ul>
+  <ul class="l" lang="ja">
+    <li><strong>円ごとの証明。</strong> 1 頂点までの距離を固定し、円が空であることを 1 つずつ証明した先行研究は見つからなかった。本研究は高さ 1000 以下の円をすべて閉じた。</li>
+    <li><strong>全平面で 10<sup>7</sup>。</strong> 方法と出力を確かめられる全平面の探索で、この分母に届いたものは見つからなかった。より大きいとする掲示板の投稿は確かめられなかった。</li>
+    <li><strong>箱で 10<sup>11</sup>。</strong> 箱は正方形を含むので、内部も 10<sup>11</sup> まで覆う。見つかった内部の探索で最も大きいものは 5 × 10<sup>10</sup> を報告しており、箱探索はその考えを借りている。</li>
+  </ul>
+  <p class="l" lang="en">None of this settles the problem: the searches are finite, and closing circles of small height does not reduce the problem to a finite one.</p>
+  <p class="l" lang="ja">どれも問題を解決しない。探索は有限で、高さの小さい円を閉じても問題は有限に帰着しない。</p>
+</section>
+
+<section class="prose">
   <h2 class="l" lang="en">How the circles were closed</h2>
   <h2 class="l" lang="ja">円の閉じ方</h2>
   <p class="l" lang="en">On the circle of radius r about (0,0), write the point as r((1−t²), 2t)/(1+t²). It has four rational distances exactly when (1+t²)·N<sub>j</sub>(t) is a square for three quadratics N<sub>j</sub>. Each circle is a curve of genus 9 with six genus-one quotients. Each method below excludes the circles the previous ones left.</p>
@@ -111,13 +130,13 @@
     <li>Result 1 is a finite computation, not a proof of non-existence. Its filters are necessary conditions whose proofs are in the repository.</li>
     <li>Result 2 is computer-assisted and depends on PARI/GP and Sage/eclib. Every exclusion by the Mordell–Weil sieve was checked against an independent second system, with ranks from mwrank or from L-values with error bounds.</li>
     <li>One circle, r = 769/360, uses a rank bound from PARI alone. The 588 rank-zero exclusions use PARI's upper bound.</li>
-    <li>We do not claim novelty for the methods, and we make no claim of a record. The paper's related-work section says what was known.</li>
+    <li>The methods are standard; what appears new is how they are combined (see above).</li>
   </ul>
   <ul class="l" lang="ja">
     <li>結果 1 は有限の計算で、存在しないことの証明ではない。ふるいの条件はどれも必要条件で、証明はリポジトリにある。</li>
     <li>結果 2 は計算機による証明で、PARI/GP と Sage・eclib に拠る。Mordell–Weil ふるいの除外は、どれも独立の第 2 系で確かめた（階数は mwrank、または誤差の範囲つきの L 値による）。</li>
     <li>r = 769/360 の 1 円だけは、階数の上界が PARI のみに拠る。階数 0 による 588 円の除外も PARI の上界を使う。</li>
-    <li>方法の新規性や記録は主張しない。何が知られていたかは論文の関連研究の節にまとめた。</li>
+    <li>個々の手法は標準的なもので、新しいと言えそうなのは組み合わせ方である（上記）。</li>
   </ul>
 </section>
 
