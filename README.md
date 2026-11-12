@@ -4,6 +4,9 @@ Is there a point P in the plane whose distances to all four vertices of the unit
 (0,0), (1,0), (0,1), (1,1) are rational? This is an open problem. This repository contains two
 computations that find no such point. Neither one solves the problem.
 
+Site: <https://wand125.github.io/rational-distance/> (overview, the paper draft in English and Japanese,
+and a work-in-progress page on extending the circles to height 10000).
+
 Japanese version: [README.ja.md](README.ja.md).
 
 ## Results
