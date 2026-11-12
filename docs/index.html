@@ -8,14 +8,15 @@
 <meta name="description" content="No point with four rational distances to the unit square: a whole-plane search to denominator 10^7 and proofs for all vertex-centred circles of height at most 1000.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&family=IBM+Plex+Sans:wght@400;600&family=Noto+Sans+JP:wght@400;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&family=Noto+Serif+JP:wght@400;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400;1,8..60,600&display=swap">
 <link rel="stylesheet" href="style.css">
 <style>
   [data-show="ja"] [lang="en"].l, [data-show="en"] [lang="ja"].l { display: none; }
-  .switch { display: inline-flex; border: 1px solid var(--rule); border-radius: 4px; overflow: hidden; }
-  .switch button { font: 600 13px var(--font-head); background: transparent; color: var(--muted); border: 0; padding: 4px 10px; cursor: pointer; }
-  .switch button[aria-pressed="true"] { background: var(--accent); color: var(--paper); }
+  .switch { display: inline-flex; gap: 2px; }
+  .switch button { font: 15px var(--font-body); background: transparent; color: var(--muted); border: 0; padding: 0 4px; cursor: pointer; }
+  .switch button[aria-pressed="true"] { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
   .pipeline td:first-child { width: 62%; }
+  .page > figure { max-width: 440px; margin-inline: auto; }
   .formula { font-family: var(--font-mono); font-size: 14px; background: var(--panel); padding: 10px 12px; overflow-x: auto; }
 </style>
 </head>
@@ -34,20 +35,15 @@
   </nav>
 </div>
 
-<section class="hero">
-  <div>
-    <p class="eyebrow l" lang="en">An open problem, two computations</p>
-    <p class="eyebrow l" lang="ja">未解決問題と 2 つの計算</p>
-    <h1 class="l" lang="en">Is there a point at rational distance from all four corners of a square?</h1>
-    <h1 class="l" lang="ja">正方形の 4 頂点すべてから有理数の距離にある点はあるか</h1>
-    <p class="lead l" lang="en">Nobody knows. Points at rational distance from three corners are dense in the plane, but in every known case the fourth distance is irrational. We searched the whole plane up to coordinate denominator 10<sup>7</sup> and proved, circle by circle, that no such point lies at a distance of small height from any corner. Neither result settles the problem.</p>
-    <p class="lead l" lang="ja">分かっていない。3 頂点から有理数の距離にある点は平面で稠密だが、知られている例では 4 つ目の距離はどれも有理数でない。全平面を座標の分母 10<sup>7</sup> まで探し、どの頂点からも高さの小さい距離にはそのような点がないことを、円ごとに証明した。どちらも問題を解決するものではない。</p>
-    <div class="links">
-      <a class="btn primary" href="paper.html"><span class="l" lang="en">Read the paper</span><span class="l" lang="ja">論文（英語）</span></a>
-      <a class="btn" href="paper.ja.html" lang="ja">論文（日本語）</a>
-      <a class="btn" href="https://github.com/wand125/rational-distance"><span class="l" lang="en">Code and data</span><span class="l" lang="ja">コードとデータ</span></a>
-    </div>
-  </div>
+<section class="prose">
+  <h1 class="l" lang="en">Points at rational distance from the vertices of the unit square</h1>
+  <h1 class="l" lang="ja">単位正方形の頂点から有理数の距離にある点</h1>
+  <p class="l" lang="en">It is not known whether some point of the plane has rational distances to all four vertices (0,0), (1,0), (0,1), (1,1) of the unit square (Guy, <em>Unsolved Problems in Number Theory</em>, D19). Points with three rational distances are dense in the plane. This site reports two computations on the question. Neither answers it.</p>
+  <p class="l" lang="ja">単位正方形の 4 頂点 (0,0)、(1,0)、(0,1)、(1,1) のすべてから有理数の距離にある点が平面上にあるかどうかは、分かっていない（Guy『Unsolved Problems in Number Theory』D19）。3 頂点から有理数の距離にある点は平面で稠密である。このサイトでは、この問いに関する 2 つの計算を報告する。どちらも問いに答えるものではない。</p>
+  <p class="l" lang="en">Paper: <a href="paper.html">English</a>, <a href="paper.ja.html" lang="ja">日本語</a>. Code and data: <a href="https://github.com/wand125/rational-distance">github.com/wand125/rational-distance</a>.</p>
+  <p class="l" lang="ja">論文：<a href="paper.ja.html">日本語</a>、<a href="paper.html" lang="en">English</a>。コードとデータ：<a href="https://github.com/wand125/rational-distance">github.com/wand125/rational-distance</a>。</p>
+</section>
+
   <figure>
     <svg viewBox="0 0 400 370" role="img" aria-labelledby="sqfig-t-index" xmlns="http://www.w3.org/2000/svg">
 <title id="sqfig-t-index">A point with rational distances to three vertices of the unit square</title>
@@ -61,53 +57,49 @@
 <text class="dg-text" x="356" y="22">(1,1)</text>
 <text class="dg-mute" x="195.7" y="346.0" text-anchor="middle">r</text>
 </svg>
-    <figcaption class="l" lang="en">A point found by the search: rational distances to three corners (solid), not to the fourth (dashed). Denominator 34,112,496, drawn to scale.</figcaption>
-    <figcaption class="l" lang="ja">探索で見つかった点：3 頂点まで（実線）の距離は有理数、残る 1 頂点まで（破線）は有理数でない。分母 34,112,496、縮尺どおり。</figcaption>
+    <figcaption class="l" lang="en">A point with rational distances to three corners (solid lines) but not to the fourth (dashed). Denominator 34,112,496; drawn to scale. The dashed arc is the circle of radius |P| about (0,0).</figcaption>
+    <figcaption class="l" lang="ja">3 頂点まで（実線）の距離は有理数で、残る 1 頂点まで（破線）は有理数でない点。分母は 34,112,496、縮尺どおり。破線の弧は (0,0) を中心とする半径 |P| の円。</figcaption>
   </figure>
-</section>
 
-<section class="results" aria-label="Results">
-  <div class="result">
-    <p class="eyebrow l" lang="en">Result 1 · finite search</p>
-    <p class="eyebrow l" lang="ja">結果 1 · 有限の探索</p>
-    <p class="big">N ≤ 10,000,000</p>
-    <p class="l" lang="en">No point of the plane with four rational distances has coordinates with common denominator at most ten million, inside or outside the square. Every decision uses exact integer arithmetic, and successive versions of the program were cross-checked on common ranges. A second search finds none with denominator up to 10<sup>11</sup> in the box [−9, 10]².</p>
-    <p class="l" lang="ja">座標の最小共通分母が 1,000 万以下の点で、4 頂点への距離がすべて有理数のものは、正方形の内外を問わずない。判定はすべて正確な整数演算で行い、プログラムの版どうしを共通の範囲で照合した。別の探索で、箱 [−9, 10]² の中では分母 10<sup>11</sup> まで見つからなかった。</p>
+<section class="prose">
+  <h2 class="l" lang="en">Results</h2>
+  <h2 class="l" lang="ja">結果</h2>
+  <p class="l" lang="en">Write a point as (X/N, Y/N) in lowest terms; N is its denominator. The height of a rational number a/b in lowest terms is max(|a|, |b|).</p>
+  <p class="l" lang="ja">点を既約に (X/N, Y/N) と書き、N を分母と呼ぶ。既約分数 a/b の高さは max(|a|, |b|) とする。</p>
+  <div class="stmt l" lang="en">
+    <span class="label">Result 1 (finite search).</span>
+    <p>No point with four rational distances has denominator N ≤ 10<sup>7</sup>, anywhere in the plane. In the box [−9, 10]², none has N ≤ 10<sup>11</sup>.</p>
   </div>
-  <div class="result">
-    <p class="eyebrow l" lang="en">Result 2 · computer-assisted proof</p>
-    <p class="eyebrow l" lang="ja">結果 2 · 計算機による証明</p>
-    <p class="big">608,382 <span class="l" lang="en">circles</span><span class="l" lang="ja">円</span></p>
-    <p class="l" lang="en">Every distance from such a point to a corner is a rational number of height greater than 1000. We proved that each circle about a corner with rational radius of height ≤ 1000 carries no such point.</p>
-    <p class="l" lang="ja">そのような点から頂点までの距離は、どれも高さが 1000 を超える有理数である。頂点を中心とし、半径が高さ 1000 以下の有理数である円のどれにも、そのような点がないことを示した。</p>
+  <div class="stmt l" lang="ja">
+    <span class="label">結果 1（有限の探索）</span>
+    <p>4 つの距離がすべて有理数の点で、分母 N ≤ 10<sup>7</sup> のものは平面上にない。箱 [−9, 10]² の中では N ≤ 10<sup>11</sup> のものもない。</p>
   </div>
+  <div class="stmt l" lang="en">
+    <span class="label">Result 2 (computer-assisted proof).</span>
+    <p>If such a point exists, each of its four distances is a rational number of height greater than 1000.</p>
+  </div>
+  <div class="stmt l" lang="ja">
+    <span class="label">結果 2（計算機による証明）</span>
+    <p>そのような点があれば、4 つの距離はどれも高さが 1000 を超える有理数である。</p>
+  </div>
+  <p class="l" lang="en">Result 2 is proved one circle at a time. A distance r to a vertex puts the point on the circle of radius r about that vertex, and by symmetry the vertex can be taken to be (0,0). There are 608,382 rational r ≠ 1 of height at most 1000; for each, the circle carries no such point. The circle r = 1 is excluded by hand.</p>
+  <p class="l" lang="ja">結果 2 は円ごとに証明した。頂点までの距離が r なら、点はその頂点を中心とする半径 r の円の上にあり、対称性から頂点は (0,0) としてよい。高さ 1000 以下の有理数 r ≠ 1 は 608,382 個あり、そのどの円の上にもそのような点はない。r = 1 の円は手で除外した。</p>
 </section>
 
 <section class="prose">
-  <h2 class="l" lang="en">What is notable</h2>
-  <h2 class="l" lang="ja">特筆すべき点</h2>
-  <p class="l" lang="en">As far as our literature survey goes (up to November 2026; details in Section 2 of the paper):</p>
-  <p class="l" lang="ja">2026 年 11 月までの文献調査の範囲では（詳しくは論文の第 2 節）：</p>
-  <ul class="l" lang="en">
-    <li><strong>Circle by circle.</strong> We found no earlier work that fixes the distance to one corner and proves the circles empty one by one. Here every circle of height ≤ 1000 is closed.</li>
-    <li><strong>Whole plane to 10<sup>7</sup>.</strong> We found no whole-plane search, with method and output we could check, reaching this denominator. Larger forum claims could not be verified.</li>
-    <li><strong>Box to 10<sup>11</sup>.</strong> The box contains the square, so the interior is covered to 10<sup>11</sup>; the largest interior search we found reports 5 × 10<sup>10</sup>, and our box search borrows its idea.</li>
-  </ul>
-  <ul class="l" lang="ja">
-    <li><strong>円ごとの証明。</strong> 1 頂点までの距離を固定し、円が空であることを 1 つずつ証明した先行研究は見つからなかった。本研究は高さ 1000 以下の円をすべて閉じた。</li>
-    <li><strong>全平面で 10<sup>7</sup>。</strong> 方法と出力を確かめられる全平面の探索で、この分母に届いたものは見つからなかった。より大きいとする掲示板の投稿は確かめられなかった。</li>
-    <li><strong>箱で 10<sup>11</sup>。</strong> 箱は正方形を含むので、内部も 10<sup>11</sup> まで覆う。見つかった内部の探索で最も大きいものは 5 × 10<sup>10</sup> を報告しており、箱探索はその考えを借りている。</li>
-  </ul>
-  <p class="l" lang="en">None of this settles the problem: the searches are finite, and closing circles of small height does not reduce the problem to a finite one.</p>
-  <p class="l" lang="ja">どれも問題を解決しない。探索は有限で、高さの小さい円を閉じても問題は有限に帰着しない。</p>
+  <h2 class="l" lang="en">Relation to earlier work</h2>
+  <h2 class="l" lang="ja">先行研究との関係</h2>
+  <p class="l" lang="en">We surveyed journals, arXiv, Zenodo, MathOverflow and public repositories up to November 2026 (Section 2 of the paper). We found no earlier work that fixes the distance to one vertex and proves the resulting circles empty one by one; the nearest precedents fix a vertical line or a sum of two distances. We also found no whole-plane search, with a method and output we could check, that reaches denominator 10<sup>7</sup>; forum posts claiming more could not be verified. The interior alone has been searched to 5 × 10<sup>10</sup> by enumerating Pythagorean partners, and our box search, which also covers the interior, borrows that idea. The individual methods are standard.</p>
+  <p class="l" lang="ja">2026 年 11 月までの論文誌、arXiv、Zenodo、MathOverflow、公開リポジトリを調べた（論文の第 2 節）。1 頂点までの距離を固定し、できる円が空であることを 1 つずつ証明した先行研究は見つからなかった。近いものに、縦の直線や 2 つの距離の和を固定する研究がある。方法と出力を確かめられる全平面の探索で、分母 10<sup>7</sup> に届いたものも見つからなかった。それ以上とする掲示板の投稿は確認できなかった。内部だけならピタゴラスの相手を列挙する方法で 5 × 10<sup>10</sup> まで探索されており、内部も含む本研究の箱探索はその考えを借りている。個々の手法は標準的なものである。</p>
 </section>
 
 <section class="prose">
-  <h2 class="l" lang="en">How the circles were closed</h2>
-  <h2 class="l" lang="ja">円の閉じ方</h2>
-  <p class="l" lang="en">On the circle of radius r about (0,0), write the point as r((1−t²), 2t)/(1+t²). It has four rational distances exactly when (1+t²)·N<sub>j</sub>(t) is a square for three quadratics N<sub>j</sub>. Each circle is a curve of genus 9 with six genus-one quotients. Each method below excludes the circles the previous ones left.</p>
-  <p class="l" lang="ja">原点を中心とする半径 r の円の点を r((1−t²), 2t)/(1+t²) と書く。4 つの距離が有理数になるのは、3 つの 2 次式 N<sub>j</sub> について (1+t²)·N<sub>j</sub>(t) が平方になるときである。円ごとに種数 9 の曲線ができ、種数 1 の商を 6 つ持つ。下の方法を順にかけ、前の方法で残った円を除外した。</p>
+  <h2 class="l" lang="en">How the circles were excluded</h2>
+  <h2 class="l" lang="ja">円の除外の手順</h2>
+  <p class="l" lang="en">On the circle of radius r about (0,0), write the point as r(1−t², 2t)/(1+t²). Its four distances are rational exactly when (1+t²)·N<sub>j</sub>(t) is a square for three quadratics N<sub>j</sub>. This defines a curve of genus 9 with six quotients of genus 1. The methods below were applied in order, each to the circles the earlier ones left.</p>
+  <p class="l" lang="ja">原点を中心とする半径 r の円の点を r(1−t², 2t)/(1+t²) と書く。4 つの距離が有理数になるのは、3 つの 2 次式 N<sub>j</sub> について (1+t²)·N<sub>j</sub>(t) が平方になるときである。これは種数 9 の曲線で、種数 1 の商を 6 つ持つ。下の方法を順にかけ、それぞれ前の方法で残った円に適用した。</p>
 </section>
+
 <div class="table-wrap">
 <table class="pipeline">
   <thead><tr><th><span class="l" lang="en">Method</span><span class="l" lang="ja">方法</span></th><th class="num"><span class="l" lang="en">Circles excluded</span><span class="l" lang="ja">除外した円</span></th></tr></thead>
@@ -124,20 +116,12 @@
 </div>
 
 <section class="prose">
-  <h2 class="l" lang="en">What to trust, and how much</h2>
-  <h2 class="l" lang="ja">何に拠っているか</h2>
-  <ul class="l" lang="en">
-    <li>Result 1 is a finite computation, not a proof of non-existence. Its filters are necessary conditions whose proofs are in the repository.</li>
-    <li>Result 2 is computer-assisted and depends on PARI/GP and Sage/eclib. Every exclusion by the Mordell–Weil sieve was checked against an independent second system, with ranks from mwrank or from L-values with error bounds.</li>
-    <li>One circle, r = 769/360, uses a rank bound from PARI alone. The 588 rank-zero exclusions use PARI's upper bound.</li>
-    <li>The methods are standard; what appears new is how they are combined (see above).</li>
-  </ul>
-  <ul class="l" lang="ja">
-    <li>結果 1 は有限の計算で、存在しないことの証明ではない。ふるいの条件はどれも必要条件で、証明はリポジトリにある。</li>
-    <li>結果 2 は計算機による証明で、PARI/GP と Sage・eclib に拠る。Mordell–Weil ふるいの除外は、どれも独立の第 2 系で確かめた（階数は mwrank、または誤差の範囲つきの L 値による）。</li>
-    <li>r = 769/360 の 1 円だけは、階数の上界が PARI のみに拠る。階数 0 による 588 円の除外も PARI の上界を使う。</li>
-    <li>個々の手法は標準的なもので、新しいと言えそうなのは組み合わせ方である（上記）。</li>
-  </ul>
+  <h2 class="l" lang="en">What the results depend on</h2>
+  <h2 class="l" lang="ja">結果の前提</h2>
+  <p class="l" lang="en">Result 1 is a finite computation, not a proof of non-existence. Its filters are necessary conditions, proved in the repository; every decision uses exact integer arithmetic, and successive program versions were compared on common ranges.</p>
+  <p class="l" lang="ja">結果 1 は有限の計算で、存在しないことの証明ではない。ふるいの条件は必要条件で、証明はリポジトリにある。判定はすべて正確な整数演算で行い、プログラムの版どうしを共通の範囲で照合した。</p>
+  <p class="l" lang="en">Result 2 relies on PARI/GP and on Sage with eclib. Every exclusion by the Mordell–Weil sieve was repeated in the second system, with ranks from mwrank or from L-values with error bounds. One circle, r = 769/360, uses a rank bound from PARI alone, and the 588 rank-zero exclusions use PARI's upper bound.</p>
+  <p class="l" lang="ja">結果 2 は PARI/GP と、Sage・eclib に拠る。Mordell–Weil ふるいによる除外は、どれも第 2 の系でやり直した（階数は mwrank、または誤差の範囲つきの L 値による）。r = 769/360 の 1 つの円だけは階数の上界が PARI のみに拠り、階数 0 による 588 個の円の除外も PARI の上界を使う。</p>
 </section>
 
 <p class="footer">wand125 · <span class="l" lang="en">Draft, November 2026. Code under the MIT License.</span><span class="l" lang="ja">2026 年 11 月の草稿。コードは MIT ライセンス。</span></p>

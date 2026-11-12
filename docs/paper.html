@@ -7,7 +7,7 @@
 <meta name="description" content="A whole-plane search to coordinate denominator 10^7 and per-circle proofs for all vertex-centred circles of height at most 1000.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&family=IBM+Plex+Sans:wght@400;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&family=Noto+Serif+JP:wght@400;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400;1,8..60,600&display=swap">
 <link rel="stylesheet" href="style.css">
 <script>
 window.MathJax = { tex: { inlineMath: [["\\(", "\\)"]], displayMath: [["\\[", "\\]"]] }, svg: { fontCache: "global" } };
@@ -101,9 +101,9 @@ window.MathJax = { tex: { inlineMath: [["\\(", "\\)"]], displayMath: [["\\[", "\
 <h3>2.6 What is new here</h3>
 <p>Within the literature we surveyed (Sections 2.1–2.5), the following points have no precedent. "No precedent" means that we did not find one; the survey covered journals, arXiv, Zenodo, MathOverflow, Mathematics Stack Exchange and public repositories up to November 2026.</p>
 <ul>
-  <li><strong>Circles about a vertex.</strong> We found no earlier work that fixes the distance to one vertex and proves the resulting circles empty one by one. Result 2 does this for all 608,382 circles of height at most 1000, so each distance of a four-distance point has height greater than 1000. The nearest precedents fix a vertical line [14] or a sum or difference of two distances [12]; neither excludes fibres systematically over a range.</li>
-  <li><strong>Whole-plane search.</strong> Among whole-plane searches whose method and output we could check, none reached denominator \(10^7\). Forum posts by Roberts report larger whole-plane bounds that we could not verify.</li>
-  <li><strong>The box.</strong> The box \([-9,10]^2\) contains the square, so the box search also covers the interior up to denominator \(10^{11}\). The largest interior search we found reports \(5 \times 10^{10}\) [15]; our box search uses its idea of enumerating partners.</li>
+  <li>We found no earlier work that fixes the distance to one vertex and proves the resulting circles empty one by one. Result 2 does this for all 608,382 circles of height at most 1000, so each distance of a four-distance point has height greater than 1000. The nearest precedents fix a vertical line [14] or a sum or difference of two distances [12]; neither excludes fibres systematically over a range.</li>
+  <li>Among whole-plane searches whose method and output we could check, none reached denominator \(10^7\). Forum posts by Roberts report larger whole-plane bounds that we could not verify.</li>
+  <li>The box \([-9,10]^2\) contains the square, so the box search also covers the interior up to denominator \(10^{11}\). The largest interior search we found reports \(5 \times 10^{10}\) [15]; our box search uses its idea of enumerating partners.</li>
 </ul>
 <p>What is not new: the individual methods (descent, Heegner points, coverings, the Mordell–Weil sieve) are standard [20–30]; the congruences of Section 3.2 are known [8, 12]. Both searches are finite computations. Under Bombieri–Lang the four-distance points would lie on finitely many curves, so closing all circles of small height does not reduce the problem to a finite computation; Result 2 removes only circles of height at most 1000.</p>
 </section>
